@@ -8,24 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		5FAAD05FD0BB60971686C31D /* Pods_InstagramChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D10534C4245572E20636E69 /* Pods_InstagramChallenge.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		7663C974289050DB006C3505 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C973289050DB006C3505 /* SplashViewController.swift */; };
+		7663C97728905467006C3505 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C97628905467006C3505 /* CustomTextView.swift */; };
+		7663C97A2890578E006C3505 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C9792890578E006C3505 /* SplashView.swift */; };
+		7663C980289059A1006C3505 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C97F289059A1006C3505 /* LoginView.swift */; };
 		76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958A288EE95B007E00D6 /* AppDelegate.swift */; };
 		76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958C288EE95B007E00D6 /* SceneDelegate.swift */; };
 		76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958E288EE95B007E00D6 /* LoginViewController.swift */; };
 		76E09592288EE95C007E00D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E09590288EE95C007E00D6 /* Main.storyboard */; };
 		76E09594288EE95E007E00D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E09593288EE95E007E00D6 /* Assets.xcassets */; };
-		76E09597288EE95E007E00D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E09595288EE95E007E00D6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0446C7B514AB94ACB140C51F /* Pods-InstagramChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramChallenge.release.xcconfig"; path = "Target Support Files/Pods-InstagramChallenge/Pods-InstagramChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		1834822CBE59BEE12CF34707 /* Pods-InstagramChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramChallenge.debug.xcconfig"; path = "Target Support Files/Pods-InstagramChallenge/Pods-InstagramChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		7663C973289050DB006C3505 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		7663C97628905467006C3505 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		7663C9792890578E006C3505 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		7663C97F289059A1006C3505 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		76E09587288EE95B007E00D6 /* InstagramChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E0958A288EE95B007E00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E0958C288EE95B007E00D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		76E0958E288EE95B007E00D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		76E09591288EE95C007E00D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76E09593288EE95E007E00D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		76E09596288EE95E007E00D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76E09598288EE95E007E00D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D10534C4245572E20636E69 /* Pods_InstagramChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -42,6 +48,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7663C975289050E3006C3505 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				7663C973289050DB006C3505 /* SplashViewController.swift */,
+				7663C9792890578E006C3505 /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		7663C9782890546B006C3505 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				7663C97628905467006C3505 /* CustomTextView.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		7663C97B289058F2006C3505 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76E09590288EE95C007E00D6 /* Main.storyboard */,
+				76E09593288EE95E007E00D6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7663C97C289058FD006C3505 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7663C97E2890598E006C3505 /* Login */,
+				7663C9782890546B006C3505 /* CustomUI */,
+				7663C975289050E3006C3505 /* Splash */,
+				76E0959E288EF947007E00D6 /* Controllers */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7663C97D28905906006C3505 /* Suppoting files */ = {
+			isa = PBXGroup;
+			children = (
+				76E09598288EE95E007E00D6 /* Info.plist */,
+			);
+			path = "Suppoting files";
+			sourceTree = "<group>";
+		};
+		7663C97E2890598E006C3505 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7663C97F289059A1006C3505 /* LoginView.swift */,
+				76E0958E288EE95B007E00D6 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		76E0957E288EE95B007E00D6 = {
 			isa = PBXGroup;
 			children = (
@@ -63,13 +123,11 @@
 		76E09589288EE95B007E00D6 /* InstagramChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				76E0959E288EF947007E00D6 /* Controllers */,
+				7663C97D28905906006C3505 /* Suppoting files */,
+				7663C97C289058FD006C3505 /* Sources */,
+				7663C97B289058F2006C3505 /* Resources */,
 				76E0958A288EE95B007E00D6 /* AppDelegate.swift */,
 				76E0958C288EE95B007E00D6 /* SceneDelegate.swift */,
-				76E09590288EE95C007E00D6 /* Main.storyboard */,
-				76E09593288EE95E007E00D6 /* Assets.xcassets */,
-				76E09595288EE95E007E00D6 /* LaunchScreen.storyboard */,
-				76E09598288EE95E007E00D6 /* Info.plist */,
 			);
 			path = InstagramChallenge;
 			sourceTree = "<group>";
@@ -77,7 +135,6 @@
 		76E0959E288EF947007E00D6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				76E0958E288EE95B007E00D6 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -160,7 +217,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76E09597288EE95E007E00D6 /* LaunchScreen.storyboard in Resources */,
 				76E09594288EE95E007E00D6 /* Assets.xcassets in Resources */,
 				76E09592288EE95C007E00D6 /* Main.storyboard in Resources */,
 			);
@@ -216,8 +272,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */,
+				7663C980289059A1006C3505 /* LoginView.swift in Sources */,
+				7663C97728905467006C3505 /* CustomTextView.swift in Sources */,
 				76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */,
 				76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */,
+				7663C974289050DB006C3505 /* SplashViewController.swift in Sources */,
+				7663C97A2890578E006C3505 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,14 +290,6 @@
 				76E09591288EE95C007E00D6 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		76E09595288EE95E007E00D6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				76E09596288EE95E007E00D6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -367,9 +419,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y7PRM9H29K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = InstagramChallenge/Info.plist;
+				INFOPLIST_FILE = "InstagramChallenge/Suppoting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -399,9 +451,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y7PRM9H29K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = InstagramChallenge/Info.plist;
+				INFOPLIST_FILE = "InstagramChallenge/Suppoting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

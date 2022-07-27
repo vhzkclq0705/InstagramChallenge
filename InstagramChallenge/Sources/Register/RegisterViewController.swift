@@ -66,7 +66,9 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func didTapRegisterButton(_ sender: Any) {
+        let vc = RegisterPhoneNumberViewController()
         
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func didTapLoginButton(_ sender: Any) {

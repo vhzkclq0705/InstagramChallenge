@@ -143,9 +143,10 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didTapRegisterButton(_ sender: Any) {
-        let registerViewController = RegisterViewController()
+        let vc = RegisterViewController()
+        let navigationController = UINavigationController(rootViewController: vc)
         
-        presentFullScreen(registerViewController)
+        presentFullScreen(navigationController)
     }
     
     @objc func didChangeTextField(_ textField: UITextField) {

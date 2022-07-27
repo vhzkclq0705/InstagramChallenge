@@ -8,22 +8,38 @@
 
 import UIKit
 
+import SnapKit
+
 class EmailViewController: UIViewController {
 
+    // MARK: - UI
+    
+    let guideLabel: UILabel = {
+        let label = UILabel()
+        label.text = "이메일은 진행하지 않습니다."
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureViewController()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Setup
+    
+    func configureViewController() {
+        self.view.backgroundColor = .white
+        self.view.addSubview(guideLabel)
+        
+        guideLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(100)
+            $0.centerX.equalToSuperview()
+        }
     }
-    */
-
+ 
 }

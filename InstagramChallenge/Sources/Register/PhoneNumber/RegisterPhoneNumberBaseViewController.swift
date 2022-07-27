@@ -66,11 +66,12 @@ class RegisterPhoneNumberBaseViewController: UIViewController {
         return label
     }()
     
-    let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
+        button.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
         
         return button
     }()
@@ -86,14 +87,14 @@ class RegisterPhoneNumberBaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationController()
-        setViewController()
-        setLayout()
+        configureNavigationController()
+        configureViewController()
+        configureLayout()
     }
     
     // MARK: - Setup
     
-    func setNavigationController() {
+    func configureNavigationController() {
         self.navigationItem.hidesBackButton = true
         let config = UIImage.SymbolConfiguration(
             pointSize: 18,
@@ -108,7 +109,7 @@ class RegisterPhoneNumberBaseViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
     }
     
-    func setViewController() {
+    func configureViewController() {
         view.backgroundColor = .white
         
         [questionLabel, loginButton]
@@ -127,7 +128,7 @@ class RegisterPhoneNumberBaseViewController: UIViewController {
         contentViewcontroller.reloadData()
     }
     
-    func setLayout() {
+    func configureLayout() {
         topLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.centerX.equalToSuperview()
@@ -161,6 +162,10 @@ class RegisterPhoneNumberBaseViewController: UIViewController {
     
     @objc func didTapBackButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didTapLoginButton(_ sender: Any) {
+        self.dismiss(animated: true)
     }
 }
 

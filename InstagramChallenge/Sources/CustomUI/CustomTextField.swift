@@ -10,6 +10,8 @@ import UIKit
 
 class CustomTextField: UITextField {
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
        

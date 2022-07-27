@@ -25,12 +25,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewController()
+        configureViewController()
     }
     
     // MARK: - Funcs
     
-    func setViewController() {
+    func configureViewController() {
         loginView.idTextField.addTarget(
             self,
             action: #selector(didChangeTextField(_:)),

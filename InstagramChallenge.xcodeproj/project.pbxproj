@@ -33,12 +33,13 @@
 		767E40F328917D1000AFFFBE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40F228917D1000AFFFBE /* RegisterView.swift */; };
 		767E40F5289181B300AFFFBE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40F4289181B300AFFFBE /* RegisterViewController.swift */; };
 		767E40F82891833E00AFFFBE /* UIViewController++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40F72891833E00AFFFBE /* UIViewController++Extensions.swift */; };
-		767E40FA2891855700AFFFBE /* RegisterPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40F92891855700AFFFBE /* RegisterPhoneNumberView.swift */; };
 		767E40FC2891888F00AFFFBE /* RegisterPhoneNumberBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40FB2891888F00AFFFBE /* RegisterPhoneNumberBaseViewController.swift */; };
 		767E410028918B4000AFFFBE /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40FF28918B4000AFFFBE /* MenuCell.swift */; };
 		767E41022891952900AFFFBE /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41012891952900AFFFBE /* PhoneNumberViewController.swift */; };
 		767E41042891953700AFFFBE /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41032891953700AFFFBE /* EmailViewController.swift */; };
 		767E41062891A08800AFFFBE /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41052891A08800AFFFBE /* PhoneNumberView.swift */; };
+		767E41082891A77F00AFFFBE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41072891A77F00AFFFBE /* CustomButton.swift */; };
+		767E410A2891AB7200AFFFBE /* OrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41092891AB7200AFFFBE /* OrView.swift */; };
 		76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958A288EE95B007E00D6 /* AppDelegate.swift */; };
 		76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958C288EE95B007E00D6 /* SceneDelegate.swift */; };
 		76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958E288EE95B007E00D6 /* LoginViewController.swift */; };
@@ -74,12 +75,13 @@
 		767E40F228917D1000AFFFBE /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		767E40F4289181B300AFFFBE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		767E40F72891833E00AFFFBE /* UIViewController++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++Extensions.swift"; sourceTree = "<group>"; };
-		767E40F92891855700AFFFBE /* RegisterPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPhoneNumberView.swift; sourceTree = "<group>"; };
 		767E40FB2891888F00AFFFBE /* RegisterPhoneNumberBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPhoneNumberBaseViewController.swift; sourceTree = "<group>"; };
 		767E40FF28918B4000AFFFBE /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		767E41012891952900AFFFBE /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
 		767E41032891953700AFFFBE /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		767E41052891A08800AFFFBE /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
+		767E41072891A77F00AFFFBE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		767E41092891AB7200AFFFBE /* OrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrView.swift; sourceTree = "<group>"; };
 		76E09587288EE95B007E00D6 /* InstagramChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E0958A288EE95B007E00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E0958C288EE95B007E00D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				7663C97628905467006C3505 /* CustomTextField.swift */,
+				767E41072891A77F00AFFFBE /* CustomButton.swift */,
+				767E41092891AB7200AFFFBE /* OrView.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -198,7 +202,6 @@
 				767E40FD28918AFE00AFFFBE /* PhoneNumber */,
 				767E40F228917D1000AFFFBE /* RegisterView.swift */,
 				767E40F4289181B300AFFFBE /* RegisterViewController.swift */,
-				767E40F92891855700AFFFBE /* RegisterPhoneNumberView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -216,9 +219,9 @@
 			children = (
 				767E40FB2891888F00AFFFBE /* RegisterPhoneNumberBaseViewController.swift */,
 				767E40FF28918B4000AFFFBE /* MenuCell.swift */,
+				767E41052891A08800AFFFBE /* PhoneNumberView.swift */,
 				767E41012891952900AFFFBE /* PhoneNumberViewController.swift */,
 				767E41032891953700AFFFBE /* EmailViewController.swift */,
-				767E41052891A08800AFFFBE /* PhoneNumberView.swift */,
 			);
 			path = PhoneNumber;
 			sourceTree = "<group>";
@@ -393,15 +396,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				767E40F5289181B300AFFFBE /* RegisterViewController.swift in Sources */,
-				767E40FA2891855700AFFFBE /* RegisterPhoneNumberView.swift in Sources */,
 				767E410028918B4000AFFFBE /* MenuCell.swift in Sources */,
 				76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */,
+				767E41082891A77F00AFFFBE /* CustomButton.swift in Sources */,
 				767E40E228915BFB00AFFFBE /* Contents.swift in Sources */,
 				767E40EA28915EB600AFFFBE /* ResponseSendChats.swift in Sources */,
 				767E40E628915D8500AFFFBE /* ResponseComments.swift in Sources */,
 				767E40E028915BCA00AFFFBE /* ResponseFeeds.swift in Sources */,
 				767E40DE28915B9C00AFFFBE /* ResponseMyPage.swift in Sources */,
 				767E40D32891579B00AFFFBE /* MyPage.swift in Sources */,
+				767E410A2891AB7200AFFFBE /* OrView.swift in Sources */,
 				7663C980289059A1006C3505 /* LoginView.swift in Sources */,
 				767E40D0289154E800AFFFBE /* BaseURL.swift in Sources */,
 				767E40EC28915EE300AFFFBE /* SendChats.swift in Sources */,

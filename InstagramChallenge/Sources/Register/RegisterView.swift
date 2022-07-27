@@ -38,28 +38,7 @@ class RegisterView: UIView {
         return button
     }()
     
-    let orLabel: UILabel = {
-        let label = UILabel()
-        label.text = "또는"
-        label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 15, weight: .semibold)
-        
-        return label
-    }()
-    
-    let leftBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
-    
-    let rightBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let orView = OrView()
     
     let registerButton: UIButton = {
         let button = UIButton()
@@ -118,7 +97,7 @@ class RegisterView: UIView {
     }
     
     override func layoutSubviews() {
-        setLayout()
+        configureLayout()
     }
     
     // MARK: - Setup
@@ -131,9 +110,7 @@ class RegisterView: UIView {
             topLogoImageView,
             topLabel,
             kakaoLoginButton,
-            orLabel,
-            leftBorderView,
-            rightBorderView,
+            orView,
             registerButton,
             bottomBorderView,
             bottomStackView,
@@ -141,7 +118,7 @@ class RegisterView: UIView {
             .forEach { self.addSubview($0) }
     }
     
-    func setLayout() {
+    func configureLayout() {
         topLogoImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview().multipliedBy(0.45)
             $0.centerX.equalToSuperview()
@@ -160,27 +137,13 @@ class RegisterView: UIView {
             $0.height.equalTo(50)
         }
         
-        orLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview().multipliedBy(1.1)
-            $0.centerX.equalToSuperview()
-        }
-        
-        leftBorderView.snp.makeConstraints {
-            $0.centerY.equalTo(orLabel)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalTo(orLabel.snp.leading).offset(-20)
-            $0.height.equalTo(1)
-        }
-        
-        rightBorderView.snp.makeConstraints {
-            $0.centerY.equalTo(orLabel)
-            $0.leading.equalTo(orLabel.snp.trailing).offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(1)
+        orView.snp.makeConstraints {
+            $0.centerY.equalToSuperview().multipliedBy(1.15)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         registerButton.snp.makeConstraints {
-            $0.top.equalTo(orLabel.snp.bottom).offset(20)
+            $0.top.equalTo(orView.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
         }
         

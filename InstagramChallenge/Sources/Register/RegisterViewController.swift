@@ -26,12 +26,12 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewController()
+        configureViewController()
     }
     
     // MARK: - Funcs
     
-    func setViewController() {
+    func configureViewController() {
         registerView.kakaoLoginButton.addTarget(
             self,
             action: #selector(didTapKakaoLoginButton(_:)),
@@ -66,7 +66,7 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func didTapRegisterButton(_ sender: Any) {
-        let vc = RegisterPhoneNumberViewController()
+        let vc = RegisterPhoneNumberBaseViewController()
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

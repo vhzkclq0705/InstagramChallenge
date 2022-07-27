@@ -14,4 +14,10 @@ extension UIViewController {
         
         self.present(vc, animated: true)
     }
+    
+    func goToLogin() {
+        let loginViewController = LoginViewController()
+        view.window?.rootViewController = loginViewController
+        view.window?.rootViewController?.dismiss(animated: false)
+    }
 }

@@ -50,7 +50,7 @@ class MenuCell: PagingMenuViewCell {
     }
     
     override func layoutSubviews() {
-        setLayout()
+        configureLayout()
     }
     
     // MARK: - Setup
@@ -59,7 +59,7 @@ class MenuCell: PagingMenuViewCell {
         [titleLabel, bottomBorderView].forEach { self.addSubview($0) }
     }
     
-    func setLayout() {
+    func configureLayout() {
         titleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }

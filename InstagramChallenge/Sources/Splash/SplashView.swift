@@ -42,7 +42,7 @@ class SplashView: UIView {
     }
     
     override func layoutSubviews() {
-        setLayout()
+        configureLayout()
     }
     
     // MARK: - Setup
@@ -51,7 +51,7 @@ class SplashView: UIView {
         [centerLogoImageView, bottomLogoImageView].forEach { self.addSubview($0) }
     }
     
-    func setLayout() {
+    func configureLayout() {
         centerLogoImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(100)

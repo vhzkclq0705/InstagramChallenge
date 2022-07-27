@@ -24,7 +24,6 @@ class LoginView: UIView {
     let idTextView: CustomTextView = {
         let textView = CustomTextView()
         textView.text = "전화번호, 사용자 이름 또는 이메일"
-        textView.textColor = .darkGray
         
         return textView
     }()
@@ -32,7 +31,6 @@ class LoginView: UIView {
     let passwordTextView: CustomTextView = {
         let textView = CustomTextView()
         textView.text = "비밀번호"
-        textView.textColor = .darkGray
         
         return textView
     }()
@@ -78,14 +76,14 @@ class LoginView: UIView {
     
     let leftBorderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "textViewBorderColor")
+        view.backgroundColor = UIColor(named: "grayBorderColor")
         
         return view
     }()
     
     let rightBorderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "textViewBorderColor")
+        view.backgroundColor = UIColor(named: "grayBorderColor")
         
         return view
     }()
@@ -93,6 +91,40 @@ class LoginView: UIView {
     let kakaoLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "kakaoLogin"), for: .normal)
+        
+        return button
+    }()
+    
+    let bottomBorderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "grayBorderColor")
+        
+        return view
+    }()
+    
+    let bottomStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
+    let questionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "계정이 없으신가요?"
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 13, weight: .semibold)
+        
+        return label
+    }()
+    
+    let registerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("가입하기", for: .normal)
+        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         
         return button
     }()
@@ -117,6 +149,9 @@ class LoginView: UIView {
     // MARK: - Setup
 
     func addViews() {
+        [questionLabel, registerButton]
+            .forEach { bottomStackView.addArrangedSubview($0) }
+        
         [
             topLogoImageView,
             idTextView,
@@ -128,6 +163,8 @@ class LoginView: UIView {
             orLabel,
             rightBorderView,
             kakaoLoginButton,
+            bottomBorderView,
+            bottomStackView,
         ]
             .forEach { self.addSubview($0) }
     }
@@ -136,8 +173,8 @@ class LoginView: UIView {
         topLogoImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview().multipliedBy(0.55)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(250)
-            $0.height.equalTo(100)
+            $0.width.equalTo(200)
+            $0.height.equalTo(80)
         }
         
         idTextView.snp.makeConstraints {
@@ -191,6 +228,17 @@ class LoginView: UIView {
             $0.top.equalTo(orLabel.snp.bottom).offset(25)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(250)
+        }
+        
+        bottomBorderView.snp.makeConstraints {
+            $0.bottom.equalTo(bottomStackView.snp.top).offset(-20)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        bottomStackView.snp.makeConstraints {
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.centerX.equalToSuperview()
         }
     }
 }

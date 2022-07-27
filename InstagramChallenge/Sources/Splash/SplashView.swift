@@ -60,7 +60,7 @@ class SplashView: UIView {
         bottomLogoImageView.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(200)
+            $0.width.equalTo(150)
             $0.height.equalTo(100)
         }
     }

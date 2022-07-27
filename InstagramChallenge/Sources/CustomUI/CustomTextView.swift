@@ -14,10 +14,11 @@ class CustomTextView: UITextView {
         super.init(frame: frame, textContainer: nil)
         self.isScrollEnabled = false
         self.textContainerInset = UIEdgeInsets(top: 17, left: 15, bottom: 15, right: 15)
-        self.font = .systemFont(ofSize: 15, weight: .semibold)
+        self.font = .systemFont(ofSize: 15, weight: .medium)
+        self.textColor = .darkGray
         
         self.backgroundColor = UIColor(named: "textViewBackgroundColor")
-        self.layer.borderColor = UIColor(named: "textViewBorderColor")?.cgColor
+        self.layer.borderColor = UIColor(named: "grayBorderColor")?.cgColor
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 12
         

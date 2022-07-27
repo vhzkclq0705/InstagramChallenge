@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  InstagramChallenge
 //
 //  Created by 권오준 on 2022/07/27.
@@ -10,8 +10,8 @@ import UIKit
 
 import SnapKit
 
-class LoginView: UIView {
-
+class RegisterView: UIView {
+    
     // MARK: - UI
     
     let topLogoImageView: UIImageView = {
@@ -21,48 +21,19 @@ class LoginView: UIView {
         return imageView
     }()
     
-    let idTextField: CustomTextField = {
-        let textField = CustomTextField()
-        textField.placeholder = "전화번호, 사용자 이름 또는 이메일"
+    let topLabel: UILabel = {
+        let label = UILabel()
+        label.text = "친구들의 사진과 동영상을 보려면 가입하세요."
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         
-        return textField
+        return label
     }()
     
-    let passwordTextField: CustomTextField = {
-        let textField = CustomTextField()
-        textField.placeholder = "비밀번호"
-        textField.isSecureTextEntry = true
-        
-        return textField
-    }()
-    
-    let secureButton: UIButton = {
+    let kakaoLoginButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "closeEye"), for: .selected)
-        button.setImage(UIImage(named: "openEye"), for: .normal)
-        button.isSelected = true
-        button.tintColor = .clear
-        
-        return button
-    }()
-    
-    let forgotPasswordButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("비밀번호를 잊으셨나요?", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .medium)
-        
-        return button
-    }()
-    
-    let loginButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(named: "disabledColor")
-        button.setTitle("로그인", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        button.layer.cornerRadius = 10
-        button.isUserInteractionEnabled = false
+        button.setBackgroundImage(UIImage(named: "kakaoLogin"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
         
         return button
     }()
@@ -90,9 +61,11 @@ class LoginView: UIView {
         return view
     }()
     
-    let kakaoLoginButton: UIButton = {
+    let registerButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "kakaoLogin"), for: .normal)
+        button.setTitle("휴대폰 번호 또는 이메일 주소로 가입", for: .normal)
+        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
         
         return button
     }()
@@ -115,16 +88,16 @@ class LoginView: UIView {
     
     let questionLabel: UILabel = {
         let label = UILabel()
-        label.text = "계정이 없으신가요?"
+        label.text = "이미 계정이 있으신가요?"
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: 13, weight: .semibold)
         
         return label
     }()
     
-    let registerButton: UIButton = {
+    let loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("가입하기", for: .normal)
+        button.setTitle("로그인", for: .normal)
         button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         
@@ -149,22 +122,19 @@ class LoginView: UIView {
     }
     
     // MARK: - Setup
-
+    
     func addViews() {
-        [questionLabel, registerButton]
+        [questionLabel, loginButton]
             .forEach { bottomStackView.addArrangedSubview($0) }
         
         [
             topLogoImageView,
-            idTextField,
-            passwordTextField,
-            secureButton,
-            forgotPasswordButton,
-            loginButton,
-            leftBorderView,
-            orLabel,
-            rightBorderView,
+            topLabel,
             kakaoLoginButton,
+            orLabel,
+            leftBorderView,
+            rightBorderView,
+            registerButton,
             bottomBorderView,
             bottomStackView,
         ]
@@ -173,42 +143,25 @@ class LoginView: UIView {
     
     func setLayout() {
         topLogoImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().multipliedBy(0.55)
+            $0.centerY.equalToSuperview().multipliedBy(0.45)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(200)
-            $0.height.equalTo(80)
+            $0.height.equalTo(70)
         }
         
-        idTextField.snp.makeConstraints {
+        topLabel.snp.makeConstraints {
             $0.top.equalTo(topLogoImageView.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(50)
+            $0.centerX.equalToSuperview()
         }
         
-        passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(idTextField.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(idTextField)
-            $0.height.equalTo(idTextField)
-        }
-        
-        secureButton.snp.makeConstraints {
-            $0.centerY.equalTo(passwordTextField)
-            $0.trailing.equalTo(passwordTextField).offset(-10)
-        }
-        
-        forgotPasswordButton.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-        }
-        
-        loginButton.snp.makeConstraints {
-            $0.top.equalTo(forgotPasswordButton.snp.bottom).offset(25)
-            $0.leading.trailing.equalToSuperview().inset(20)
+        kakaoLoginButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview().multipliedBy(0.9)
+            $0.leading.trailing.equalToSuperview().inset(40)
             $0.height.equalTo(50)
         }
         
         orLabel.snp.makeConstraints {
-            $0.top.equalTo(loginButton.snp.bottom).offset(25)
+            $0.centerY.equalToSuperview().multipliedBy(1.1)
             $0.centerX.equalToSuperview()
         }
         
@@ -226,10 +179,9 @@ class LoginView: UIView {
             $0.height.equalTo(1)
         }
         
-        kakaoLoginButton.snp.makeConstraints {
-            $0.top.equalTo(orLabel.snp.bottom).offset(25)
+        registerButton.snp.makeConstraints {
+            $0.top.equalTo(orLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(250)
         }
         
         bottomBorderView.snp.makeConstraints {

@@ -41,10 +41,10 @@ enum Address {
         case .searchingFeed: return "feeds/pageIndex="
         case .searchingUser: return "feeds/user?pageIndex="
         case .createFeed: return "feed"
-        case .updateFeed: return "feeds/"
-        case .deleteFeed: return "feeds/"
-        case .searchingComments: return "feeds/"
-        case .createComments: return "feeds/"
+        case .updateFeed,
+                .deleteFeed,
+                .searchingComments,
+                .createComments: return "feeds/"
         case .searchingChats: return "chats?pageIndex="
         case .sendChats: return "chat"
         }

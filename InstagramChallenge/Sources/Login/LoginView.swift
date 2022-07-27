@@ -21,24 +21,26 @@ class LoginView: UIView {
         return imageView
     }()
     
-    let idTextView: CustomTextView = {
-        let textView = CustomTextView()
-        textView.text = "전화번호, 사용자 이름 또는 이메일"
+    let idTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.placeholder = "전화번호, 사용자 이름 또는 이메일"
         
-        return textView
+        return textField
     }()
     
-    let passwordTextView: CustomTextView = {
-        let textView = CustomTextView()
-        textView.text = "비밀번호"
+    let passwordTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.placeholder = "비밀번호"
+        textField.isSecureTextEntry = true
         
-        return textView
+        return textField
     }()
     
     let secureButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "closeEye"), for: .normal)
-        button.setImage(UIImage(named: "oepnEye"), for: .selected)
+        button.setImage(UIImage(named: "closeEye"), for: .selected)
+        button.setImage(UIImage(named: "openEye"), for: .normal)
+        button.isSelected = true
         button.tintColor = .clear
         
         return button
@@ -154,8 +156,8 @@ class LoginView: UIView {
         
         [
             topLogoImageView,
-            idTextView,
-            passwordTextView,
+            idTextField,
+            passwordTextField,
             secureButton,
             forgotPasswordButton,
             loginButton,
@@ -177,25 +179,25 @@ class LoginView: UIView {
             $0.height.equalTo(80)
         }
         
-        idTextView.snp.makeConstraints {
+        idTextField.snp.makeConstraints {
             $0.top.equalTo(topLogoImageView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(50)
         }
         
-        passwordTextView.snp.makeConstraints {
-            $0.top.equalTo(idTextView.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(idTextView)
-            $0.height.equalTo(idTextView)
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(idTextField.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(idTextField)
+            $0.height.equalTo(idTextField)
         }
         
         secureButton.snp.makeConstraints {
-            $0.centerY.equalTo(passwordTextView)
-            $0.trailing.equalTo(passwordTextView).offset(-10)
+            $0.centerY.equalTo(passwordTextField)
+            $0.trailing.equalTo(passwordTextField).offset(-10)
         }
         
         forgotPasswordButton.snp.makeConstraints {
-            $0.top.equalTo(passwordTextView.snp.bottom).offset(20)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
         

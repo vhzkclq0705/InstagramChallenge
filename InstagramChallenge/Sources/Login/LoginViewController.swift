@@ -13,12 +13,9 @@ import KakaoSDKUser
 
 class LoginViewController: UIViewController {
 
-    
     // MARK: - Property
     
     let loginView = LoginView()
-    var password = ""
-    var secure = true
     
     // MARK: - Life cycle
     
@@ -33,9 +30,14 @@ class LoginViewController: UIViewController {
 
     // MARK: - Funcs
     func setViewController() {
-        loginView.idTextView.delegate = self
-        loginView.passwordTextView.delegate = self
-        
+        loginView.idTextField.addTarget(
+            self,
+            action: #selector(didChangeTextField(_:)),
+            for: .editingChanged)
+        loginView.passwordTextField.addTarget(
+            self,
+            action: #selector(didChangeTextField(_:)),
+            for: .editingChanged)
         loginView.secureButton.addTarget(
             self,
             action: #selector(didTapSecureButton(_:)),
@@ -52,28 +54,10 @@ class LoginViewController: UIViewController {
             self,
             action: #selector(didTapKakaoLoginButton(_:)),
             for: .touchUpInside)
-    }
-    
-    func checkKakaoToken() {
-        if (AuthApi.hasToken()) {
-            UserApi.shared.accessTokenInfo { accessTokenInfo, error in
-                if let error = error {
-                    if let sdkError = error as? SdkError,
-                       sdkError.isInvalidTokenError() == true {
-                        self.loginWithKakaoAccount()
-                    }
-                    else {
-                        //기타 에러
-                    }
-                }
-                else {
-                    //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                }
-            }
-        }
-        else {
-            loginWithKakaoAccount()
-        }
+        loginView.registerButton.addTarget(
+            self,
+            action: #selector(didTapRegisterButton(_:)),
+            for: .touchUpInside)
     }
     
     func loginWithKakaoAccount() {
@@ -88,6 +72,16 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func changeLoginButtonState(_ bool: Bool) {
+        if bool {
+            loginView.loginButton.isUserInteractionEnabled = true
+            loginView.loginButton.backgroundColor = UIColor(named: "enabledColor")
+        } else {
+            loginView.loginButton.isUserInteractionEnabled = false
+            loginView.loginButton.backgroundColor = UIColor(named: "disabledColor")
+        }
+    }
+    
     // MARK: - Actions
     
     @objc func didTapLoginButton(_ sender: Any) {
@@ -95,12 +89,12 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didTapKakaoLoginButton(_ sender: Any) {
-        checkKakaoToken()
+        loginWithKakaoAccount()
     }
     
-    @objc func didTapSecureButton(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        print("zz")
+    @objc func didTapSecureButton(_ button: UIButton) {
+        button.isSelected = !button.isSelected
+        loginView.passwordTextField.isSecureTextEntry = button.isSelected
     }
     
     @objc func didTapForgotPasswordButton(_ sender: Any) {
@@ -110,8 +104,21 @@ class LoginViewController: UIViewController {
     @objc func didTapRegisterButton(_ sender: Any) {
         
     }
-}
-
-extension LoginViewController: UITextViewDelegate {
     
+    @objc func didChangeTextField(_ textField: UITextField) {
+        guard let idText = loginView.idTextField.text,
+              let passwordText = loginView.passwordTextField.text else { return }
+        
+        if idText.isEmpty == false && passwordText.isEmpty == false {
+            changeLoginButtonState(true)
+        } else {
+            changeLoginButtonState(false)
+        }
+        
+        guard let text = textField.text else { return }
+        
+        if text.count > 20 {
+            textField.deleteBackward()
+        }
+    }
 }

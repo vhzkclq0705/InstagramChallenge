@@ -20,4 +20,17 @@ extension UIViewController {
         view.window?.rootViewController = loginViewController
         view.window?.rootViewController?.dismiss(animated: false)
     }
+    
+    func presentBasicAlert(_ title: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: nil,
+            preferredStyle: .alert)
+        
+        let cancleAction = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(cancleAction)
+        
+        self.present(alert, animated: false)
+    }
 }

@@ -30,13 +30,73 @@ class CertificationViewController: HideBackButtonViewController {
     
     func configureViewController() {
         certificationView.titleLabel.text = "\(phoneNumber)번으로\n전송된 인증 코드를 입력하세요."
+        
+        certificationView.certificationTextField.delegate = self
+        
+        certificationView.certificationTextField.addTarget(
+            self,
+            action: #selector(didChangeTextField(_:)),
+            for: .editingChanged)
+        certificationView.changeNumberButton.addTarget(
+            self,
+            action: #selector(didTapBackButton(_:)),
+            for: .touchUpInside)
+        certificationView.emailButton.addTarget(
+            self,
+            action: #selector(didTapBackButton(_:)),
+            for: .touchUpInside)
+        certificationView.nextButton.addTarget(
+            self,
+            action: #selector(didTapNextButton(_:)),
+            for: .touchUpInside)
+        certificationView.backButton.addTarget(
+            self,
+            action: #selector(didTapBackButton(_:)),
+            for: .touchUpInside)
     }
     
-    
-    // MARK: - Func
-    
-    
-    
     // MARK: - Action
+    
+    @objc func didChangeTextField(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        let check: Bool = text.count == 6
+        
+        certificationView.nextButton.changeState(check)
+        
+        if text.count > 6 {
+            textField.deleteBackward()
+        }
+    }
+    
+    @objc func didTapNextButton(_ sender: Any) {
+        if certificationView.certificationTextField.text! == "123456" {
+            let vc = AddNameViewController()
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            presentBasicAlert("인증 코드가 올바르지 않습니다.")
+        }
+    }
+    
+    @objc func didTapBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+}
 
+// MARK: - TextField
+
+extension CertificationViewController: UITextFieldDelegate {
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String)
+    -> Bool
+    {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
 }

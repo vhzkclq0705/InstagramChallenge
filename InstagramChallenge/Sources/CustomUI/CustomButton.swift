@@ -30,4 +30,12 @@ class CustomButton: UIButton {
     func configureTitle(_ text: String) {
         self.setTitle(text, for: .normal)
     }
+    
+    func changeState(_ bool: Bool) {
+        self.isUserInteractionEnabled = bool
+        self.backgroundColor = bool
+        ? UIColor(named: "enabledColor")
+        : UIColor(named: "disabledColor")
+
+    }
 }

@@ -74,16 +74,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func changeLoginButtonState(_ bool: Bool) {
-        if bool {
-            loginView.loginButton.isUserInteractionEnabled = true
-            loginView.loginButton.backgroundColor = UIColor(named: "enabledColor")
-        } else {
-            loginView.loginButton.isUserInteractionEnabled = false
-            loginView.loginButton.backgroundColor = UIColor(named: "disabledColor")
-        }
-    }
-    
     func presentFailAlert(title: String?, message: String?) {
         let alertTitle = title != nil ? title : "계정을 찾을 수 없음"
         let alertMessage = message != nil
@@ -154,9 +144,9 @@ class LoginViewController: UIViewController {
               let passwordText = loginView.passwordTextField.text else { return }
         
         if idText.isEmpty == false && passwordText.isEmpty == false {
-            changeLoginButtonState(true)
+            loginView.loginButton.changeState(true)
         } else {
-            changeLoginButtonState(false)
+            loginView.loginButton.changeState(false)
         }
         
         guard let text = textField.text else { return }

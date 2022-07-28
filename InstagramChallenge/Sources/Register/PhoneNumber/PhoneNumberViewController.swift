@@ -49,28 +49,12 @@ class PhoneNumberViewController: UIViewController {
             for: .touchUpInside)
     }
     
-    // MARK: - Func
-    
-    func changeNextButtonState(_ bool: Bool) {
-        if bool {
-            phoneNumberView.nextButton.isUserInteractionEnabled = true
-            phoneNumberView.nextButton.backgroundColor = UIColor(named: "enabledColor")
-        } else {
-            phoneNumberView.nextButton.isUserInteractionEnabled = false
-            phoneNumberView.nextButton.backgroundColor = UIColor(named: "disabledColor")
-        }
-    }
-    
     // MARK: - Action
     
     @objc func didChangeTextField(_ textField: UITextField) {
         guard let text = textField.text else { return }
         
-        if text.isEmpty == false {
-            changeNextButtonState(true)
-        } else {
-            changeNextButtonState(false)
-        }
+        phoneNumberView.nextButton.changeState(!text.isEmpty)
         
         if text.count > 11 {
             textField.deleteBackward()

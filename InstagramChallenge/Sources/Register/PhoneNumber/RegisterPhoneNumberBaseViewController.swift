@@ -90,7 +90,11 @@ extension RegisterPhoneNumberBaseViewController: PagingMenuViewControllerDataSou
         dataSources.count
     }
     
-    func menuViewController(viewController: PagingMenuViewController, cellForItemAt index: Int) -> PagingMenuViewCell {
+    func menuViewController(
+        viewController: PagingMenuViewController,
+        cellForItemAt index: Int)
+    -> PagingMenuViewCell
+    {
         guard let cell = viewController.dequeueReusableCell(
             withReuseIdentifier: MenuCell.id,
             for: index) as? MenuCell else {
@@ -102,13 +106,21 @@ extension RegisterPhoneNumberBaseViewController: PagingMenuViewControllerDataSou
         return cell
     }
     
-    func menuViewController(viewController: PagingMenuViewController, widthForItemAt index: Int) -> CGFloat {
+    func menuViewController(
+        viewController: PagingMenuViewController,
+        widthForItemAt index: Int)
+    -> CGFloat
+    {
         let width = UIScreen.main.bounds.width
         
         return (width - 80) / 2
     }
     
-    func menuViewController(viewController: PagingMenuViewController, didSelect page: Int, previousPage: Int) {
+    func menuViewController(
+        viewController: PagingMenuViewController,
+        didSelect page: Int,
+        previousPage: Int)
+    {
         registerPhoneNumberBaseView.contentViewcontroller.scroll(to: page, animated: true)
     }
 }
@@ -118,15 +130,26 @@ extension RegisterPhoneNumberBaseViewController: PagingMenuViewControllerDataSou
 extension RegisterPhoneNumberBaseViewController: PagingContentViewControllerDataSource,
                                                  PagingContentViewControllerDelegate {
     
-    func numberOfItemsForContentViewController(viewController: PagingContentViewController) -> Int {
+    func numberOfItemsForContentViewController(
+        viewController: PagingContentViewController)
+    -> Int
+    {
         return dataSources.count
     }
     
-    func contentViewController(viewController: PagingContentViewController, viewControllerAt index: Int) -> UIViewController {
+    func contentViewController(
+        viewController: PagingContentViewController,
+        viewControllerAt index: Int)
+    -> UIViewController
+    {
         return dataSources[index].vc
     }
     
-    func contentViewController(viewController: PagingContentViewController, didManualScrollOn index: Int, percent: CGFloat) {
+    func contentViewController(
+        viewController: PagingContentViewController,
+        didManualScrollOn index: Int,
+        percent: CGFloat)
+    {
         registerPhoneNumberBaseView.menuViewController.scroll(index: index, animated: true)
     }
 }

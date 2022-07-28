@@ -44,6 +44,8 @@
 		767E41392892A19400AFFFBE /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41382892A19400AFFFBE /* CertificationViewController.swift */; };
 		767E413B2892ABCE00AFFFBE /* HideBackButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E413A2892ABCE00AFFFBE /* HideBackButtonViewController.swift */; };
 		767E413D2892AC7300AFFFBE /* RegisterPhoneNumberBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E413C2892AC7300AFFFBE /* RegisterPhoneNumberBaseView.swift */; };
+		767E413F2892BAF600AFFFBE /* AddNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E413E2892BAF600AFFFBE /* AddNameView.swift */; };
+		767E41412892BB0100AFFFBE /* AddNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41402892BB0100AFFFBE /* AddNameViewController.swift */; };
 		76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958A288EE95B007E00D6 /* AppDelegate.swift */; };
 		76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958C288EE95B007E00D6 /* SceneDelegate.swift */; };
 		76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958E288EE95B007E00D6 /* LoginViewController.swift */; };
@@ -90,6 +92,8 @@
 		767E41382892A19400AFFFBE /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		767E413A2892ABCE00AFFFBE /* HideBackButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideBackButtonViewController.swift; sourceTree = "<group>"; };
 		767E413C2892AC7300AFFFBE /* RegisterPhoneNumberBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPhoneNumberBaseView.swift; sourceTree = "<group>"; };
+		767E413E2892BAF600AFFFBE /* AddNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNameView.swift; sourceTree = "<group>"; };
+		767E41402892BB0100AFFFBE /* AddNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNameViewController.swift; sourceTree = "<group>"; };
 		76E09587288EE95B007E00D6 /* InstagramChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E0958A288EE95B007E00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E0958C288EE95B007E00D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				767E40FD28918AFE00AFFFBE /* PhoneNumber */,
 				767E40F228917D1000AFFFBE /* RegisterView.swift */,
 				767E40F4289181B300AFFFBE /* RegisterViewController.swift */,
+				767E413E2892BAF600AFFFBE /* AddNameView.swift */,
+				767E41402892BB0100AFFFBE /* AddNameViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -420,10 +426,12 @@
 				767E410A2891AB7200AFFFBE /* OrView.swift in Sources */,
 				7663C980289059A1006C3505 /* LoginView.swift in Sources */,
 				767E40D0289154E800AFFFBE /* BaseURL.swift in Sources */,
+				767E41412892BB0100AFFFBE /* AddNameViewController.swift in Sources */,
 				767E40EC28915EE300AFFFBE /* SendChats.swift in Sources */,
 				767E40D82891595A00AFFFBE /* SearchingChats.swift in Sources */,
 				767E40DC28915A1100AFFFBE /* JWT.swift in Sources */,
 				767E413D2892AC7300AFFFBE /* RegisterPhoneNumberBaseView.swift in Sources */,
+				767E413F2892BAF600AFFFBE /* AddNameView.swift in Sources */,
 				7663C97728905467006C3505 /* CustomTextField.swift in Sources */,
 				767E40F0289166B100AFFFBE /* ResponseDefault.swift in Sources */,
 				767E40E828915DD000AFFFBE /* ResponseChats.swift in Sources */,

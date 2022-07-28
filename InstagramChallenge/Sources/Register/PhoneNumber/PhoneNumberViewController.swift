@@ -8,16 +8,21 @@
 
 import UIKit
 
+protocol certificationDelegate {
+    func pushCertificationViewController(_ phoneNumber: String)
+}
+
 class PhoneNumberViewController: UIViewController {
 
     // MARK: - Property
     
     let phoneNumberView = PhoneNumberView()
+    var delegate: certificationDelegate?
     
     // MARK: - Life cycle
     
     override func loadView() {
-        self.view = phoneNumberView
+        view = phoneNumberView
     }
     
     override func viewDidLoad() {
@@ -73,7 +78,8 @@ class PhoneNumberViewController: UIViewController {
     }
     
     @objc func didTapNextButton(_ button: UIButton) {
-        
+        let phoneNumber = "+82\(phoneNumberView.phoneNumberTextField.text!)"
+        delegate?.pushCertificationViewController(phoneNumber)
     }
 
     @objc func didTapKakaoLoginButton(_ sender: Any) {

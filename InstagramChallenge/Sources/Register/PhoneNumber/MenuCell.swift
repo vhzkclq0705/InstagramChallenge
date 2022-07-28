@@ -13,6 +13,8 @@ import PagingKit
 
 class MenuCell: PagingMenuViewCell {
     
+    static let id = "MenuCell"
+    
     // MARK: - UI
     
     let titleLabel: UILabel = {

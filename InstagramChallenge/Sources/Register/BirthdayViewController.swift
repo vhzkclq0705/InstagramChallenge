@@ -51,7 +51,7 @@ class BirthdayViewController: HideBackButtonViewController {
         birthdayView.birthdayTextField.delegate = self
         birthdayView.birthdayTextField.placeholder = formatDate(Date())
         birthdayView.birthdayTextField.inputView = datePicker
-        birthdayView.birthdayTextField.inputView?.backgroundColor = UIColor(named: "textViewBackgroundColor")
+        birthdayView.birthdayTextField.inputView?.backgroundColor = UIColor.customColor(.lightgray2)
         
         birthdayView.birthdayTextField.addTarget(
             self,
@@ -106,7 +106,9 @@ class BirthdayViewController: HideBackButtonViewController {
     }
 
     @objc func didTapNextButton(_ sender: Any) {
+        let vc = AgreementViewController()
         
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

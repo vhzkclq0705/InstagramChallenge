@@ -24,12 +24,7 @@ class MenuCell: PagingMenuViewCell {
         return label
     }()
     
-    let bottomBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        
-        return view
-    }()
+    let bottomBorderView = GrayBorderView()
     
     override public var isSelected: Bool {
         didSet {

@@ -26,7 +26,7 @@ class CerticiationView: UIView {
     let changeNumberButton: UIButton = {
         let button = UIButton()
         button.setTitle("전화번호 변경", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
         
         return button
@@ -43,7 +43,7 @@ class CerticiationView: UIView {
     let emailButton: UIButton = {
         let button = UIButton()
         button.setTitle("SMS 재전송.", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
         
         return button
@@ -64,17 +64,12 @@ class CerticiationView: UIView {
         return button
     }()
     
-    let bottomBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let bottomBorderView = GrayBorderView()
     
     let backButton: UIButton = {
         let button = UIButton()
         button.setTitle("돌아가기", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         
         return button

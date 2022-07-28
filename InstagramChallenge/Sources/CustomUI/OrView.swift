@@ -23,19 +23,9 @@ class OrView: UIView {
         return label
     }()
     
-    let leftBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let leftBorderView = GrayBorderView()
     
-    let rightBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let rightBorderView = GrayBorderView()
     
     // MARK: - Init
     

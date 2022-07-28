@@ -14,7 +14,7 @@ class CustomButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(named: "disabledColor")
+        self.backgroundColor = UIColor.customColor(.disabled)
         self.setTitleColor(UIColor.white, for: .normal)
         self.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         self.layer.cornerRadius = 10
@@ -34,8 +34,8 @@ class CustomButton: UIButton {
     func changeState(_ bool: Bool) {
         self.isUserInteractionEnabled = bool
         self.backgroundColor = bool
-        ? UIColor(named: "enabledColor")
-        : UIColor(named: "disabledColor")
+        ? UIColor.customColor(.enabled)
+        : UIColor.customColor(.disabled)
 
     }
 }

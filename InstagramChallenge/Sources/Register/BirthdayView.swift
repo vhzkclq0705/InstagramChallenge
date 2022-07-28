@@ -43,7 +43,7 @@ class BirthdayView: UIView {
     let questionLabel: UILabel = {
         let label = UILabel()
         label.text = "왜 생일을 입력해야 하나요?"
-        label.textColor = .systemBlue
+        label.textColor = UIColor.customColor(.deepBlue)
         label.font = .systemFont(ofSize: 17, weight: .medium)
         label.textAlignment = .center
         
@@ -53,7 +53,7 @@ class BirthdayView: UIView {
     let birthdayTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.backgroundColor = .white
-        textField.layer.borderColor = UIColor(named: "enabledColor")?.cgColor
+        textField.layer.borderColor = UIColor.customColor(.enabled).cgColor
         
         return textField
     }()
@@ -77,12 +77,7 @@ class BirthdayView: UIView {
         return label
     }()
     
-    let bottomBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let bottomBorderView = GrayBorderView()
     
     let nextButton: CustomButton = {
         let button = CustomButton()

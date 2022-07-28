@@ -33,12 +33,7 @@ class RegisterPhoneNumberBaseView: UIView {
     
     let contentViewcontroller = PagingContentViewController()
     
-    let bottomBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let bottomBorderView = GrayBorderView()
     
     let bottomStackView: UIStackView = {
         let stackView = UIStackView()
@@ -61,7 +56,7 @@ class RegisterPhoneNumberBaseView: UIView {
     let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         
         return button

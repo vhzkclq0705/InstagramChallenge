@@ -41,7 +41,6 @@ class LoginView: UIView {
         button.setImage(UIImage(named: "closeEye"), for: .selected)
         button.setImage(UIImage(named: "openEye"), for: .normal)
         button.isSelected = true
-        button.tintColor = .clear
         
         return button
     }()
@@ -49,7 +48,7 @@ class LoginView: UIView {
     let forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("비밀번호를 잊으셨나요?", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .medium)
         
         return button
@@ -72,12 +71,7 @@ class LoginView: UIView {
         return button
     }()
     
-    let bottomBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let bottomBorderView = GrayBorderView()
     
     let bottomStackView: UIStackView = {
         let stackView = UIStackView()
@@ -100,7 +94,7 @@ class LoginView: UIView {
     let registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("가입하기", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         
         return button

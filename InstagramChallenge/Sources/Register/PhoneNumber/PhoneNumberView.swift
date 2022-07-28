@@ -30,18 +30,13 @@ class PhoneNumberView: UIView {
     let baseNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "KR +82"
-        label.textColor = UIColor(named: "enabledColor")
+        label.textColor = UIColor.customColor(.enabled)
         label.font = .systemFont(ofSize: 15, weight: .medium)
         
         return label
     }()
     
-    let dividingView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let dividingView = GrayBorderView()
     
     let nextButton: CustomButton = {
         let button = CustomButton()

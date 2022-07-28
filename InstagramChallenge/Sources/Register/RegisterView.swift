@@ -43,18 +43,13 @@ class RegisterView: UIView {
     let registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("휴대폰 번호 또는 이메일 주소로 가입", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
         
         return button
     }()
     
-    let bottomBorderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayBorderColor")
-        
-        return view
-    }()
+    let bottomBorderView = GrayBorderView()
     
     let bottomStackView: UIStackView = {
         let stackView = UIStackView()
@@ -77,7 +72,7 @@ class RegisterView: UIView {
     let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
-        button.setTitleColor(UIColor(named: "enabledColor"), for: .normal)
+        button.setTitleColor(UIColor.customColor(.enabled), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         
         return button

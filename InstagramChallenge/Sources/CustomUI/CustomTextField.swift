@@ -25,7 +25,7 @@ class CustomTextField: UITextField {
         self.backgroundColor = UIColor(named: "textViewBackgroundColor")
         self.layer.borderColor = UIColor(named: "grayBorderColor")?.cgColor
         self.layer.borderWidth = 1
-        self.layer.cornerRadius = 12
+        self.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {

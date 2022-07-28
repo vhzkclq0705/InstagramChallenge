@@ -76,6 +76,12 @@ class BirthdayViewController: HideBackButtonViewController {
         return formatter.string(from: date)
     }
     
+    func calculateAge(_ date: Date) {
+        let diff = Calendar.current.dateComponents([.year], from: date, to: Date())
+        
+        birthdayView.ageLabel.text = "\(diff.year! + 1)세"
+    }
+    
     func updateNextButtonConstraint(_ bool: Bool) {
         let width = datePicker.frame.height
         
@@ -88,6 +94,9 @@ class BirthdayViewController: HideBackButtonViewController {
     
     @objc func didChangeDatePicker(_ datePicker: UIDatePicker) {
         birthdayView.birthdayTextField.text = formatDate(datePicker.date)
+        calculateAge(datePicker.date)
+        
+        birthdayView.nextButton.changeState(true)
     }
     
     @objc func didChangeTextField(_ textField: UITextField) {

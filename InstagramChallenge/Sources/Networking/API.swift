@@ -150,7 +150,7 @@ final class API {
             }
     }
     
-    static func checkDuplication(_ id: Int, completion: @escaping (String) -> Void) {
+    static func checkDuplication(_ id: String, completion: @escaping (Bool) -> Void) {
         networking(
             urlStr: Address.duplicateID.url + "\(id)",
             method: .get,
@@ -159,7 +159,7 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("checkDuplication: \(response)")
-                    completion(response.message)
+                    completion(response.isSuccess)
                 case .failure(let error):
                     print(error)
                 }

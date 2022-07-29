@@ -15,6 +15,7 @@ class BirthdayViewController: HideBackButtonViewController {
     // MARK: - Property
     
     let birthdayView = BirthdayView()
+    let manager = RegisterManager.shared
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -87,6 +88,7 @@ class BirthdayViewController: HideBackButtonViewController {
     // MARK: - Action
     
     @objc func didChangeDatePicker(_ datePicker: UIDatePicker) {
+        manager.setBirthDate(datePicker.date)
         birthdayView.birthdayTextField.text = formatDate(datePicker.date)
         calculateAge(datePicker.date)
         

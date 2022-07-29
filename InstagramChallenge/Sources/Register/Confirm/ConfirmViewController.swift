@@ -13,6 +13,7 @@ class ConfirmViewController: HideBackButtonViewController {
     // MARK: - Property
     
     let confirmView = ConfirmView()
+    let manager = RegisterManager.shared
     var nickname = ""
     
     // MARK: - Life cycle
@@ -48,6 +49,6 @@ class ConfirmViewController: HideBackButtonViewController {
     // MARK: - Action
     
     @objc func didTapRegisterButton(_ sender: Any) {
-        
+        manager.registerOneSelf()
     }
 }

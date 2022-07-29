@@ -9,10 +9,11 @@
 import UIKit
 
 class AddNicknameViewController: HideBackButtonViewController {
-
+    
     // MARK: - Property
     
     let addNicknameView = AddNicknameView()
+    let manager = RegisterManager.shared
     var isCheck = false
     
     // MARK: - Life cycle
@@ -57,13 +58,13 @@ class AddNicknameViewController: HideBackButtonViewController {
         
         bool
         ? addNicknameView.textFieldButton.setBackgroundImage(
-                UIImage(systemName: "checkmark.circle")?
-                    .withTintColor(.green, renderingMode: .alwaysOriginal),
-                for: .normal)
+            UIImage(systemName: "checkmark.circle")?
+                .withTintColor(.green, renderingMode: .alwaysOriginal),
+            for: .normal)
         : addNicknameView.textFieldButton.setBackgroundImage(
-                UIImage(systemName: "x.circle")?
-                    .withTintColor(.lightGray, renderingMode: .alwaysOriginal),
-                for: .normal)
+            UIImage(systemName: "x.circle")?
+                .withTintColor(.lightGray, renderingMode: .alwaysOriginal),
+            for: .normal)
     }
     
     func alertTextField(_ text: String) {
@@ -72,8 +73,14 @@ class AddNicknameViewController: HideBackButtonViewController {
         addNicknameView.alertLabel.text = text
     }
     
+    func checkDuplication(_ id: String, completion: @escaping (Bool) -> Void) {
+        API.checkDuplication(id) { isSuccess in
+            completion(isSuccess)
+        }
+    }
+    
     // MARK: - Action
-
+    
     @objc func didChangeTextField(_ textField: UITextField) {
         changeTextFieldButtonState(false)
         guard let text = textField.text else { return }
@@ -92,26 +99,30 @@ class AddNicknameViewController: HideBackButtonViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any) {
+        let text = addNicknameView.nicknameTextField.text!
+        
         if isCheck {
+            manager.setID(text)
             let vc = ConfirmViewController()
-            vc.nickname = addNicknameView.nicknameTextField.text!
+            vc.nickname = text
             
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            let text = addNicknameView.nicknameTextField.text!
-            
-            if text == "1234" {
-                alertTextField("사용자 이름 \(text)를 사용할 수 없습니다.")
-            } else {
-                let pattern = "^[a-z0-9_.]*$"
-                
-                guard text.range(of: pattern, options: .regularExpression) != nil else {
-                    alertTextField("아이디는 영어, 숫자, '_', '.'만 사용 가능합니다.")
-                    return
+            checkDuplication(text) { isSuccess in
+                if isSuccess {
+                    let pattern = "^[a-z0-9_.]*$"
+                    
+                    guard text.range(of: pattern, options: .regularExpression) != nil else {
+                        self.alertTextField("아이디는 영어, 숫자, '_', '.'만 사용 가능합니다.")
+                        return
+                    }
+                    
+                    self.changeTextFieldButtonState(true)
+                } else {
+                    self.alertTextField("사용자 이름 \(text)를 사용할 수 없습니다.")
                 }
-                
-                changeTextFieldButtonState(true)
             }
+            
         }
     }
     

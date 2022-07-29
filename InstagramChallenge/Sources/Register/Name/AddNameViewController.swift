@@ -13,6 +13,7 @@ class AddNameViewController: HideBackButtonViewController {
     // MARK: - Property
     
     let addNameView = AddNameView()
+    let manager = RegisterManager.shared
     
     // MARK: - Life cycle
     
@@ -55,6 +56,7 @@ class AddNameViewController: HideBackButtonViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any) {
+        manager.setName(addNameView.nameTextField.text!)
         let vc = AddPasswordViewController()
         
         self.navigationController?.pushViewController(vc, animated: true)

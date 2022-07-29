@@ -13,6 +13,7 @@ class AddPasswordViewController: HideBackButtonViewController {
     // MARK: - Property
     
     let addPasswordView = AddPasswordView()
+    let manager = RegisterManager.shared
     
     // MARK: - Life cycle
     
@@ -67,6 +68,7 @@ class AddPasswordViewController: HideBackButtonViewController {
                     return
                 }
             
+            manager.setPassword(text)
             let vc = BirthdayViewController()
             
             self.navigationController?.pushViewController(vc, animated: true)

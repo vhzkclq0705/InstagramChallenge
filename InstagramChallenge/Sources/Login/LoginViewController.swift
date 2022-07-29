@@ -74,20 +74,18 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func presentFailAlert(title: String?, message: String?) {
-        let alertTitle = title != nil ? title : "계정을 찾을 수 없음"
-        let alertMessage = message != nil
-        ? message
-        : "\(loginView.idTextField.text!)에 연결된 계정을 찾을 수 없습니다."
+    func presentFailAlert() {
+        let alertMessage =
+        "\(loginView.idTextField.text!)에 연결된 계정을 찾을 수 없습니다."
         + " 다른 전화번호나 이메일 주소를 사용해보세요. Instagram 계정이 없으면 가입할 수 있습니다."
         
         let alert = UIAlertController(
-            title: alertTitle,
+            title: "계정을 찾을 수 없음",
             message: alertMessage,
             preferredStyle: .alert)
         
-        let registerAction = UIAlertAction(title: "가입하기", style: .default) {_ in
-            // 회원가입으로 이동
+        let registerAction = UIAlertAction(title: "가입하기", style: .default) { _ in
+            self.goToRegisterViewController()
         }
         let cancleAction = UIAlertAction(title: "다시 시도", style: .default)
         
@@ -96,26 +94,33 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: false)
     }
     
+    func goToRegisterViewController() {
+        let vc = RegisterViewController()
+        let navigationController = UINavigationController(rootViewController: vc)
+        
+        presentFullScreen(navigationController)
+    }
+    
     // MARK: - Actions
     
     @objc func didTapLoginButton(_ sender: Any) {
         if loginView.idTextField.text!.count < 3 {
-            presentFailAlert(title: "유효성 검사 실패", message: "아이디를 3자리 이상 입력해 주세요.")
+            presentBasicAlert("아이디를 3자리 이상 입력해주세요.")
         }
         else if loginView.passwordTextField.text!.count < 6 {
-            presentFailAlert(title: "유효성 검사 실패", message: "비밀번호를 6자리 이상 입력해 주세요.")
+            presentBasicAlert("비밀번호를 6자리 이상 입력해주세요.")
         }
         else {
-            let pattern = "(?=.*[!@#$%^&*()_+=-])"
+            let pattern = "(?=.*[~!@#\\$%\\^&\\*])"
             
-            guard let _ = loginView.passwordTextField.text!.range(
-                of: pattern, options: .regularExpression) else {
-                presentFailAlert(title: "유효성 검사 실패", message: "비밀번호에 특수문자가 1자리 이상 포함되어야 합니다.")
+            guard loginView.passwordTextField.text!.range(
+                of: pattern, options: .regularExpression) != nil else {
+                presentBasicAlert("비밀번호에 특수문자가 1자리 이상 포함되어야 합니다.")
                 return
             }
             
             // 로그인 실패
-            presentFailAlert(title: nil, message: nil)
+            presentFailAlert()
         }
     }
     
@@ -133,10 +138,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didTapRegisterButton(_ sender: Any) {
-        let vc = RegisterViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        
-        presentFullScreen(navigationController)
+        goToRegisterViewController()
     }
     
     @objc func didChangeTextField(_ textField: UITextField) {

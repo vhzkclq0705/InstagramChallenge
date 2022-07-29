@@ -14,6 +14,7 @@ enum Colors {
     case lightgray
     case lightgray2
     case deepBlue
+    case red
 }
 
 extension UIColor {
@@ -25,6 +26,7 @@ extension UIColor {
         case .lightgray: return #colorLiteral(red: 0.9411765933, green: 0.9411766529, blue: 0.9411765337, alpha: 1)
         case .lightgray2: return #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         case .deepBlue: return #colorLiteral(red: 0.1501621604, green: 0.3250823617, blue: 0.5042748451, alpha: 1)
+        case .red: return #colorLiteral(red: 0.9725490196, green: 0.3176470588, blue: 0.3176470588, alpha: 1)
         }
     }
 }

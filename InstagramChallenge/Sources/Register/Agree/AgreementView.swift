@@ -237,10 +237,15 @@ class AgreementView: UIView {
     
     func createRadioButton() -> UIButton {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-        button.setImage(UIImage(systemName: "checkmark"), for: .selected)
+        button.setBackgroundImage(
+            UIImage(systemName: "circle")?
+                .withTintColor(.lightGray, renderingMode: .alwaysOriginal),
+            for: .normal)
+        button.setImage(
+            UIImage(systemName: "checkmark")?
+                .withTintColor(.green, renderingMode: .alwaysOriginal),
+            for: .selected)
         button.imageView?.contentMode = .scaleAspectFit
-        button.tintColor = .lightGray
         
         return button
     }

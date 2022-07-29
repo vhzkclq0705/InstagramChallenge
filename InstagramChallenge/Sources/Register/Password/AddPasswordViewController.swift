@@ -55,18 +55,17 @@ class AddPasswordViewController: HideBackButtonViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any) {
-        guard let text = addPasswordView.passwordTextField.text else { return }
+        let text = addPasswordView.passwordTextField.text!
         
         if text.count < 6 {
             presentBasicAlert("비밀번호를 확인해주세요.")
         } else {
             let pattern = "(?=.*[!@#$%^&*()_+=-])"
             
-            guard let _ = text.range(
-                of: pattern, options: .regularExpression) else {
-                presentBasicAlert("비밀번호를 확인해주세요.")
-                return
-            }
+            guard text.range(of: pattern, options: .regularExpression) != nil else {
+                    presentBasicAlert("비밀번호를 확인해주세요.")
+                    return
+                }
             
             let vc = BirthdayViewController()
             

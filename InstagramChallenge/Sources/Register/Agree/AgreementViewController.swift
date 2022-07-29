@@ -38,6 +38,10 @@ class AgreementViewController: HideBackButtonViewController {
         agreementView.radioButtons.forEach {
             $0.addTarget(self, action: #selector(didTapRadioButton(_:)), for: .touchUpInside)
         }
+        agreementView.nextButton.addTarget(
+            self,
+            action: #selector(didTapNextButton(_:)),
+            for: .touchUpInside)
     }
     
     // MARK: - Func
@@ -82,6 +86,12 @@ class AgreementViewController: HideBackButtonViewController {
         }
         
         agreementView.nextButton.changeState(button.isSelected)
+    }
+    
+    @objc func didTapNextButton(_ sendar: Any) {
+        let vc = AddNicknameViewController()
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

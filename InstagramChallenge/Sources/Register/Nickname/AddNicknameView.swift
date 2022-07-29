@@ -1,5 +1,5 @@
 //
-//  AddPasswordView.swift
+//  AddNicknameView.swift
 //  InstagramChallenge
 //
 //  Created by 권오준 on 2022/07/29.
@@ -10,14 +10,14 @@ import UIKit
 
 import SnapKit
 
-class AddPasswordView: UIView {
+class AddNicknameView: UIView {
     
     // MARK: - UI
     
     let topStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 40
+        stackView.spacing = 25
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -25,20 +25,56 @@ class AddPasswordView: UIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "비밀번호 만들기"
+        label.text = "사용자 이름 만들기"
         label.font = .systemFont(ofSize: 25, weight: .bold)
         label.textAlignment = .center
         
         return label
     }()
     
-    let passwordTextField: CustomTextField = {
+    let guideLabel: UILabel = {
+        let label = UILabel()
+        label.text = "새 계정에 사용할 사용자 이름을 선택하세요. 나중에\n언제든지 변경할 수 있습니다."
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        
+        return label
+    }()
+    
+    let textFieldStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        
+        return stackView
+    }()
+    
+    let nicknameTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "비밀번호"
-        textField.clearButtonMode = .whileEditing
-        textField.isSecureTextEntry = true
+        textField.placeholder = "사용자 이름"
         
         return textField
+    }()
+    
+    let textFieldButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(
+            UIImage(systemName: "x.circle")?
+                .withTintColor(.lightGray, renderingMode: .alwaysOriginal),
+            for: .normal)
+        
+        return button
+    }()
+    
+    let alertLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.customColor(.red)
+        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.isHidden = true
+        
+        return label
     }()
     
     let nextButton: CustomButton = {
@@ -97,18 +133,24 @@ class AddPasswordView: UIView {
     // MARK: - Setup
     
     func addViews() {
+        [nicknameTextField, alertLabel]
+            .forEach { textFieldStackView.addArrangedSubview($0) }
+        
         [
             titleLabel,
-            passwordTextField,
-            nextButton
+            guideLabel,
+            textFieldStackView,
+            nextButton,
         ]
             .forEach { topStackView.addArrangedSubview($0) }
+        
         
         [questionLabel, loginButton]
             .forEach { bottomStackView.addArrangedSubview($0) }
         
         [
             topStackView,
+            textFieldButton,
             bottomBorderView,
             bottomStackView,
         ]
@@ -121,8 +163,14 @@ class AddPasswordView: UIView {
             $0.leading.trailing.equalToSuperview().inset(40)
         }
         
-        passwordTextField.snp.makeConstraints {
+        nicknameTextField.snp.makeConstraints {
             $0.height.equalTo(50)
+        }
+        
+        textFieldButton.snp.makeConstraints {
+            $0.centerY.equalTo(nicknameTextField)
+            $0.trailing.equalTo(nicknameTextField).offset(-10)
+            $0.width.height.equalTo(20)
         }
         
         nextButton.snp.makeConstraints {

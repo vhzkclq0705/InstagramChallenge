@@ -54,7 +54,7 @@ final class API {
             urlStr: Address.signUp.url,
             method: .post,
             data: data,
-            model: ResponseJWT.self) { result in
+            model: Response<JWT>.self) { result in
                 switch result {
                 case .success(let response):
                     print("signUp: \(response)")
@@ -77,7 +77,7 @@ final class API {
             urlStr: Address.signIn.url,
             method: .post,
             data: data,
-            model: ResponseJWT.self) { result in
+            model: Response<JWT>.self) { result in
                 switch result {
                 case .success(let response):
                     print("signIn: \(response)")
@@ -100,7 +100,7 @@ final class API {
             urlStr: Address.kakaoSignUp.url,
             method: .post,
             data: data,
-            model: ResponseJWT.self) { result in
+            model: Response<JWT>.self) { result in
                 switch result {
                 case .success(let response):
                     print("kakaoSignUp: \(response)")
@@ -123,7 +123,7 @@ final class API {
             urlStr: Address.kakaoSignIn.url,
             method: .post,
             data: data,
-            model: ResponseJWT.self) { result in
+            model: Response<JWT>.self) { result in
                 switch result {
                 case .success(let response):
                     print("kakaoSignIn: \(response)")
@@ -171,7 +171,7 @@ final class API {
             urlStr: Address.myPage.url + "\(id)/my-page",
             method: .get,
             data: nil,
-            model: ResponseMyPage.self) { result in
+            model: Response<MyPage>.self) { result in
                 switch result {
                 case .success(let response):
                     print("searchingMyPage: \(response)")
@@ -187,7 +187,7 @@ final class API {
             urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
             method: .get,
             data: nil,
-            model: ResponseFeeds.self) { result in
+            model: Response<[Feed]>.self) { result in
                 switch result {
                 case .success(let response):
                     print("searchingFeed: \(response)")
@@ -208,7 +208,7 @@ final class API {
             urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)&loginId=\(loginID)",
             method: .get,
             data: nil,
-            model: ResponseFeeds.self) { result in
+            model: Response<[Feed]>.self) { result in
                 switch result {
                 case .success(let response):
                     print("searchingFeed: \(response)")
@@ -282,7 +282,7 @@ final class API {
             + "\(feedID)/comments?pageIndex=\(pageIndex)&size=\(size)",
             method: .get,
             data: nil,
-            model: ResponseComments.self) { result in
+            model: Response<[Comments]>.self) { result in
                 switch result {
                 case .success(let response):
                     print("searchingComments: \(response)")
@@ -326,7 +326,7 @@ final class API {
             urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
             method: .get,
             data: nil,
-            model: ResponseSearchingChats.self) { result in
+            model: Response<[SearchingChats]>.self) { result in
                 switch result {
                 case .success(let response):
                     print("searchingChats: \(response)")
@@ -349,7 +349,7 @@ final class API {
             urlStr: Address.createComments.url,
             method: .post,
             data: data,
-            model: ResponseSendChats.self) { result in
+            model: Response<SendChats>.self) { result in
                 switch result {
                 case .success(let response):
                     print("sendChats: \(response)")

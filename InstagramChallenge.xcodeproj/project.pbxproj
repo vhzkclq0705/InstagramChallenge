@@ -18,15 +18,9 @@
 		767E40D32891579B00AFFFBE /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40D22891579B00AFFFBE /* MyPage.swift */; };
 		767E40D6289158A000AFFFBE /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40D5289158A000AFFFBE /* Comments.swift */; };
 		767E40D82891595A00AFFFBE /* SearchingChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40D72891595A00AFFFBE /* SearchingChats.swift */; };
-		767E40DA289159B200AFFFBE /* ResponseJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40D9289159B200AFFFBE /* ResponseJWT.swift */; };
 		767E40DC28915A1100AFFFBE /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40DB28915A1100AFFFBE /* JWT.swift */; };
-		767E40DE28915B9C00AFFFBE /* ResponseMyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40DD28915B9C00AFFFBE /* ResponseMyPage.swift */; };
-		767E40E028915BCA00AFFFBE /* ResponseFeeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40DF28915BCA00AFFFBE /* ResponseFeeds.swift */; };
 		767E40E228915BFB00AFFFBE /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E128915BFB00AFFFBE /* Contents.swift */; };
 		767E40E428915C5600AFFFBE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E328915C5600AFFFBE /* Feed.swift */; };
-		767E40E628915D8500AFFFBE /* ResponseComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E528915D8500AFFFBE /* ResponseComments.swift */; };
-		767E40E828915DD000AFFFBE /* ResponseChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E728915DD000AFFFBE /* ResponseChats.swift */; };
-		767E40EA28915EB600AFFFBE /* ResponseSendChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E928915EB600AFFFBE /* ResponseSendChats.swift */; };
 		767E40EC28915EE300AFFFBE /* SendChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40EB28915EE300AFFFBE /* SendChats.swift */; };
 		767E40EE2891611A00AFFFBE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40ED2891611A00AFFFBE /* Token.swift */; };
 		767E40F0289166B100AFFFBE /* ResponseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40EF289166B100AFFFBE /* ResponseDefault.swift */; };
@@ -62,6 +56,7 @@
 		767E41672894438900AFFFBE /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41662894438900AFFFBE /* ConfirmViewController.swift */; };
 		767E416A289446FD00AFFFBE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E4169289446FD00AFFFBE /* HomeViewController.swift */; };
 		767E416D289448BC00AFFFBE /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E416C289448BC00AFFFBE /* RegisterManager.swift */; };
+		767E416F2894583D00AFFFBE /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E416E2894583D00AFFFBE /* Response.swift */; };
 		76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958A288EE95B007E00D6 /* AppDelegate.swift */; };
 		76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958C288EE95B007E00D6 /* SceneDelegate.swift */; };
 		76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958E288EE95B007E00D6 /* LoginViewController.swift */; };
@@ -82,15 +77,9 @@
 		767E40D22891579B00AFFFBE /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		767E40D5289158A000AFFFBE /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		767E40D72891595A00AFFFBE /* SearchingChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingChats.swift; sourceTree = "<group>"; };
-		767E40D9289159B200AFFFBE /* ResponseJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseJWT.swift; sourceTree = "<group>"; };
 		767E40DB28915A1100AFFFBE /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
-		767E40DD28915B9C00AFFFBE /* ResponseMyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseMyPage.swift; sourceTree = "<group>"; };
-		767E40DF28915BCA00AFFFBE /* ResponseFeeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseFeeds.swift; sourceTree = "<group>"; };
 		767E40E128915BFB00AFFFBE /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		767E40E328915C5600AFFFBE /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
-		767E40E528915D8500AFFFBE /* ResponseComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseComments.swift; sourceTree = "<group>"; };
-		767E40E728915DD000AFFFBE /* ResponseChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseChats.swift; sourceTree = "<group>"; };
-		767E40E928915EB600AFFFBE /* ResponseSendChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSendChats.swift; sourceTree = "<group>"; };
 		767E40EB28915EE300AFFFBE /* SendChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendChats.swift; sourceTree = "<group>"; };
 		767E40ED2891611A00AFFFBE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		767E40EF289166B100AFFFBE /* ResponseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDefault.swift; sourceTree = "<group>"; };
@@ -126,6 +115,7 @@
 		767E41662894438900AFFFBE /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		767E4169289446FD00AFFFBE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		767E416C289448BC00AFFFBE /* RegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterManager.swift; sourceTree = "<group>"; };
+		767E416E2894583D00AFFFBE /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		76E09587288EE95B007E00D6 /* InstagramChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E0958A288EE95B007E00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E0958C288EE95B007E00D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,13 +216,8 @@
 		767E40D12891575100AFFFBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				767E416E2894583D00AFFFBE /* Response.swift */,
 				767E40EF289166B100AFFFBE /* ResponseDefault.swift */,
-				767E40D9289159B200AFFFBE /* ResponseJWT.swift */,
-				767E40DD28915B9C00AFFFBE /* ResponseMyPage.swift */,
-				767E40DF28915BCA00AFFFBE /* ResponseFeeds.swift */,
-				767E40E528915D8500AFFFBE /* ResponseComments.swift */,
-				767E40E728915DD000AFFFBE /* ResponseChats.swift */,
-				767E40E928915EB600AFFFBE /* ResponseSendChats.swift */,
 				767E40DB28915A1100AFFFBE /* JWT.swift */,
 				767E40D22891579B00AFFFBE /* MyPage.swift */,
 				767E40D5289158A000AFFFBE /* Comments.swift */,
@@ -556,11 +541,7 @@
 				76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */,
 				767E41082891A77F00AFFFBE /* CustomButton.swift in Sources */,
 				767E40E228915BFB00AFFFBE /* Contents.swift in Sources */,
-				767E40EA28915EB600AFFFBE /* ResponseSendChats.swift in Sources */,
 				767E414D2893085D00AFFFBE /* UIColor++Extensions.swift in Sources */,
-				767E40E628915D8500AFFFBE /* ResponseComments.swift in Sources */,
-				767E40E028915BCA00AFFFBE /* ResponseFeeds.swift in Sources */,
-				767E40DE28915B9C00AFFFBE /* ResponseMyPage.swift in Sources */,
 				767E415B2894241E00AFFFBE /* AddPasswordViewController.swift in Sources */,
 				767E40D32891579B00AFFFBE /* MyPage.swift in Sources */,
 				767E410A2891AB7200AFFFBE /* OrView.swift in Sources */,
@@ -577,9 +558,7 @@
 				767E41652894421000AFFFBE /* ConfirmView.swift in Sources */,
 				7663C97728905467006C3505 /* CustomTextField.swift in Sources */,
 				767E40F0289166B100AFFFBE /* ResponseDefault.swift in Sources */,
-				767E40E828915DD000AFFFBE /* ResponseChats.swift in Sources */,
 				767E40F328917D1000AFFFBE /* RegisterView.swift in Sources */,
-				767E40DA289159B200AFFFBE /* ResponseJWT.swift in Sources */,
 				767E414F28930A2900AFFFBE /* GrayBorderView.swift in Sources */,
 				767E4159289422D500AFFFBE /* AddPasswordView.swift in Sources */,
 				767E40EE2891611A00AFFFBE /* Token.swift in Sources */,
@@ -597,6 +576,7 @@
 				7663C97A2890578E006C3505 /* SplashView.swift in Sources */,
 				767E41452892E72B00AFFFBE /* BirthdayViewController.swift in Sources */,
 				767E413728929D6D00AFFFBE /* CertificationView.swift in Sources */,
+				767E416F2894583D00AFFFBE /* Response.swift in Sources */,
 				767E41022891952900AFFFBE /* PhoneNumberViewController.swift in Sources */,
 				767E40FC2891888F00AFFFBE /* RegisterPhoneNumberBaseViewController.swift in Sources */,
 				767E40D6289158A000AFFFBE /* Comments.swift in Sources */,

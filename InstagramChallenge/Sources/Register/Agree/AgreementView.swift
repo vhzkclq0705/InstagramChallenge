@@ -67,6 +67,11 @@ class AgreementView: UIView {
         return button
     }()
     
+    // MARK: - Property
+    
+    var moreButtons = [UIButton]()
+    var radioButtons = [UIButton]()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -87,6 +92,20 @@ class AgreementView: UIView {
     // MARK: - Setup
     
     func addViews() {
+        [
+            firstMoreButton,
+            secondMoreButton,
+            thirdMoreButton,
+        ]
+            .forEach { moreButtons.append($0) }
+        
+        [
+            firstRadioButton,
+            secondRadioButton,
+            thirdRadioButton,
+        ]
+            .forEach { radioButtons.append($0) }
+        
         [
             titleLabel,
             guideLabel,
@@ -127,6 +146,7 @@ class AgreementView: UIView {
         allAgreeRadioButton.snp.makeConstraints {
             $0.centerY.equalTo(allAgreeLabel)
             $0.trailing.equalToSuperview().offset(-20)
+            $0.width.height.equalTo(30)
         }
         
         midBorderView.snp.makeConstraints {
@@ -148,6 +168,7 @@ class AgreementView: UIView {
         firstRadioButton.snp.makeConstraints {
             $0.centerY.equalTo(firstAgreeLabel)
             $0.trailing.equalTo(allAgreeRadioButton)
+            $0.width.height.equalTo(30)
         }
         
         secondAgreeLabel.snp.makeConstraints {
@@ -163,6 +184,7 @@ class AgreementView: UIView {
         secondRadioButton.snp.makeConstraints {
             $0.centerY.equalTo(secondAgreeLabel)
             $0.trailing.equalTo(allAgreeRadioButton)
+            $0.width.height.equalTo(30)
         }
         
         thirdAgreeLabel.snp.makeConstraints {
@@ -178,6 +200,7 @@ class AgreementView: UIView {
         thirdRadioButton.snp.makeConstraints {
             $0.centerY.equalTo(thirdAgreeLabel)
             $0.trailing.equalTo(allAgreeRadioButton)
+            $0.width.height.equalTo(30)
         }
         
         bottomBorderView.snp.makeConstraints {
@@ -207,15 +230,16 @@ class AgreementView: UIView {
         let button = UIButton()
         button.setTitle("더 알아보기", for: .normal)
         button.setTitleColor(UIColor.customColor(.deepBlue), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
         
         return button
     }
     
     func createRadioButton() -> UIButton {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         button.setImage(UIImage(systemName: "checkmark"), for: .selected)
+        button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = .lightGray
         
         return button

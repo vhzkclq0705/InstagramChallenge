@@ -55,7 +55,7 @@ class AddNameViewController: HideBackButtonViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any) {
-        let vc = BirthdayViewController()
+        let vc = AddPasswordViewController()
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

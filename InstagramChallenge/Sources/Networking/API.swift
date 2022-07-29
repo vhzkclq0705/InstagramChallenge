@@ -21,7 +21,7 @@ fileprivate func networking<T: Decodable>(
     
     let header: HTTPHeaders = [
         "x-access-token": token,
-        "Accept": "application/json"
+        "Content-Type": "application/json"
     ]
     
     var request = URLRequest(url: url)
@@ -44,7 +44,7 @@ fileprivate func networking<T: Decodable>(
 final class API {
     static func signUp(
         _ parameter: [String: String],
-        completion: @escaping (JWT) -> Void)
+        completion: @escaping (JWT?) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -61,6 +61,7 @@ final class API {
                     completion(response.result)
                 case .failure(let error):
                     print(error)
+                    completion(nil)
                 }
             }
     }

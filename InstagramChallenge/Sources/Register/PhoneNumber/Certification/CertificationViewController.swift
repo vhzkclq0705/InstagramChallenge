@@ -71,7 +71,6 @@ class CertificationViewController: HideBackButtonViewController {
     
     @objc func didTapNextButton(_ sender: Any) {
         if certificationView.certificationTextField.text! == "123456" {
-            manager.setPhoneNumber(phoneNumber)
             let vc = AddNameViewController()
             
             self.navigationController?.pushViewController(vc, animated: true)

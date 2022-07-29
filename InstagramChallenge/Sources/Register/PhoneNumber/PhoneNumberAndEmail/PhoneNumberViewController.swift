@@ -17,6 +17,7 @@ class PhoneNumberViewController: UIViewController {
     // MARK: - Property
     
     let phoneNumberView = PhoneNumberView()
+    let manager = RegisterManager.shared
     var delegate: certificationDelegate?
     
     // MARK: - Life cycle
@@ -62,8 +63,10 @@ class PhoneNumberViewController: UIViewController {
     }
     
     @objc func didTapNextButton(_ button: UIButton) {
-        let phoneNumber = "+82\(phoneNumberView.phoneNumberTextField.text!)"
-        delegate?.pushCertificationViewController(phoneNumber)
+        let phoneNumber = phoneNumberView.phoneNumberTextField.text!
+        
+        manager.setPhoneNumber(phoneNumber)
+        delegate?.pushCertificationViewController("+82\(phoneNumber)")
     }
 
     @objc func didTapKakaoLoginButton(_ sender: Any) {

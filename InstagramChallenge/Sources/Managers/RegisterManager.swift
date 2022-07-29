@@ -49,7 +49,7 @@ class RegisterManager {
         self.phoneNumber = phoneNumber
     }
     
-    func registerOneSelf() {
+    func registerOneSelf(completion: @escaping (Bool) -> Void) {
         guard let name = name,
               let passowrd = password,
               let id = id,
@@ -67,9 +67,15 @@ class RegisterManager {
             "phoneNumber": phoneNumber
         ]
         
+        print("파라미터: \(parameter)")
+        
         API.signUp(parameter) { jwt in
-            print("jwt = \(jwt)")
-            token = jwt.jwt
+            if let jwt = jwt {
+                token = jwt.jwt
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class AddNameView: UIView {
+class AddNameView: BaseView {
     
     // MARK: - UI
     

@@ -39,12 +39,6 @@ class BirthdayViewController: HideBackButtonViewController {
         configureViewController()
     }
     
-    // MARK: - Keyboard
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        birthdayView.endEditing(true)
-    }
-    
     // MARK: - Setup
     
     func configureViewController() {

@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class LoginView: UIView {
+class LoginView: BaseView {
 
     // MARK: - UI
     

@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class PhoneNumberView: UIView {
+class PhoneNumberView: BaseView {
     
     // MARK: - UI
     

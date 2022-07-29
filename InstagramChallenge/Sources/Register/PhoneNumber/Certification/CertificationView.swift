@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class CerticiationView: UIView {
+class CerticiationView: BaseView {
     
     // MARK: - UI
     

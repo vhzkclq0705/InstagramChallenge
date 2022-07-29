@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class AddPasswordView: UIView {
+class AddPasswordView: BaseView {
     
     // MARK: - UI
     

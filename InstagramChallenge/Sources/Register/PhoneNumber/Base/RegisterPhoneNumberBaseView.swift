@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 import PagingKit
 
-class RegisterPhoneNumberBaseView: UIView {
+class RegisterPhoneNumberBaseView: BaseView {
     
     // MARK: - UI
     

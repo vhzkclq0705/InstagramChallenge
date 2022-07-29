@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class BirthdayView: UIView {
+class BirthdayView: BaseView {
     
     // MARK: - UI
     

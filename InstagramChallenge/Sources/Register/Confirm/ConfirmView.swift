@@ -1,39 +1,48 @@
 //
-//  RegisterPhoneNumberBaseView.swift
+//  ConfirmView.swift
 //  InstagramChallenge
 //
-//  Created by 권오준 on 2022/07/28.
+//  Created by 권오준 on 2022/07/30.
 //  Copyright © 2022 com.softsquared.gridgeTest.ios.InstagramChallenge.InstagramChallenge. All rights reserved.
 //
 
 import UIKit
 
 import SnapKit
-import PagingKit
 
-class RegisterPhoneNumberBaseView: BaseView {
+class ConfirmView: BaseView {
     
     // MARK: - UI
     
-    let topLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "전화번호 또는 이메일 주소 입력"
         label.font = .systemFont(ofSize: 25, weight: .bold)
+        label.textAlignment = .center
+        label.numberOfLines = 2
         
         return label
     }()
     
-    let menuViewController: PagingMenuViewController = {
-        let vc = PagingMenuViewController()
-        vc.cellAlignment = .center
-        vc.register(type: MenuCell.self, forCellWithReuseIdentifier: MenuCell.id)
+    let guideLabel: UILabel = {
+        let label = UILabel()
+        label.text = "나중에 언제든지 사용자 이름을 변경할 수 있습니다."
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.textAlignment = .center
+        label.numberOfLines = 2
         
-        return vc
+        return label
     }()
     
-    let contentViewcontroller = PagingContentViewController()
-    
     let bottomBorderView = GrayBorderView()
+    
+    let registerButton: CustomButton = {
+        let button = CustomButton()
+        button.configureTitle("가입하기")
+        button.changeState(true)
+        
+        return button
+    }()
     
     let bottomStackView: UIStackView = {
         let stackView = UIStackView()
@@ -84,37 +93,36 @@ class RegisterPhoneNumberBaseView: BaseView {
             .forEach { bottomStackView.addArrangedSubview($0) }
         
         [
-            topLabel,
-            menuViewController.view,
-            contentViewcontroller.view,
+            titleLabel,
+            guideLabel,
             bottomBorderView,
+            registerButton,
             bottomStackView,
         ]
             .forEach { self.addSubview($0) }
     }
     
     func configureLayout() {
-        topLabel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.centerX.equalToSuperview()
         }
         
-        menuViewController.view.snp.makeConstraints {
-            $0.top.equalTo(topLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(40)
-            $0.height.equalTo(50)
-        }
-        
-        contentViewcontroller.view.snp.makeConstraints {
-            $0.top.equalTo(menuViewController.view.snp.bottom)
-            $0.bottom.equalTo(bottomBorderView.snp.top)
+        guideLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(40)
         }
         
         bottomBorderView.snp.makeConstraints {
-            $0.bottom.equalTo(bottomStackView.snp.top).offset(-30)
+            $0.bottom.equalTo(registerButton.snp.top).offset(-10)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
+        }
+        
+        registerButton.snp.makeConstraints {
+            $0.bottom.equalTo(bottomStackView.snp.top).offset(-20)
+            $0.leading.trailing.equalToSuperview().inset(40)
+            $0.height.equalTo(50)
         }
         
         bottomStackView.snp.makeConstraints {
@@ -122,4 +130,5 @@ class RegisterPhoneNumberBaseView: BaseView {
             $0.centerX.equalToSuperview()
         }
     }
+    
 }

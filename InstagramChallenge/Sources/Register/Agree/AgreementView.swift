@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class AgreementView: UIView {
+class AgreementView: BaseView {
     
     // MARK: - UI
     
@@ -76,8 +76,6 @@ class AgreementView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = .white
         addViews()
     }
     

@@ -13,6 +13,7 @@ class AddNicknameViewController: HideBackButtonViewController {
     // MARK: - Property
     
     let addNicknameView = AddNicknameView()
+    var isCheck = false
     
     // MARK: - Life cycle
     
@@ -52,6 +53,7 @@ class AddNicknameViewController: HideBackButtonViewController {
         addNicknameView.alertLabel.isHidden = true
         addNicknameView.nicknameTextField.layer.borderColor = UIColor.customColor(.lightgray).cgColor
         addNicknameView.textFieldButton.isUserInteractionEnabled = !bool
+        isCheck = bool
         
         bool
         ? addNicknameView.textFieldButton.setBackgroundImage(
@@ -90,24 +92,27 @@ class AddNicknameViewController: HideBackButtonViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any) {
-        let text = addNicknameView.nicknameTextField.text!
-        
-        if text == "1234" {
-            alertTextField("사용자 이름 \(text)를 사용할 수 없습니다.")
+        if isCheck {
+            let vc = ConfirmViewController()
+            vc.nickname = addNicknameView.nicknameTextField.text!
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            let pattern = "^[a-z0-9_.]*$"
+            let text = addNicknameView.nicknameTextField.text!
             
-            guard text.range(of: pattern, options: .regularExpression) != nil else {
-                alertTextField("아이디는 영어, 숫자, '_', '.'만 사용 가능합니다.")
-                return
+            if text == "1234" {
+                alertTextField("사용자 이름 \(text)를 사용할 수 없습니다.")
+            } else {
+                let pattern = "^[a-z0-9_.]*$"
+                
+                guard text.range(of: pattern, options: .regularExpression) != nil else {
+                    alertTextField("아이디는 영어, 숫자, '_', '.'만 사용 가능합니다.")
+                    return
+                }
+                
+                changeTextFieldButtonState(true)
             }
-            
-            changeTextFieldButtonState(true)
         }
-    }
-    
-    @objc func didTapLoginButton(_ sender: Any) {
-        self.dismiss(animated: true)
     }
     
 }

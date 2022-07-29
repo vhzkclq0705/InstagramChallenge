@@ -58,6 +58,9 @@
 		767E415E2894286500AFFFBE /* AddNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E415D2894286500AFFFBE /* AddNicknameView.swift */; };
 		767E416028942BC100AFFFBE /* AddNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E415F28942BC100AFFFBE /* AddNicknameViewController.swift */; };
 		767E416228943F3500AFFFBE /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E416128943F3500AFFFBE /* BaseView.swift */; };
+		767E41652894421000AFFFBE /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41642894421000AFFFBE /* ConfirmView.swift */; };
+		767E41672894438900AFFFBE /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E41662894438900AFFFBE /* ConfirmViewController.swift */; };
+		767E416A289446FD00AFFFBE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E4169289446FD00AFFFBE /* HomeViewController.swift */; };
 		76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958A288EE95B007E00D6 /* AppDelegate.swift */; };
 		76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958C288EE95B007E00D6 /* SceneDelegate.swift */; };
 		76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958E288EE95B007E00D6 /* LoginViewController.swift */; };
@@ -118,6 +121,9 @@
 		767E415D2894286500AFFFBE /* AddNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNicknameView.swift; sourceTree = "<group>"; };
 		767E415F28942BC100AFFFBE /* AddNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNicknameViewController.swift; sourceTree = "<group>"; };
 		767E416128943F3500AFFFBE /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		767E41642894421000AFFFBE /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
+		767E41662894438900AFFFBE /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
+		767E4169289446FD00AFFFBE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		76E09587288EE95B007E00D6 /* InstagramChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E0958A288EE95B007E00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E0958C288EE95B007E00D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +251,7 @@
 				767E41562894223800AFFFBE /* Birthday */,
 				767E41572894223D00AFFFBE /* Agree */,
 				767E415C2894283300AFFFBE /* Nickname */,
+				767E4163289441BD00AFFFBE /* Confirm */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -343,6 +350,23 @@
 			path = Nickname;
 			sourceTree = "<group>";
 		};
+		767E4163289441BD00AFFFBE /* Confirm */ = {
+			isa = PBXGroup;
+			children = (
+				767E41642894421000AFFFBE /* ConfirmView.swift */,
+				767E41662894438900AFFFBE /* ConfirmViewController.swift */,
+			);
+			path = Confirm;
+			sourceTree = "<group>";
+		};
+		767E4168289446EA00AFFFBE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				767E4169289446FD00AFFFBE /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		76E0957E288EE95B007E00D6 = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +390,7 @@
 			children = (
 				7663C97D28905906006C3505 /* Suppoting files */,
 				7663C97C289058FD006C3505 /* Sources */,
+				767E4168289446EA00AFFFBE /* Home */,
 				7663C97B289058F2006C3505 /* Resources */,
 				76E0958A288EE95B007E00D6 /* AppDelegate.swift */,
 				76E0958C288EE95B007E00D6 /* SceneDelegate.swift */,
@@ -513,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767E41672894438900AFFFBE /* ConfirmViewController.swift in Sources */,
 				767E40F5289181B300AFFFBE /* RegisterViewController.swift in Sources */,
 				767E410028918B4000AFFFBE /* MenuCell.swift in Sources */,
 				767E41472892FF1C00AFFFBE /* AgreementView.swift in Sources */,
@@ -531,11 +557,13 @@
 				767E40D0289154E800AFFFBE /* BaseURL.swift in Sources */,
 				767E41412892BB0100AFFFBE /* AddNameViewController.swift in Sources */,
 				767E40EC28915EE300AFFFBE /* SendChats.swift in Sources */,
+				767E416A289446FD00AFFFBE /* HomeViewController.swift in Sources */,
 				767E41432892E22C00AFFFBE /* BirthdayView.swift in Sources */,
 				767E40D82891595A00AFFFBE /* SearchingChats.swift in Sources */,
 				767E40DC28915A1100AFFFBE /* JWT.swift in Sources */,
 				767E413D2892AC7300AFFFBE /* RegisterPhoneNumberBaseView.swift in Sources */,
 				767E413F2892BAF600AFFFBE /* AddNameView.swift in Sources */,
+				767E41652894421000AFFFBE /* ConfirmView.swift in Sources */,
 				7663C97728905467006C3505 /* CustomTextField.swift in Sources */,
 				767E40F0289166B100AFFFBE /* ResponseDefault.swift in Sources */,
 				767E40E828915DD000AFFFBE /* ResponseChats.swift in Sources */,

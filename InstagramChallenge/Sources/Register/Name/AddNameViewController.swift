@@ -59,8 +59,5 @@ class AddNameViewController: HideBackButtonViewController {
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @objc func didTapLoginButton(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
+
 }

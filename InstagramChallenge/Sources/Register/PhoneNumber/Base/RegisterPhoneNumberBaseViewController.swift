@@ -76,9 +76,6 @@ class RegisterPhoneNumberBaseViewController: HideBackButtonViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func didTapLoginButton(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
 }
 
 // MARK: - PagingMenu

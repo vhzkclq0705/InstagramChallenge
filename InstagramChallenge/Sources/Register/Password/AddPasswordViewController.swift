@@ -73,8 +73,4 @@ class AddPasswordViewController: HideBackButtonViewController {
         }
     }
     
-    @objc func didTapLoginButton(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
 }

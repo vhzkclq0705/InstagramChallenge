@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class RegisterView: UIView {
+class RegisterView: BaseView {
     
     // MARK: - UI
     
@@ -82,8 +82,6 @@ class RegisterView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = .white
         addViews()
     }
     

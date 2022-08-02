@@ -56,8 +56,9 @@ class AddNameViewController: HideBackButtonViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any) {
+        let vc: UIViewController
+        vc = manager.isKakao ? BirthdayViewController() : AddPasswordViewController() 
         manager.setName(addNameView.nameTextField.text!)
-        let vc = AddPasswordViewController()
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

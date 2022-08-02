@@ -1,11 +1,14 @@
 //
-//  Token.swift
+//  NetworkingResult.swift
 //  InstagramChallenge
 //
-//  Created by 권오준 on 2022/07/27.
+//  Created by 권오준 on 2022/08/03.
 //  Copyright © 2022 com.softsquared.gridgeTest.ios.InstagramChallenge.InstagramChallenge. All rights reserved.
 //
 
 import Foundation
 
-public var token = ""
+enum NetworkingResult<T> {
+    case success(T)
+    case fail(String)
+}

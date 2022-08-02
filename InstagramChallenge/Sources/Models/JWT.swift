@@ -10,4 +10,11 @@ import Foundation
 
 struct JWT: Codable {
     let jwt: String
+    let loginID: String?
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        jwt = (try? values.decode(String.self, forKey: .jwt)) ?? ""
+        loginID = (try? values.decode(String.self, forKey: .loginID)) ?? nil
+    }
 }

@@ -7,10 +7,6 @@
 
 import UIKit
 
-import KakaoSDKCommon
-import KakaoSDKAuth
-import KakaoSDKUser
-
 class LoginViewController: UIViewController {
     
     // MARK: - Property
@@ -63,32 +59,19 @@ class LoginViewController: UIViewController {
     
     // MARK: - Func
     
-    func login(completion: @escaping (Bool) -> Void) {
+    func login(completion: @escaping () -> Void) {
         let parameter = [
             "loginId": loginView.idTextField.text!,
             "password": loginView.passwordTextField.text!
         ]
         
-        API.signIn(parameter) { jwt in
-            guard let jwt = jwt else {
-                completion(false)
-                return
-            }
-            
-            LoginManager.shared.saveToken(jwt)
-            completion(true)
-        }
-    }
-    
-    func loginWithKakaoAccount() {
-        UserApi.shared.loginWithKakaoAccount { oauthToken, error in
-            if let error = error {
-                print(error)
-            } else {
-                if let accessToken = oauthToken?.accessToken {
-                    token = accessToken
-                    
-                }
+        API.signIn(parameter) { result in
+            switch result {
+            case .success(let jwt):
+                TokenManager.shared.saveToken(jwt.jwt)
+                completion()
+            case .fail(_):
+                self.presentFailAlert()
             }
         }
     }
@@ -123,37 +106,23 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @objc func didTapLoginButton(_ sender: Any) {
-        if loginView.idTextField.text!.count < 3 {
-            presentBasicAlert("아이디를 3자리 이상 입력해주세요.")
-        }
-        else if loginView.passwordTextField.text!.count < 6 {
-            presentBasicAlert("비밀번호를 6자리 이상 입력해주세요.")
-        }
-        else {
-            let pattern = "(?=.*[~!@#\\$%\\^&\\*])"
-            
-            guard loginView.passwordTextField.text!.range(
-                of: pattern, options: .regularExpression) != nil else {
-                presentBasicAlert("비밀번호에 특수문자가 1자리 이상 포함되어야 합니다.")
-                return
-            }
-            
-            // 로그인 실패
-            login() { result in
-                if result {
-                    let vc = HomeViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    
-                    self.present(vc, animated: true)
-                } else {
-                    self.presentFailAlert()
-                }
+        let pattern = "[~!@#\\$%\\^&\\*]"
+        
+        if loginView.idTextField.text!.count < 3
+        || loginView.passwordTextField.text!.count < 6
+        || loginView.passwordTextField.text!.range(
+            of: pattern,
+            options: .regularExpression) == nil {
+            presentFailAlert()
+        } else {
+            login() {
+                self.presentFullScreen(HomeViewController())
             }
         }
     }
     
     @objc func didTapKakaoLoginButton(_ sender: Any) {
-        loginWithKakaoAccount()
+        kakaoLogin()
     }
     
     @objc func didTapSecureButton(_ button: UIButton) {

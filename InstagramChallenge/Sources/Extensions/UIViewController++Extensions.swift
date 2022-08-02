@@ -8,7 +8,49 @@
 
 import UIKit
 
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+
 extension UIViewController {
+    
+    func kakaoLogin() {
+        let manager = TokenManager.shared
+        
+        UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+            if let error = error {
+                print(error)
+                self.presentBasicAlert("로그인에 실패하였습니다.")
+            } else {
+                if let accessToken = oauthToken?.accessToken {
+                    let parameter = ["accessToken": accessToken]
+                    
+                    API.kakaoSignIn(parameter) { result in
+                        switch result {
+                        case .success(let jwt):
+                            manager.saveToken(jwt.jwt)
+                            manager.saveLoginID(jwt.loginID!)
+                            
+                            self.presentFullScreen(HomeViewController())
+                        case .fail(let message):
+                            let vc = LoginViewController()
+                            self.view.window?.rootViewController = vc
+                            self.view.window?.rootViewController?.dismiss(animated: false) {
+                                self.goToKakaoRegister(accessToken)
+                            }
+                            
+//                            if message == "카카오 계정이 존재하지 않습니다." {
+//                                self.presentFullScreen(AddPasswordViewController())
+//                            } else {
+//                                self.presentBasicAlert("로그인에 실패하였습니다.")
+//                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func presentFullScreen(_ vc: UIViewController) {
         vc.modalPresentationStyle = .fullScreen
         
@@ -16,9 +58,25 @@ extension UIViewController {
     }
     
     func goToLogin() {
-        let loginViewController = LoginViewController()
-        view.window?.rootViewController = loginViewController
-        view.window?.rootViewController?.dismiss(animated: false)
+        let vc = LoginViewController()
+        view.window?.rootViewController = vc
+        view.window?.rootViewController?.dismiss(animated: true)
+    }
+    
+    func goToKakaoRegister(_ accessToken: String) {
+        let registerManager = RegisterManager.shared
+
+        registerManager.isKakao = true
+        registerManager.setAccessToken(accessToken)
+        
+        let registerVC = RegisterViewController()
+        let phoneNumberVC = RegisterPhoneNumberBaseViewController()
+        let navigationController = UINavigationController(rootViewController: registerVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        self.present(navigationController, animated: false) {
+            navigationController.pushViewController(phoneNumberVC, animated: false)
+        }
     }
     
     func presentBasicAlert(_ title: String) {

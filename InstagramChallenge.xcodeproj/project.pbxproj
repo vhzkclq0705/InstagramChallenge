@@ -22,7 +22,6 @@
 		767E40E228915BFB00AFFFBE /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E128915BFB00AFFFBE /* Contents.swift */; };
 		767E40E428915C5600AFFFBE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40E328915C5600AFFFBE /* Feed.swift */; };
 		767E40EC28915EE300AFFFBE /* SendChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40EB28915EE300AFFFBE /* SendChats.swift */; };
-		767E40EE2891611A00AFFFBE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40ED2891611A00AFFFBE /* Token.swift */; };
 		767E40F0289166B100AFFFBE /* ResponseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40EF289166B100AFFFBE /* ResponseDefault.swift */; };
 		767E40F328917D1000AFFFBE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40F228917D1000AFFFBE /* RegisterView.swift */; };
 		767E40F5289181B300AFFFBE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E40F4289181B300AFFFBE /* RegisterViewController.swift */; };
@@ -63,6 +62,7 @@
 		76E09592288EE95C007E00D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E09590288EE95C007E00D6 /* Main.storyboard */; };
 		76E09594288EE95E007E00D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E09593288EE95E007E00D6 /* Assets.xcassets */; };
 		76E262C22899389D009D2E16 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262C12899389D009D2E16 /* TokenManager.swift */; };
+		76E262C4289985D0009D2E16 /* NetworkingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262C3289985D0009D2E16 /* NetworkingResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +82,6 @@
 		767E40E128915BFB00AFFFBE /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		767E40E328915C5600AFFFBE /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		767E40EB28915EE300AFFFBE /* SendChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendChats.swift; sourceTree = "<group>"; };
-		767E40ED2891611A00AFFFBE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		767E40EF289166B100AFFFBE /* ResponseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDefault.swift; sourceTree = "<group>"; };
 		767E40F228917D1000AFFFBE /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		767E40F4289181B300AFFFBE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 		76E09593288EE95E007E00D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76E09598288EE95E007E00D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E262C12899389D009D2E16 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		76E262C3289985D0009D2E16 /* NetworkingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingResult.swift; sourceTree = "<group>"; };
 		9D10534C4245572E20636E69 /* Pods_InstagramChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -198,7 +198,6 @@
 		7663C97E2890598E006C3505 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				767E40ED2891611A00AFFFBE /* Token.swift */,
 				7663C97F289059A1006C3505 /* LoginView.swift */,
 				76E0958E288EE95B007E00D6 /* LoginViewController.swift */,
 			);
@@ -211,6 +210,7 @@
 				767E40CB289154D200AFFFBE /* Address.swift */,
 				767E40CD289154DD00AFFFBE /* API.swift */,
 				767E40CF289154E800AFFFBE /* BaseURL.swift */,
+				76E262C3289985D0009D2E16 /* NetworkingResult.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -543,6 +543,7 @@
 				767E41472892FF1C00AFFFBE /* AgreementView.swift in Sources */,
 				76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */,
 				767E41082891A77F00AFFFBE /* CustomButton.swift in Sources */,
+				76E262C4289985D0009D2E16 /* NetworkingResult.swift in Sources */,
 				767E40E228915BFB00AFFFBE /* Contents.swift in Sources */,
 				767E414D2893085D00AFFFBE /* UIColor++Extensions.swift in Sources */,
 				767E415B2894241E00AFFFBE /* AddPasswordViewController.swift in Sources */,
@@ -565,7 +566,6 @@
 				767E40F328917D1000AFFFBE /* RegisterView.swift in Sources */,
 				767E414F28930A2900AFFFBE /* GrayBorderView.swift in Sources */,
 				767E4159289422D500AFFFBE /* AddPasswordView.swift in Sources */,
-				767E40EE2891611A00AFFFBE /* Token.swift in Sources */,
 				76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */,
 				767E416D289448BC00AFFFBE /* RegisterManager.swift in Sources */,
 				76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */,

@@ -22,19 +22,22 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadToken()
+        loadTokenAndLoginID()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.checkAutoLogin()
+            let vc = LoginViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+            //self.checkAutoLogin()
         }
     }
     
     // MARK: - Func
     
-    func loadToken() {
-        TokenManager.shared.loadToken()
+    func loadTokenAndLoginID() {
+        TokenManager.shared.loadTokenAndLoginID()
     }
     
     func checkAutoLogin() {

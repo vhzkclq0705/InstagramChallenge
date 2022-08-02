@@ -46,23 +46,10 @@ class RegisterViewController: UIViewController {
             for: .touchUpInside)
     }
     
-    func loginWithKakaoAccount() {
-        UserApi.shared.loginWithKakaoAccount { oauthToken, error in
-            if let error = error {
-                print(error)
-            } else {
-                if let accessToken = oauthToken?.accessToken {
-                    token = accessToken
-                    
-                }
-            }
-        }
-    }
-    
     // MARK: - Actions
     
     @objc func didTapKakaoLoginButton(_ sender: Any) {
-        loginWithKakaoAccount()
+        kakaoLogin()
     }
     
     @objc func didTapRegisterButton(_ sender: Any) {

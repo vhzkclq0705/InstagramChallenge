@@ -61,7 +61,7 @@ class AddPasswordViewController: HideBackButtonViewController {
         if text.count < 6 {
             presentBasicAlert("비밀번호를 확인해주세요.")
         } else {
-            let pattern = "(?=.*[!@#$%^&*()_+=-])"
+            let pattern = "[~!@#\\$%\\^&\\*]"
             
             guard text.range(of: pattern, options: .regularExpression) != nil else {
                     presentBasicAlert("비밀번호를 확인해주세요.")

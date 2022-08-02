@@ -41,10 +41,18 @@ fileprivate func networking<T: Decodable>(
         }
 }
 
+fileprivate func filtering<T: Decodable>(_ model: Response<T>) -> NetworkingResult<T> {
+    if let result = model.result {
+        return .success(result)
+    } else {
+        return .fail(model.message)
+    }
+}
+
 final class API {
     static func signUp(
         _ parameter: [String: String],
-        completion: @escaping (String?) -> Void)
+        completion: @escaping (NetworkingResult<JWT>) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -58,17 +66,16 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("signUp: \(response)")
-                    completion(response.result.jwt)
+                    completion(filtering(response))
                 case .failure(let error):
                     print(error)
-                    completion(nil)
                 }
             }
     }
     
     static func signIn(
         _ parameter: [String: String],
-        completion: @escaping (String?) -> Void)
+        completion: @escaping (NetworkingResult<JWT>) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -82,17 +89,16 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("signIn: \(response)")
-                    completion(response.result.jwt)
+                    completion(filtering(response))
                 case .failure(let error):
                     print(error)
-                    completion(nil)
                 }
             }
     }
     
     static func kakaoSignUp(
         _ parameter: [String: String],
-        completion: @escaping (JWT) -> Void)
+        completion: @escaping (NetworkingResult<JWT>) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -106,7 +112,7 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("kakaoSignUp: \(response)")
-                    completion(response.result)
+                    completion(filtering(response))
                 case .failure(let error):
                     print(error)
                 }
@@ -115,7 +121,7 @@ final class API {
     
     static func kakaoSignIn(
         _ parameter: [String: String],
-        completion: @escaping (JWT) -> Void)
+        completion: @escaping (NetworkingResult<JWT>) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -129,7 +135,7 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("kakaoSignIn: \(response)")
-                    completion(response.result)
+                    completion(filtering(response))
                 case .failure(let error):
                     print(error)
                 }
@@ -168,7 +174,7 @@ final class API {
             }
     }
     
-    static func searchingMyPage(_ id: Int, completion: @escaping (MyPage) -> Void) {
+    static func searchingMyPage(_ id: Int, completion: @escaping (NetworkingResult<MyPage>) -> Void) {
         networking(
             urlStr: Address.myPage.url + "\(id)/my-page",
             method: .get,
@@ -177,188 +183,188 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("searchingMyPage: \(response)")
-                    completion(response.result)
+                    completion(filtering(response))
                 case .failure(let error):
                     print(error)
                 }
             }
     }
     
-    static func searchingFeed(pageIndex: Int, size: Int, completion: @escaping ([Feed]) -> Void) {
-        networking(
-            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
-            method: .get,
-            data: nil,
-            model: Response<[Feed]>.self) { result in
-                switch result {
-                case .success(let response):
-                    print("searchingFeed: \(response)")
-                    completion(response.result)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func searchingUser(
-        pageIndex: Int,
-        size: Int,
-        loginID: String,
-        completion: @escaping ([Feed]) -> Void)
-    {
-        networking(
-            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)&loginId=\(loginID)",
-            method: .get,
-            data: nil,
-            model: Response<[Feed]>.self) { result in
-                switch result {
-                case .success(let response):
-                    print("searchingFeed: \(response)")
-                    completion(response.result)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func createFeed(_ parameter: [String: Any], completion: @escaping (String) -> Void) {
-        guard let data = try? JSONSerialization.data(
-            withJSONObject: parameter,
-            options: .prettyPrinted) else { return }
-        
-        networking(
-            urlStr: Address.createFeed.url,
-            method: .post,
-            data: data,
-            model: ResponseDefault.self) { result in
-                switch result {
-                case .success(let response):
-                    print("createFeed: \(response)")
-                    completion(response.message)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func updateFeed(_ feedID: Int, completion: @escaping (String) -> Void) {
-        networking(
-            urlStr: Address.updateFeed.url + "\(feedID)",
-            method: .patch,
-            data: nil,
-            model: ResponseDefault.self) { result in
-                switch result {
-                case .success(let response):
-                    print("updateFeed: \(response)")
-                    completion(response.message)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func deleteFeed(_ feedID: Int, completion: @escaping (String) -> Void) {
-        networking(
-            urlStr: Address.updateFeed.url + "\(feedID)/delete-status",
-            method: .patch,
-            data: nil,
-            model: ResponseDefault.self) { result in
-                switch result {
-                case .success(let response):
-                    print("updateFeed: \(response)")
-                    completion(response.message)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func searchingComments(
-        feedID: Int,
-        pageIndex: Int,
-        size: String,
-        completion: @escaping ([Comments]) -> Void)
-    {
-        networking(
-            urlStr: Address.searchingFeed.url
-            + "\(feedID)/comments?pageIndex=\(pageIndex)&size=\(size)",
-            method: .get,
-            data: nil,
-            model: Response<[Comments]>.self) { result in
-                switch result {
-                case .success(let response):
-                    print("searchingComments: \(response)")
-                    completion(response.result)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func createComments(
-        feedID: Int,
-        parameter: [String: String],
-        completion: @escaping (String) -> Void)
-    {
-        guard let data = try? JSONSerialization.data(
-            withJSONObject: parameter,
-            options: .prettyPrinted) else { return }
-        
-        networking(
-            urlStr: Address.createComments.url + "\(feedID)/comment",
-            method: .post,
-            data: data,
-            model: ResponseDefault.self) { result in
-                switch result {
-                case .success(let response):
-                    print("createComments: \(response)")
-                    completion(response.message)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func searchingChats(
-        pageIndex: Int,
-        size: String,
-        completion: @escaping ([SearchingChats]) -> Void)
-    {
-        networking(
-            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
-            method: .get,
-            data: nil,
-            model: Response<[SearchingChats]>.self) { result in
-                switch result {
-                case .success(let response):
-                    print("searchingChats: \(response)")
-                    completion(response.result)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
-    static func sendChats(
-        parameter: [String: String],
-        completion: @escaping (SendChats) -> Void)
-    {
-        guard let data = try? JSONSerialization.data(
-            withJSONObject: parameter,
-            options: .prettyPrinted) else { return }
-        
-        networking(
-            urlStr: Address.createComments.url,
-            method: .post,
-            data: data,
-            model: Response<SendChats>.self) { result in
-                switch result {
-                case .success(let response):
-                    print("sendChats: \(response)")
-                    completion(response.result)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
+//    static func searchingFeed(pageIndex: Int, size: Int, completion: @escaping ([Feed]) -> Void) {
+//        networking(
+//            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
+//            method: .get,
+//            data: nil,
+//            model: Response<[Feed]>.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("searchingFeed: \(response)")
+//                    completion(response.result)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func searchingUser(
+//        pageIndex: Int,
+//        size: Int,
+//        loginID: String,
+//        completion: @escaping ([Feed]) -> Void)
+//    {
+//        networking(
+//            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)&loginId=\(loginID)",
+//            method: .get,
+//            data: nil,
+//            model: Response<[Feed]>.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("searchingFeed: \(response)")
+//                    completion(response.result)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func createFeed(_ parameter: [String: Any], completion: @escaping (String) -> Void) {
+//        guard let data = try? JSONSerialization.data(
+//            withJSONObject: parameter,
+//            options: .prettyPrinted) else { return }
+//
+//        networking(
+//            urlStr: Address.createFeed.url,
+//            method: .post,
+//            data: data,
+//            model: ResponseDefault.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("createFeed: \(response)")
+//                    completion(response.message)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func updateFeed(_ feedID: Int, completion: @escaping (String) -> Void) {
+//        networking(
+//            urlStr: Address.updateFeed.url + "\(feedID)",
+//            method: .patch,
+//            data: nil,
+//            model: ResponseDefault.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("updateFeed: \(response)")
+//                    completion(response.message)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func deleteFeed(_ feedID: Int, completion: @escaping (String) -> Void) {
+//        networking(
+//            urlStr: Address.updateFeed.url + "\(feedID)/delete-status",
+//            method: .patch,
+//            data: nil,
+//            model: ResponseDefault.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("updateFeed: \(response)")
+//                    completion(response.message)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func searchingComments(
+//        feedID: Int,
+//        pageIndex: Int,
+//        size: String,
+//        completion: @escaping ([Comments]) -> Void)
+//    {
+//        networking(
+//            urlStr: Address.searchingFeed.url
+//            + "\(feedID)/comments?pageIndex=\(pageIndex)&size=\(size)",
+//            method: .get,
+//            data: nil,
+//            model: Response<[Comments]>.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("searchingComments: \(response)")
+//                    completion(response.result)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func createComments(
+//        feedID: Int,
+//        parameter: [String: String],
+//        completion: @escaping (String) -> Void)
+//    {
+//        guard let data = try? JSONSerialization.data(
+//            withJSONObject: parameter,
+//            options: .prettyPrinted) else { return }
+//
+//        networking(
+//            urlStr: Address.createComments.url + "\(feedID)/comment",
+//            method: .post,
+//            data: data,
+//            model: ResponseDefault.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("createComments: \(response)")
+//                    completion(response.message)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func searchingChats(
+//        pageIndex: Int,
+//        size: String,
+//        completion: @escaping ([SearchingChats]) -> Void)
+//    {
+//        networking(
+//            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
+//            method: .get,
+//            data: nil,
+//            model: Response<[SearchingChats]>.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("searchingChats: \(response)")
+//                    completion(response.result)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
+//
+//    static func sendChats(
+//        parameter: [String: String],
+//        completion: @escaping (SendChats) -> Void)
+//    {
+//        guard let data = try? JSONSerialization.data(
+//            withJSONObject: parameter,
+//            options: .prettyPrinted) else { return }
+//
+//        networking(
+//            urlStr: Address.createComments.url,
+//            method: .post,
+//            data: data,
+//            model: Response<SendChats>.self) { result in
+//                switch result {
+//                case .success(let response):
+//                    print("sendChats: \(response)")
+//                    completion(response.result)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
 }

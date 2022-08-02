@@ -18,6 +18,8 @@ class RegisterManager {
     
     // MARK: - Property
     
+    var isKakao = false
+    var accessToken: String?
     var name: String?
     var password: String?
     var id: String?
@@ -25,6 +27,10 @@ class RegisterManager {
     var phoneNumber: String?
     
     // MARK: - Func
+    
+    func setAccessToken(_ accessToken: String) {
+        self.accessToken = accessToken
+    }
     
     func setName(_ name: String) {
         self.name = name
@@ -55,7 +61,7 @@ class RegisterManager {
               let id = id,
               let birthDate = birthDate,
               let phoneNumber = phoneNumber else {
-            print("정보 입력 필요")
+            completion(false)
             return
         }
         
@@ -67,13 +73,45 @@ class RegisterManager {
             "phoneNumber": phoneNumber
         ]
         
-        print("파라미터: \(parameter)")
-        
-        API.signUp(parameter) { jwt in
-            if let jwt = jwt {
-                TokenManager.shared.saveToken(jwt)
+        API.signUp(parameter) { result in
+            let manager = TokenManager.shared
+            switch result {
+            case .success(let jwt):
+                manager.saveToken(jwt.jwt)
+                manager.saveLoginID(id)
                 completion(true)
-            } else {
+            case .fail(_):
+                completion(false)
+            }
+        }
+    }
+    
+    func registerKakao(completion: @escaping (Bool) -> Void) {
+        guard let accessToken = accessToken,
+              let name = name,
+              let id = id,
+              let birthDate = birthDate,
+              let phoneNumber = phoneNumber else {
+            completion(false)
+            return
+        }
+        
+        let parameter = [
+            "accessToken": accessToken,
+            "realName": name,
+            "loginId": id,
+            "birthDate": birthDate,
+            "phoneNumber": phoneNumber
+        ]
+        
+        API.kakaoSignUp(parameter) { result in
+            let manager = TokenManager.shared
+            switch result {
+            case .success(let jwt):
+                manager.saveToken(jwt.jwt)
+                manager.saveLoginID(id)
+                completion(true)
+            case .fail(_):
                 completion(false)
             }
         }

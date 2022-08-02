@@ -239,9 +239,13 @@ class AgreementView: BaseView {
             UIImage(systemName: "circle")?
                 .withTintColor(.lightGray, renderingMode: .alwaysOriginal),
             for: .normal)
+        button.setBackgroundImage(
+            UIImage(systemName: "circle.fill"),
+            for: .selected)
+        
         button.setImage(
             UIImage(systemName: "checkmark")?
-                .withTintColor(.green, renderingMode: .alwaysOriginal),
+                .withTintColor(.white, renderingMode: .alwaysOriginal),
             for: .selected)
         button.imageView?.contentMode = .scaleAspectFit
         

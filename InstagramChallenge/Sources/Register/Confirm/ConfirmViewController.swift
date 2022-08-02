@@ -44,20 +44,25 @@ class ConfirmViewController: HideBackButtonViewController {
     
     // MARK: - Func
     
- 
+    func registerKakao() {
+        manager.registerKakao() { isSuccess in
+            isSuccess
+            ? self.presentFullScreen(HomeViewController())
+            :  self.presentBasicAlert("알 수 없는 오류가 발생하였습니다.\n다시 시도해주세요.")
+        }
+    }
+    
+    func registerOneSelf() {
+        manager.registerOneSelf() { isSuccess in
+            isSuccess
+            ? self.presentFullScreen(HomeViewController())
+            : self.presentBasicAlert("알 수 없는 오류가 발생하였습니다.\n다시 시도해주세요.")
+        }
+    }
     
     // MARK: - Action
     
     @objc func didTapRegisterButton(_ sender: Any) {
-        manager.registerOneSelf() { isSuccess in
-            if isSuccess {
-                let vc = HomeViewController()
-                self.view.window?.rootViewController = vc
-                self.view.window?.rootViewController?.dismiss(animated: false)
-            } else {
-                self.presentBasicAlert("알 수 없는 오류가 발생하였습니다.\n다시 시도해주세요.")
-                self.dismiss(animated: true)
-            }
-        }
+        manager.isKakao ? registerKakao() : registerOneSelf()
     }
 }

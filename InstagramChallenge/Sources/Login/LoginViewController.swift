@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         configureViewController()
     }
     
-    // MARK: - Funcs
+    // MARK: - Setup
     
     func configureViewController() {
         loginView.idTextField.addTarget(
@@ -59,6 +59,25 @@ class LoginViewController: UIViewController {
             self,
             action: #selector(didTapRegisterButton(_:)),
             for: .touchUpInside)
+    }
+    
+    // MARK: - Func
+    
+    func login(completion: @escaping (Bool) -> Void) {
+        let parameter = [
+            "loginId": loginView.idTextField.text!,
+            "password": loginView.passwordTextField.text!
+        ]
+        
+        API.signIn(parameter) { jwt in
+            guard let jwt = jwt else {
+                completion(false)
+                return
+            }
+            
+            LoginManager.shared.saveToken(jwt)
+            completion(true)
+        }
     }
     
     func loginWithKakaoAccount() {
@@ -120,7 +139,16 @@ class LoginViewController: UIViewController {
             }
             
             // 로그인 실패
-            presentFailAlert()
+            login() { result in
+                if result {
+                    let vc = HomeViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    
+                    self.present(vc, animated: true)
+                } else {
+                    self.presentFailAlert()
+                }
+            }
         }
     }
     

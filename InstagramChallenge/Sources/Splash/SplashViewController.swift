@@ -34,11 +34,7 @@ class SplashViewController: UIViewController {
     // MARK: - Func
     
     func loadToken() {
-        guard let jwt = UserDefaults.standard.string(forKey: "jwt") else {
-            return
-        }
-        
-        token = jwt
+        TokenManager.shared.loadToken()
     }
     
     func checkAutoLogin() {

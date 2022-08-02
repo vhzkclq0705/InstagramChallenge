@@ -20,7 +20,7 @@ fileprivate func networking<T: Decodable>(
         return }
     
     let header: HTTPHeaders = [
-        "x-access-token": token,
+        "x-access-token": TokenManager.shared.jwt,
         "Content-Type": "application/json"
     ]
     
@@ -44,7 +44,7 @@ fileprivate func networking<T: Decodable>(
 final class API {
     static func signUp(
         _ parameter: [String: String],
-        completion: @escaping (JWT?) -> Void)
+        completion: @escaping (String?) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -58,7 +58,7 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("signUp: \(response)")
-                    completion(response.result)
+                    completion(response.result.jwt)
                 case .failure(let error):
                     print(error)
                     completion(nil)
@@ -68,7 +68,7 @@ final class API {
     
     static func signIn(
         _ parameter: [String: String],
-        completion: @escaping (JWT) -> Void)
+        completion: @escaping (String?) -> Void)
     {
         guard let data = try? JSONSerialization.data(
             withJSONObject: parameter,
@@ -82,9 +82,10 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("signIn: \(response)")
-                    completion(response.result)
+                    completion(response.result.jwt)
                 case .failure(let error):
                     print(error)
+                    completion(nil)
                 }
             }
     }

@@ -135,7 +135,7 @@ final class API {
             }
     }
     
-    static func autoSignIn(completion: @escaping (String) -> Void) {
+    static func autoSignIn(completion: @escaping (Bool) -> Void) {
         networking(
             urlStr: Address.autoSignIn.url,
             method: .get,
@@ -144,7 +144,7 @@ final class API {
                 switch result {
                 case .success(let response):
                     print("autoSignIn: \(response)")
-                    completion(response.message)
+                    completion(response.isSuccess)
                 case .failure(let error):
                     print(error)
                 }

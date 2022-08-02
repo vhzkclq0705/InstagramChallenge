@@ -22,22 +22,38 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadToken()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.checkLogin()
+            self.checkAutoLogin()
         }
     }
     
-    
     // MARK: - Func
     
-    func checkLogin() {
-        // 자동 로그인 분기 구현
-        let loginViewController = LoginViewController()
-        loginViewController.modalPresentationStyle = .fullScreen
+    func loadToken() {
+        guard let jwt = UserDefaults.standard.string(forKey: "jwt") else {
+            return
+        }
         
-        self.present(loginViewController, animated: true)
+        token = jwt
+    }
+    
+    func checkAutoLogin() {
+        API.autoSignIn() { isSuccess in
+            var vc: UIViewController
+            if isSuccess {
+                vc = HomeViewController()
+                print("자동 로그인 성공")
+            } else {
+                vc = LoginViewController()
+                print("자동 로그인 실패")
+            }
+            vc.modalPresentationStyle = .fullScreen
+            
+            self.present(vc, animated: true)
+        }
     }
 }

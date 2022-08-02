@@ -72,6 +72,8 @@ class RegisterManager {
         API.signUp(parameter) { jwt in
             if let jwt = jwt {
                 token = jwt.jwt
+                UserDefaults.standard.set(token ,forKey: "jwt")
+                print("로그인 정보 저장 완료")
                 completion(true)
             } else {
                 completion(false)

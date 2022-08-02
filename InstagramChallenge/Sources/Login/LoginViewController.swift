@@ -122,7 +122,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didTapKakaoLoginButton(_ sender: Any) {
-        kakaoLogin()
+        kakaoLogin(1)
     }
     
     @objc func didTapSecureButton(_ button: UIButton) {

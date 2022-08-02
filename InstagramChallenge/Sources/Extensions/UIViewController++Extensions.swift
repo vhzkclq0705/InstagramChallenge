@@ -14,7 +14,7 @@ import KakaoSDKUser
 
 extension UIViewController {
     
-    func kakaoLogin() {
+    func kakaoLogin(_ vcIndex: Int) {
         let manager = TokenManager.shared
         
         UserApi.shared.loginWithKakaoAccount { oauthToken, error in
@@ -33,12 +33,7 @@ extension UIViewController {
                             
                             self.presentFullScreen(HomeViewController())
                         case .fail(let message):
-                            let vc = LoginViewController()
-                            self.view.window?.rootViewController = vc
-                            self.view.window?.rootViewController?.dismiss(animated: false) {
-                                self.goToKakaoRegister(accessToken)
-                            }
-                            
+                            self.goToKakaoRegister(accessToken, vcIndex)
 //                            if message == "카카오 계정이 존재하지 않습니다." {
 //                                self.presentFullScreen(AddPasswordViewController())
 //                            } else {
@@ -63,7 +58,7 @@ extension UIViewController {
         view.window?.rootViewController?.dismiss(animated: true)
     }
     
-    func goToKakaoRegister(_ accessToken: String) {
+    func goToKakaoRegister(_ accessToken: String, _ vcIndex: Int) {
         let registerManager = RegisterManager.shared
 
         registerManager.isKakao = true
@@ -74,9 +69,17 @@ extension UIViewController {
         let navigationController = UINavigationController(rootViewController: registerVC)
         navigationController.modalPresentationStyle = .fullScreen
         
-        self.present(navigationController, animated: false) {
-            navigationController.pushViewController(phoneNumberVC, animated: false)
+        switch vcIndex {
+        case 1:
+            self.present(navigationController, animated: false) {
+                navigationController.pushViewController(phoneNumberVC, animated: false)
+            }
+        case 2:
+            self.navigationController?.pushViewController(phoneNumberVC, animated: false)
+        default:
+            break
         }
+        
     }
     
     func presentBasicAlert(_ title: String) {

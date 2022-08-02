@@ -70,7 +70,7 @@ class PhoneNumberViewController: UIViewController {
     }
 
     @objc func didTapKakaoLoginButton(_ sender: Any) {
-        
+        kakaoLogin(3)
     }
     
 }

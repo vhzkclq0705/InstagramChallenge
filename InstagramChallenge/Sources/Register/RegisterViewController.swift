@@ -49,7 +49,7 @@ class RegisterViewController: UIViewController {
     // MARK: - Actions
     
     @objc func didTapKakaoLoginButton(_ sender: Any) {
-        kakaoLogin()
+        kakaoLogin(2)
     }
     
     @objc func didTapRegisterButton(_ sender: Any) {

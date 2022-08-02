@@ -26,11 +26,14 @@ class SplashViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let vc = LoginViewController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-            //self.checkAutoLogin()
+        if !RegisterManager.shared.isKakao {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                let vc = LoginViewController()
+                self.view.window?.rootViewController = vc
+                
+                //self.presentFullScreen(LoginViewController())
+                //self.checkAutoLogin()
+            }
         }
     }
     

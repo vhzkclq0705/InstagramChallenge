@@ -47,7 +47,7 @@ class ConfirmViewController: HideBackButtonViewController {
     func registerKakao() {
         manager.registerKakao() { isSuccess in
             isSuccess
-            ? self.presentFullScreen(HomeViewController())
+            ? self.presentFullScreen(BaseTabBarController())
             :  self.presentBasicAlert("알 수 없는 오류가 발생하였습니다.\n다시 시도해주세요.")
         }
     }
@@ -55,7 +55,7 @@ class ConfirmViewController: HideBackButtonViewController {
     func registerOneSelf() {
         manager.registerOneSelf() { isSuccess in
             isSuccess
-            ? self.presentFullScreen(HomeViewController())
+            ? self.presentFullScreen(BaseTabBarController())
             : self.presentBasicAlert("알 수 없는 오류가 발생하였습니다.\n다시 시도해주세요.")
         }
     }

@@ -63,6 +63,11 @@
 		76E09594288EE95E007E00D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E09593288EE95E007E00D6 /* Assets.xcassets */; };
 		76E262C22899389D009D2E16 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262C12899389D009D2E16 /* TokenManager.swift */; };
 		76E262C4289985D0009D2E16 /* NetworkingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262C3289985D0009D2E16 /* NetworkingResult.swift */; };
+		76E262C8289A5B29009D2E16 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262C7289A5B29009D2E16 /* BaseTabBarController.swift */; };
+		76E262CA289A5B4D009D2E16 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262C9289A5B4D009D2E16 /* SearchViewController.swift */; };
+		76E262CC289A5B79009D2E16 /* ReelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262CB289A5B79009D2E16 /* ReelsViewController.swift */; };
+		76E262CE289A5B92009D2E16 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262CD289A5B92009D2E16 /* ShopViewController.swift */; };
+		76E262D0289A5B9F009D2E16 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E262CF289A5B9F009D2E16 /* MyPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +130,11 @@
 		76E09598288EE95E007E00D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E262C12899389D009D2E16 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		76E262C3289985D0009D2E16 /* NetworkingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingResult.swift; sourceTree = "<group>"; };
+		76E262C7289A5B29009D2E16 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		76E262C9289A5B4D009D2E16 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		76E262CB289A5B79009D2E16 /* ReelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelsViewController.swift; sourceTree = "<group>"; };
+		76E262CD289A5B92009D2E16 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		76E262CF289A5B9F009D2E16 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		9D10534C4245572E20636E69 /* Pods_InstagramChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -353,7 +363,12 @@
 		767E4168289446EA00AFFFBE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				76E262C7289A5B29009D2E16 /* BaseTabBarController.swift */,
 				767E4169289446FD00AFFFBE /* HomeViewController.swift */,
+				76E262C9289A5B4D009D2E16 /* SearchViewController.swift */,
+				76E262CB289A5B79009D2E16 /* ReelsViewController.swift */,
+				76E262CD289A5B92009D2E16 /* ShopViewController.swift */,
+				76E262CF289A5B9F009D2E16 /* MyPageViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -453,7 +468,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
-				ORGANIZATIONNAME = com.softsquared.gridgeTest.ios.InstagramChallenge.InstagramChallenge;
+				ORGANIZATIONNAME = com.softsquared.gridgeTest.ios.InstagraChallenge;
 				TargetAttributes = {
 					76E09586288EE95B007E00D6 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -566,6 +581,7 @@
 				767E40F328917D1000AFFFBE /* RegisterView.swift in Sources */,
 				767E414F28930A2900AFFFBE /* GrayBorderView.swift in Sources */,
 				767E4159289422D500AFFFBE /* AddPasswordView.swift in Sources */,
+				76E262CE289A5B92009D2E16 /* ShopViewController.swift in Sources */,
 				76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */,
 				767E416D289448BC00AFFFBE /* RegisterManager.swift in Sources */,
 				76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */,
@@ -575,12 +591,16 @@
 				767E416028942BC100AFFFBE /* AddNicknameViewController.swift in Sources */,
 				767E415E2894286500AFFFBE /* AddNicknameView.swift in Sources */,
 				767E416228943F3500AFFFBE /* BaseView.swift in Sources */,
+				76E262C8289A5B29009D2E16 /* BaseTabBarController.swift in Sources */,
 				767E40CE289154DD00AFFFBE /* API.swift in Sources */,
 				767E40F82891833E00AFFFBE /* UIViewController++Extensions.swift in Sources */,
 				7663C97A2890578E006C3505 /* SplashView.swift in Sources */,
 				767E41452892E72B00AFFFBE /* BirthdayViewController.swift in Sources */,
 				767E413728929D6D00AFFFBE /* CertificationView.swift in Sources */,
 				767E416F2894583D00AFFFBE /* Response.swift in Sources */,
+				76E262CA289A5B4D009D2E16 /* SearchViewController.swift in Sources */,
+				76E262D0289A5B9F009D2E16 /* MyPageViewController.swift in Sources */,
+				76E262CC289A5B79009D2E16 /* ReelsViewController.swift in Sources */,
 				767E41022891952900AFFFBE /* PhoneNumberViewController.swift in Sources */,
 				767E40FC2891888F00AFFFBE /* RegisterPhoneNumberBaseViewController.swift in Sources */,
 				767E40D6289158A000AFFFBE /* Comments.swift in Sources */,
@@ -745,7 +765,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.softsquared.gridgeTest.ios.InstagramChallenge.InstagramChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softsquared.gridgeTest.ios.InstagraChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -777,7 +797,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.softsquared.gridgeTest.ios.InstagramChallenge.InstagramChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softsquared.gridgeTest.ios.InstagraChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

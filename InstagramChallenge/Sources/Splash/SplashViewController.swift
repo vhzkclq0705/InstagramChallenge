@@ -28,11 +28,7 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if !RegisterManager.shared.isKakao {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                let vc = LoginViewController()
-                self.view.window?.rootViewController = vc
-                
-                //self.presentFullScreen(LoginViewController())
-                //self.checkAutoLogin()
+                self.checkAutoLogin()
             }
         }
     }
@@ -47,15 +43,13 @@ class SplashViewController: UIViewController {
         API.autoSignIn() { isSuccess in
             var vc: UIViewController
             if isSuccess {
-                vc = HomeViewController()
+                vc = BaseTabBarController()
                 print("자동 로그인 성공")
             } else {
                 vc = LoginViewController()
                 print("자동 로그인 실패")
             }
-            vc.modalPresentationStyle = .fullScreen
-            
-            self.present(vc, animated: true)
+            self.view.window?.rootViewController = vc
         }
     }
 }

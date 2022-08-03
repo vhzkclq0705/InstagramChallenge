@@ -24,7 +24,6 @@ extension UIViewController {
             } else {
                 if let accessToken = oauthToken?.accessToken {
                     let parameter = ["accessToken": accessToken]
-                    
                     API.kakaoSignIn(parameter) { result in
                         switch result {
                         case .success(let jwt):

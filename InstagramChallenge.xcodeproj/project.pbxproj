@@ -56,6 +56,9 @@
 		767E416A289446FD00AFFFBE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E4169289446FD00AFFFBE /* HomeViewController.swift */; };
 		767E416D289448BC00AFFFBE /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E416C289448BC00AFFFBE /* RegisterManager.swift */; };
 		767E416F2894583D00AFFFBE /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E416E2894583D00AFFFBE /* Response.swift */; };
+		76B381E4289A7BF300463542 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E3289A7BF300463542 /* HomeView.swift */; };
+		76B381E6289A7C9B00463542 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E5289A7C9B00463542 /* StoryCell.swift */; };
+		76B381E8289A802A00463542 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E7289A802A00463542 /* FeedCell.swift */; };
 		76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958A288EE95B007E00D6 /* AppDelegate.swift */; };
 		76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958C288EE95B007E00D6 /* SceneDelegate.swift */; };
 		76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0958E288EE95B007E00D6 /* LoginViewController.swift */; };
@@ -121,6 +124,9 @@
 		767E4169289446FD00AFFFBE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		767E416C289448BC00AFFFBE /* RegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterManager.swift; sourceTree = "<group>"; };
 		767E416E2894583D00AFFFBE /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		76B381E3289A7BF300463542 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		76B381E5289A7C9B00463542 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
+		76B381E7289A802A00463542 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		76E09587288EE95B007E00D6 /* InstagramChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E0958A288EE95B007E00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E0958C288EE95B007E00D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -364,7 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				76E262C7289A5B29009D2E16 /* BaseTabBarController.swift */,
-				767E4169289446FD00AFFFBE /* HomeViewController.swift */,
+				76B381E2289A7BD800463542 /* Home */,
 				76E262C9289A5B4D009D2E16 /* SearchViewController.swift */,
 				76E262CB289A5B79009D2E16 /* ReelsViewController.swift */,
 				76E262CD289A5B92009D2E16 /* ShopViewController.swift */,
@@ -380,6 +386,17 @@
 				767E416C289448BC00AFFFBE /* RegisterManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		76B381E2289A7BD800463542 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				767E4169289446FD00AFFFBE /* HomeViewController.swift */,
+				76B381E3289A7BF300463542 /* HomeView.swift */,
+				76B381E5289A7C9B00463542 /* StoryCell.swift */,
+				76B381E7289A802A00463542 /* FeedCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		76E0957E288EE95B007E00D6 = {
@@ -559,6 +576,7 @@
 				76E0958F288EE95B007E00D6 /* LoginViewController.swift in Sources */,
 				767E41082891A77F00AFFFBE /* CustomButton.swift in Sources */,
 				76E262C4289985D0009D2E16 /* NetworkingResult.swift in Sources */,
+				76B381E4289A7BF300463542 /* HomeView.swift in Sources */,
 				767E40E228915BFB00AFFFBE /* Contents.swift in Sources */,
 				767E414D2893085D00AFFFBE /* UIColor++Extensions.swift in Sources */,
 				767E415B2894241E00AFFFBE /* AddPasswordViewController.swift in Sources */,
@@ -566,6 +584,7 @@
 				767E410A2891AB7200AFFFBE /* OrView.swift in Sources */,
 				7663C980289059A1006C3505 /* LoginView.swift in Sources */,
 				767E40D0289154E800AFFFBE /* BaseURL.swift in Sources */,
+				76B381E8289A802A00463542 /* FeedCell.swift in Sources */,
 				767E41412892BB0100AFFFBE /* AddNameViewController.swift in Sources */,
 				767E40EC28915EE300AFFFBE /* SendChats.swift in Sources */,
 				767E416A289446FD00AFFFBE /* HomeViewController.swift in Sources */,
@@ -585,6 +604,7 @@
 				76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */,
 				767E416D289448BC00AFFFBE /* RegisterManager.swift in Sources */,
 				76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */,
+				76B381E6289A7C9B00463542 /* StoryCell.swift in Sources */,
 				767E414B2893079300AFFFBE /* UIButton++Extensions.swift in Sources */,
 				7663C974289050DB006C3505 /* SplashViewController.swift in Sources */,
 				767E40CC289154D200AFFFBE /* Address.swift in Sources */,

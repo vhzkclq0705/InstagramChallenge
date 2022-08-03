@@ -61,10 +61,21 @@ class BaseTabBarController: UITabBarController {
     
     func configureTabBar() {
         tabBar.backgroundColor = .systemGray6
-        tabBar.tintColor = .clear
+        tabBar.tintColor = .black
+        
+        [
+            homeTab,
+            searchTab,
+            reelsTab,
+            shopTab,
+            myPageTab
+        ]
+            .forEach {
+                $0.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+            }
         
         viewControllers = [
-            homeVC,
+            UINavigationController(rootViewController: homeVC),
             searchVC,
             reelsVC,
             shopVC,

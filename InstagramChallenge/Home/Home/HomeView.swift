@@ -17,6 +17,7 @@ class HomeView: BaseView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(StoryCell.self, forCellReuseIdentifier: StoryCell.identifier)
+        tableView.register(FeedCell.self, forCellReuseIdentifier: FeedCell.identifier)
         tableView.separatorColor = UIColor.customColor(.lightgray2)
         tableView.rowHeight = 80
         

@@ -31,16 +31,31 @@ class HomeViewController: UIViewController {
     
     func configureNavigationBar() {
         let logo = UIImageView(image: UIImage(named: "smallLogo"))
+        let addButton = createCustomButton("plus")
+        let bellButton = createCustomButton("bell")
+        let messageButton = createCustomButton("send")
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logo)
-        
         self.navigationItem.rightBarButtonItems = [
-            createCustomBarButton("send"),
+            UIBarButtonItem(customView: messageButton),
             createSpacing(25),
-            createCustomBarButton("bell"),
+            UIBarButtonItem(customView: bellButton),
             createSpacing(25),
-            createCustomBarButton("plus"),
+            UIBarButtonItem(customView: addButton),
         ]
+        
+        addButton.addTarget(
+            self,
+            action: #selector(didTapAddButton(_:)),
+            for: .touchUpInside)
+        bellButton.addTarget(
+            self,
+            action: #selector(didTapBellButton(_:)),
+            for: .touchUpInside)
+        messageButton.addTarget(
+            self,
+            action: #selector(didTapMessageButton(_:)),
+            for: .touchUpInside)
     }
     
     func configureViewController() {
@@ -50,11 +65,25 @@ class HomeViewController: UIViewController {
     
     // MARK: - Func
 
-    func createCustomBarButton(_ name: String) -> UIBarButtonItem {
+    func createCustomButton(_ name: String) -> UIButton {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         button.setImage(UIImage(named: name), for: .normal)
         
-        return UIBarButtonItem(customView: button)
+        return button
+    }
+    
+    // MARK: - Action
+    
+    @objc func didTapAddButton(_ sender: Any) {
+        
+    }
+    
+    @objc func didTapMessageButton(_ sender: Any) {
+        
+    }
+    
+    @objc func didTapBellButton(_ sender: Any) {
+        
     }
     
 }
@@ -69,7 +98,7 @@ extension HomeViewController: UITableViewDelegate,
         numberOfRowsInSection section: Int)
     -> Int
     {
-        return 1
+        return 2
     }
     
     func tableView(
@@ -77,13 +106,24 @@ extension HomeViewController: UITableViewDelegate,
         cellForRowAt indexPath: IndexPath)
     -> UITableViewCell
     {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: StoryCell.identifier,
-            for: indexPath) as? StoryCell else {
-            return UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: StoryCell.identifier,
+                for: indexPath) as? StoryCell else {
+                return UITableViewCell()
+            }
+            
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: FeedCell.identifier,
+                for: indexPath) as? FeedCell else {
+                return UITableViewCell()
+            }
+            
+            return cell
         }
-        
-        return cell
     }
     
     func tableView(

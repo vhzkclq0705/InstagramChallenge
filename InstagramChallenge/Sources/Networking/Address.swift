@@ -38,7 +38,7 @@ enum Address {
         case .autoSignIn: return "auto-sign-in"
         case .duplicateID: return "check-duplicate-login-id?loginId="
         case .myPage: return "users/"
-        case .searchingFeed: return "feeds/pageIndex="
+        case .searchingFeed: return "feeds?pageIndex="
         case .searchingUser: return "feeds/user?pageIndex="
         case .createFeed: return "feed"
         case .updateFeed,

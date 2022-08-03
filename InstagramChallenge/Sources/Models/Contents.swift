@@ -16,7 +16,7 @@ struct Contents: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id = "contentsId"
-        case url = "contentsURL"
+        case url = "contentsUrl"
         case createdAt, updatedAt
     }
 }

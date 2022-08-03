@@ -18,7 +18,6 @@ class FeedCell: UITableViewCell {
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
@@ -48,11 +47,13 @@ class FeedCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
         layout.itemSize = CGSize(width: width, height: width)
+        layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.register(
             ImageSlideCell.self,
@@ -70,7 +71,7 @@ class FeedCell: UITableViewCell {
         return label
     }()
     
-    lazy var iconStackView: UIStackView = {
+    let iconStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 15
@@ -88,15 +89,18 @@ class FeedCell: UITableViewCell {
     
     let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
+        pageControl.hidesForSinglePage = true
+        pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = UIColor.customColor(.enabled)
         
         return pageControl
     }()
     
-    lazy var contentStackView: UIStackView = {
+    let contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.alignment = .leading
+        stackView.spacing = 5
         
         return stackView
     }()
@@ -117,12 +121,12 @@ class FeedCell: UITableViewCell {
         return label
     }()
     
-    let commentsLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 15, weight: .semibold)
+    let commentsButton: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
         
-        return label
+        return button
     }()
     
     let smallProfileImageView: UIImageView = {
@@ -160,8 +164,8 @@ class FeedCell: UITableViewCell {
     
     // MARK: - Property
     
-    var feed: Feed?
     var ellipsisButtonTapHandelr: (() -> Void)?
+    var contents = [Contents]()
     
     // MARK: - Init
     
@@ -188,7 +192,7 @@ class FeedCell: UITableViewCell {
         [
             likesLabel,
             contentLabel,
-            commentsLabel,
+            commentsButton,
         ]
             .forEach { contentStackView.addArrangedSubview($0) }
         
@@ -218,7 +222,7 @@ class FeedCell: UITableViewCell {
         
         nicknameLabel.snp.makeConstraints {
             $0.centerY.equalTo(profileImageView)
-            $0.leading.equalTo(profileImageView.snp.trailing)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
         }
         
         ellipsisButton.snp.makeConstraints {
@@ -237,8 +241,20 @@ class FeedCell: UITableViewCell {
         }
         
         iconStackView.snp.makeConstraints {
-            $0.top.leading.equalTo(collectionView).inset(20)
+            $0.top.equalTo(collectionView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(20)
         }
+        
+        [
+            heartButton,
+            chatButton,
+            shareButton,
+        ]
+            .forEach {
+                $0.snp.makeConstraints {
+                    $0.width.height.equalTo(24)
+                }
+            }
         
         pageControl.snp.makeConstraints {
             $0.centerY.equalTo(iconStackView)
@@ -281,6 +297,20 @@ class FeedCell: UITableViewCell {
     
     // MARK: - Func
     
+    func updateCell(_ feed: Feed) {
+        contents = feed.contentsList
+        nicknameLabel.text = feed.loginID
+        contentLabel.text = feed.loginID + " " + (feed.text ?? "")
+        commentsButton.setTitle("댓글 \(feed.commentsCount)개 모두 보기", for: .normal)
+        
+        fetchImages()
+    }
+    
+    func fetchImages() {
+        pageControl.numberOfPages = contents.count
+        collectionView.reloadData()
+    }
+    
     func createIcons(_ name: String) -> UIButton {
         let button = UIButton()
         button.setImage(UIImage(named: name), for: .normal)
@@ -305,7 +335,7 @@ extension FeedCell: UICollectionViewDelegate,
         numberOfItemsInSection section: Int)
     -> Int
     {
-        return 1
+        return contents.count
     }
     
     func collectionView(
@@ -319,9 +349,19 @@ extension FeedCell: UICollectionViewDelegate,
             return UICollectionViewCell()
         }
         
+        let url = contents[indexPath.item].url
+        cell.updateCell(url)
         
         return cell
     }
     
+    func scrollViewWillEndDragging(
+        _ scrollView: UIScrollView,
+        withVelocity velocity: CGPoint,
+        targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    {
+        let page = Int(targetContentOffset.pointee.x / self.frame.width)
+        self.pageControl.currentPage = page
+    }
     
 }

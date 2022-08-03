@@ -174,9 +174,9 @@ final class API {
             }
     }
     
-    static func searchingMyPage(_ id: Int, completion: @escaping (NetworkingResult<MyPage>) -> Void) {
+    static func searchingMyPage(_ id: String, completion: @escaping (NetworkingResult<MyPage>) -> Void) {
         networking(
-            urlStr: Address.myPage.url + "\(id)/my-page",
+            urlStr: Address.myPage.url + id + "/my-page",
             method: .get,
             data: nil,
             model: Response<MyPage>.self) { result in
@@ -190,21 +190,21 @@ final class API {
             }
     }
     
-//    static func searchingFeed(pageIndex: Int, size: Int, completion: @escaping ([Feed]) -> Void) {
-//        networking(
-//            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
-//            method: .get,
-//            data: nil,
-//            model: Response<[Feed]>.self) { result in
-//                switch result {
-//                case .success(let response):
-//                    print("searchingFeed: \(response)")
-//                    completion(response.result)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//    }
+    static func searchingFeed(pageIndex: Int, size: Int, completion: @escaping (NetworkingResult<[Feed]>) -> Void) {
+        networking(
+            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
+            method: .get,
+            data: nil,
+            model: Response<[Feed]>.self) { result in
+                switch result {
+                case .success(let response):
+                    print("searchingFeed: \(response)")
+                    completion(filtering(response))
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 //
 //    static func searchingUser(
 //        pageIndex: Int,

@@ -9,6 +9,7 @@
 import UIKit
 
 import SnapKit
+import Kingfisher
 
 class ImageSlideCell: UICollectionViewCell {
     
@@ -16,7 +17,12 @@ class ImageSlideCell: UICollectionViewCell {
     
     // MARK: - UI
     
-    let imageView = UIImageView()
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
     
     // MARK: - Init
     
@@ -44,8 +50,10 @@ class ImageSlideCell: UICollectionViewCell {
     
     // MARK: - Func
     
-    func updateCell() {
+    func updateCell(_ url: String) {
+        guard let url = URL(string: url) else { return }
         
+        imageView.kf.setImage(with: url)
     }
     
 }

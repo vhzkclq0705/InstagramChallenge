@@ -240,10 +240,10 @@
 				767E40EF289166B100AFFFBE /* ResponseDefault.swift */,
 				767E40DB28915A1100AFFFBE /* JWT.swift */,
 				767E40D22891579B00AFFFBE /* MyPage.swift */,
-				767E40D5289158A000AFFFBE /* Comments.swift */,
 				767E40D72891595A00AFFFBE /* SearchingChats.swift */,
 				767E40E328915C5600AFFFBE /* Feed.swift */,
 				767E40E128915BFB00AFFFBE /* Contents.swift */,
+				767E40D5289158A000AFFFBE /* Comments.swift */,
 				767E40EB28915EE300AFFFBE /* SendChats.swift */,
 			);
 			path = Models;

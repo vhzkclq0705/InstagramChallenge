@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     // MARK: - Property
     
     let homeView = HomeView()
+    var feeds = [Feed]()
     
     
     // MARK: - Life cycle
@@ -25,6 +26,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureViewController()
+        fetchFeeds()
     }
     
     // MARK: - Setup
@@ -64,6 +66,20 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Func
+    
+    func fetchFeeds() {
+        API.searchingFeed(pageIndex: 0, size: 100) { result in
+            switch result {
+            case .success(let feeds):
+                self.feeds = feeds
+                DispatchQueue.main.async {
+                    self.homeView.tableView.reloadData()
+                }
+            case .fail(let message):
+                print(message)
+            }
+        }
+    }
 
     func createCustomButton(_ name: String) -> UIButton {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -98,7 +114,7 @@ extension HomeViewController: UITableViewDelegate,
         numberOfRowsInSection section: Int)
     -> Int
     {
-        return 2
+        return feeds.count + 1
     }
     
     func tableView(
@@ -121,6 +137,10 @@ extension HomeViewController: UITableViewDelegate,
                 for: indexPath) as? FeedCell else {
                 return UITableViewCell()
             }
+            
+            let feed = feeds[indexPath.row - 1]
+            cell.updateCell(feed)
+            cell.selectionStyle = .none
             
             return cell
         }

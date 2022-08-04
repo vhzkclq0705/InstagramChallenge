@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     
     let homeView = HomeView()
     var feeds = [Feed]()
-    
+    var isPaging = false
     
     // MARK: - Life cycle
     
@@ -64,9 +64,21 @@ class HomeViewController: UIViewController {
     func configureViewController() {
         homeView.tableView.delegate = self
         homeView.tableView.dataSource = self
+        homeView.tableView.refreshControl = UIRefreshControl()
+        homeView.tableView.refreshControl?.addTarget(
+            self,
+            action: #selector(didPullTableView(_:)),
+            for: .valueChanged)
     }
     
     // MARK: - Func
+    
+    func createCustomButton(_ name: String) -> UIButton {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        button.setImage(UIImage(named: name), for: .normal)
+        
+        return button
+    }
     
     func fetchFeeds() {
         API.searchingFeed(pageIndex: 0, size: 100) { result in
@@ -75,21 +87,37 @@ class HomeViewController: UIViewController {
                 self.feeds = feeds
                 DispatchQueue.main.async {
                     self.homeView.tableView.reloadData()
+                    self.homeView.tableView.refreshControl?.endRefreshing()
                 }
             case .fail(let message):
                 print(message)
             }
         }
     }
-
-    func createCustomButton(_ name: String) -> UIButton {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        button.setImage(UIImage(named: name), for: .normal)
+    
+    func paging() {
+        isPaging = true
         
-        return button
+        API.searchingFeed(pageIndex: 0, size: 100) { result in
+            switch result {
+            case .success(let feeds):
+                self.feeds += feeds
+                self.homeView.tableView.reloadData()
+                self.isPaging = false
+            case .fail(let message):
+                print(message)
+            }
+        }
     }
     
     // MARK: - Action
+    
+    @objc func didPullTableView(_ refreshControl: UIRefreshControl) {
+        print("테이블뷰 새로고침")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.fetchFeeds()
+        }
+    }
     
     @objc func didTapAddButton(_ sender: Any) {
         
@@ -144,6 +172,20 @@ extension HomeViewController: UITableViewDelegate,
             cell.selectionStyle = .none
             
             return cell
+        }
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath)
+    {
+        guard let lastIndex = tableView.indexPathsForVisibleRows?.last?.row else {
+            return
+        }
+        
+        if lastIndex == feeds.count - 3 {
+            paging()
         }
     }
     

@@ -30,7 +30,7 @@ extension UIViewController {
                             manager.saveToken(jwt.jwt)
                             manager.saveLoginID(jwt.loginID!)
                             
-                            self.presentFullScreen(HomeViewController())
+                            self.goToHome()
                         case .fail(let message):
                             if message == "카카오 계정이 존재하지 않습니다." {
                                 self.goToKakaoRegister(accessToken, vcIndex)
@@ -42,18 +42,6 @@ extension UIViewController {
                 }
             }
         }
-    }
-    
-    func presentFullScreen(_ vc: UIViewController) {
-        vc.modalPresentationStyle = .fullScreen
-        
-        self.present(vc, animated: true)
-    }
-    
-    func goToLogin() {
-        let vc = LoginViewController()
-        view.window?.rootViewController = vc
-        view.window?.rootViewController?.dismiss(animated: true)
     }
     
     func goToKakaoRegister(_ accessToken: String, _ vcIndex: Int) {
@@ -77,7 +65,23 @@ extension UIViewController {
         default:
             break
         }
+    }
+    
+    func presentFullScreen(_ vc: UIViewController) {
+        vc.modalPresentationStyle = .fullScreen
         
+        self.present(vc, animated: true)
+    }
+    
+    func goToLogin() {
+        let vc = LoginViewController()
+        view.window?.rootViewController = vc
+        view.window?.rootViewController?.dismiss(animated: true)
+    }
+    
+    func goToHome() {
+        let vc = BaseTabBarController()
+        view.window?.rootViewController = vc
     }
     
     func presentBasicAlert(_ title: String) {

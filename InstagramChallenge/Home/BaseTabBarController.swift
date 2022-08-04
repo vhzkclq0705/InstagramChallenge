@@ -62,6 +62,7 @@ class BaseTabBarController: UITabBarController {
     func configureTabBar() {
         tabBar.backgroundColor = .systemGray6
         tabBar.tintColor = .black
+        tabBar.barTintColor = .white
         
         [
             homeTab,

@@ -18,8 +18,8 @@ class FeedCell: UITableViewCell {
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "profile")
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -62,11 +62,15 @@ class FeedCell: UITableViewCell {
         return collectionView
     }()
     
-    let slideCountLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .darkGray.withAlphaComponent(0.7)
+    let slideCountLabel: PaddingLabel = {
+        let label = PaddingLabel(
+            padding: UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10))
+        label.font = .systemFont(ofSize: 15)
         label.textColor = .white
-        label.font = .systemFont(ofSize: 13)
+        label.backgroundColor = .darkGray
+        label.layer.cornerRadius = 16
+        label.clipsToBounds = true
+        label.isHidden = true
         
         return label
     }()
@@ -131,8 +135,8 @@ class FeedCell: UITableViewCell {
     
     let smallProfileImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "profile")
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -179,6 +183,13 @@ class FeedCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life cycle
+    
+    override func prepareForReuse() {
+        slideCountLabel.isHidden = true
+        hideComments(false)
+    }
+    
     // MARK: - Setup
     
     func addViews() {
@@ -216,8 +227,8 @@ class FeedCell: UITableViewCell {
     
     func configureLayout() {
         profileImageView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(20)
-            $0.width.height.equalTo(25)
+            $0.top.leading.equalToSuperview().inset(10)
+            $0.width.height.equalTo(30)
         }
         
         nicknameLabel.snp.makeConstraints {
@@ -231,7 +242,7 @@ class FeedCell: UITableViewCell {
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(20)
+            $0.top.equalTo(profileImageView.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(collectionView.snp.width)
         }
@@ -272,14 +283,14 @@ class FeedCell: UITableViewCell {
         }
         
         smallProfileImageView.snp.makeConstraints {
-            $0.top.equalTo(contentStackView.snp.bottom).offset(40)
+            $0.top.equalTo(contentStackView.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(20)
-            $0.width.height.equalTo(20)
+            $0.width.height.equalTo(25)
         }
         
         writingCommentsButton.snp.makeConstraints {
             $0.centerY.equalTo(smallProfileImageView)
-            $0.leading.equalTo(smallProfileImageView.snp.trailing).offset(5)
+            $0.leading.equalTo(smallProfileImageView.snp.trailing).offset(10)
         }
         
         emoticonsLabel.snp.makeConstraints {
@@ -301,14 +312,40 @@ class FeedCell: UITableViewCell {
         contents = feed.contentsList
         nicknameLabel.text = feed.loginID
         contentLabel.text = feed.loginID + " " + (feed.text ?? "")
-        commentsButton.setTitle("댓글 \(feed.commentsCount)개 모두 보기", for: .normal)
+        
+        if contentLabel.calculateMaxLines() > 1 {
+            hideComments(true)
+            smallProfileImageView.snp.updateConstraints {
+                $0.top.equalTo(contentStackView.snp.bottom)
+            }
+        } else {
+            smallProfileImageView.snp.updateConstraints {
+                $0.top.equalTo(contentStackView.snp.bottom).offset(30)
+            }
+            commentsButton.setTitle("댓글 \(feed.commentsCount)개 모두 보기", for: .normal)
+        }
         
         fetchImages()
     }
     
     func fetchImages() {
+        if contents.count > 1 {
+            slideCountLabel.isHidden = false
+        }
+        
         pageControl.numberOfPages = contents.count
+        slideCountLabel.text = "\(1)/\(contents.count)"
         collectionView.reloadData()
+    }
+    
+    func hideComments(_ bool: Bool) {
+        [
+            commentsButton,
+            smallProfileImageView,
+            writingCommentsButton,
+            emoticonsLabel,
+        ]
+            .forEach { $0.isHidden = bool }
     }
     
     func createIcons(_ name: String) -> UIButton {
@@ -361,7 +398,9 @@ extension FeedCell: UICollectionViewDelegate,
         targetContentOffset: UnsafeMutablePointer<CGPoint>)
     {
         let page = Int(targetContentOffset.pointee.x / self.frame.width)
-        self.pageControl.currentPage = page
+        
+        pageControl.currentPage = page
+        slideCountLabel.text = "\(page + 1)/\(contents.count)"
     }
     
 }

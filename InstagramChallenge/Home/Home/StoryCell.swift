@@ -18,7 +18,7 @@ class StoryCell: UITableViewCell {
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "profile")
+        imageView.image = UIImage(named: "profile.story")
         imageView.contentMode = .scaleAspectFill
         
         return imageView
@@ -26,11 +26,14 @@ class StoryCell: UITableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "zz"
+        label.text = "내 스토리"
+        label.font = .systemFont(ofSize: 15)
         label.textAlignment = .center
         
         return label
     }()
+    
+    let bottomBorderView = GrayBorderView()
     
     
     // MARK: - Init
@@ -48,20 +51,29 @@ class StoryCell: UITableViewCell {
     // MARK: - Setup
     
     func addViews() {
-        [profileImageView, nameLabel]
+        [
+            profileImageView,
+            nameLabel,
+            bottomBorderView,
+        ]
             .forEach { contentView.addSubview($0) }
     }
     
     func configureLayout() {
         profileImageView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(10)
-            $0.width.height.equalTo(80)
+            $0.width.height.equalTo(70)
         }
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.bottom)
             $0.leading.trailing.equalTo(profileImageView)
-            $0.bottom.equalTo(20)
+            $0.bottom.equalToSuperview().offset(-10)
+        }
+        
+        bottomBorderView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
     

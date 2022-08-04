@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
     // MARK: - Setup
     
     func configureNavigationBar() {
+        self.navigationController?.navigationBar.barTintColor = .white
         let logo = UIImageView(image: UIImage(named: "smallLogo"))
         let addButton = createCustomButton("plus")
         let bellButton = createCustomButton("bell")

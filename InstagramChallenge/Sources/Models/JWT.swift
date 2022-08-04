@@ -17,4 +17,9 @@ struct JWT: Codable {
         jwt = (try? values.decode(String.self, forKey: .jwt)) ?? ""
         loginID = (try? values.decode(String.self, forKey: .loginID)) ?? nil
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case jwt
+        case loginID = "loginId"
+    }
 }

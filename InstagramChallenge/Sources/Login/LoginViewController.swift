@@ -116,7 +116,7 @@ class LoginViewController: UIViewController {
             presentFailAlert()
         } else {
             login() {
-                self.presentFullScreen(BaseTabBarController())
+                self.goToHome()
             }
         }
     }

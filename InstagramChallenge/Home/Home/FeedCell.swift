@@ -125,10 +125,14 @@ class FeedCell: UITableViewCell {
         return label
     }()
     
-    let commentsButton: UIButton = {
+    lazy var commentsButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.lightGray, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        button.addTarget(
+            self,
+            action: #selector(didTapCommentsButton(_:)),
+            for: .touchUpInside)
         
         return button
     }()
@@ -141,11 +145,15 @@ class FeedCell: UITableViewCell {
         return imageView
     }()
     
-    let writingCommentsButton: UIButton = {
+    lazy var writingCommentsButton: UIButton = {
         let button = UIButton()
         button.setTitle("댓글 달기...", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
+        button.addTarget(
+            self,
+            action: #selector(didTapCommentsButton(_:)),
+            for: .touchUpInside)
         
         return button
     }()
@@ -187,7 +195,6 @@ class FeedCell: UITableViewCell {
     
     override func prepareForReuse() {
         slideCountLabel.isHidden = true
-        hideComments(false)
     }
     
     // MARK: - Setup
@@ -310,22 +317,11 @@ class FeedCell: UITableViewCell {
     
     func updateCell(_ feed: Feed) {
         contents = feed.contentsList
+        fetchImages()
         nicknameLabel.text = feed.loginID
         contentLabel.text = feed.loginID + " " + (feed.text ?? "")
-        
-        if contentLabel.calculateMaxLines() > 1 {
-            hideComments(true)
-            smallProfileImageView.snp.updateConstraints {
-                $0.top.equalTo(contentStackView.snp.bottom)
-            }
-        } else {
-            smallProfileImageView.snp.updateConstraints {
-                $0.top.equalTo(contentStackView.snp.bottom).offset(30)
-            }
-            commentsButton.setTitle("댓글 \(feed.commentsCount)개 모두 보기", for: .normal)
-        }
-        
-        fetchImages()
+        dateLabel.text = feed.createdAt.caculateDiff()
+        commentsButton.setTitle("댓글 \(feed.commentsCount)개 모두 보기", for: .normal)
     }
     
     func fetchImages() {
@@ -336,16 +332,6 @@ class FeedCell: UITableViewCell {
         pageControl.numberOfPages = contents.count
         slideCountLabel.text = "\(1)/\(contents.count)"
         collectionView.reloadData()
-    }
-    
-    func hideComments(_ bool: Bool) {
-        [
-            commentsButton,
-            smallProfileImageView,
-            writingCommentsButton,
-            emoticonsLabel,
-        ]
-            .forEach { $0.isHidden = bool }
     }
     
     func createIcons(_ name: String) -> UIButton {
@@ -359,6 +345,11 @@ class FeedCell: UITableViewCell {
     
     @objc func didTapEllipsisButton(_ sender: Any) {
         ellipsisButtonTapHandelr?()
+    }
+    
+    @objc func didTapCommentsButton(_ sender: Any) {
+        print("댓글")
+        // TODO: 댓글 화면 이동
     }
 }
 

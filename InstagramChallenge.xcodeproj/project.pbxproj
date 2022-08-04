@@ -10,6 +10,7 @@
 		5FAAD05FD0BB60971686C31D /* Pods_InstagramChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D10534C4245572E20636E69 /* Pods_InstagramChallenge.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		762891A1289BCFEF004AC58D /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762891A0289BCFEF004AC58D /* PaddingLabel.swift */; };
 		762891A3289BD685004AC58D /* UILable++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762891A2289BD685004AC58D /* UILable++Extensions.swift */; };
+		762891A5289BF70D004AC58D /* String++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762891A4289BF70D004AC58D /* String++Extensions.swift */; };
 		7663C974289050DB006C3505 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C973289050DB006C3505 /* SplashViewController.swift */; };
 		7663C97728905467006C3505 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C97628905467006C3505 /* CustomTextField.swift */; };
 		7663C97A2890578E006C3505 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663C9792890578E006C3505 /* SplashView.swift */; };
@@ -81,6 +82,7 @@
 		1834822CBE59BEE12CF34707 /* Pods-InstagramChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramChallenge.debug.xcconfig"; path = "Target Support Files/Pods-InstagramChallenge/Pods-InstagramChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		762891A0289BCFEF004AC58D /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		762891A2289BD685004AC58D /* UILable++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable++Extensions.swift"; sourceTree = "<group>"; };
+		762891A4289BF70D004AC58D /* String++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String++Extensions.swift"; sourceTree = "<group>"; };
 		7663C973289050DB006C3505 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		7663C97628905467006C3505 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7663C9792890578E006C3505 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				762891A2289BD685004AC58D /* UILable++Extensions.swift */,
 				767E414A2893079300AFFFBE /* UIButton++Extensions.swift */,
 				767E414C2893085D00AFFFBE /* UIColor++Extensions.swift */,
+				762891A4289BF70D004AC58D /* String++Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				767E414F28930A2900AFFFBE /* GrayBorderView.swift in Sources */,
 				767E4159289422D500AFFFBE /* AddPasswordView.swift in Sources */,
 				76E262CE289A5B92009D2E16 /* ShopViewController.swift in Sources */,
+				762891A5289BF70D004AC58D /* String++Extensions.swift in Sources */,
 				76E0958B288EE95B007E00D6 /* AppDelegate.swift in Sources */,
 				767E416D289448BC00AFFFBE /* RegisterManager.swift in Sources */,
 				76E0958D288EE95B007E00D6 /* SceneDelegate.swift in Sources */,

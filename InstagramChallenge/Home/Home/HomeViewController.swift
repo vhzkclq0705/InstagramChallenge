@@ -184,7 +184,7 @@ extension HomeViewController: UITableViewDelegate,
             return
         }
         
-        if lastIndex == feeds.count - 3 {
+        if lastIndex == feeds.count - 2 {
             paging()
         }
     }

@@ -15,6 +15,7 @@ fileprivate func networking<T: Decodable>(
     model: T.Type,
     completion: @escaping (Result<T, AFError>) -> Void)
 {
+    LoadingIndicator.showLoading()
     guard let url = URL(string: baseURL + urlStr) else {
         print("URL error")
         return }
@@ -43,6 +44,7 @@ fileprivate func networking<T: Decodable>(
 
 fileprivate func filtering<T: Decodable>(_ model: Response<T>) -> NetworkingResult<T> {
     if let result = model.result {
+        LoadingIndicator.hideLoading()
         return .success(result)
     } else {
         return .fail(model.message)

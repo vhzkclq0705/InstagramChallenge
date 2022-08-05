@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     let homeView = HomeView()
     var feeds = [Feed]()
     var isPaging = false
+    var currentPage = 0
     
     // MARK: - Life cycle
     
@@ -27,10 +28,6 @@ class HomeViewController: UIViewController {
         configureNavigationBar()
         configureViewController()
         fetchFeeds()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        homeView.tableView.reloadData()
     }
     
     // MARK: - Setup
@@ -69,6 +66,12 @@ class HomeViewController: UIViewController {
             self,
             action: #selector(didPullTableView(_:)),
             for: .valueChanged)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadTableView),
+            name: NSNotification.Name("reload"),
+            object: nil)
     }
     
     // MARK: - Func
@@ -81,33 +84,39 @@ class HomeViewController: UIViewController {
     }
     
     func fetchFeeds() {
-        API.searchingFeed(pageIndex: 0, size: 100) { result in
+        API.searchingFeed(pageIndex: currentPage, size: 10) { result in
+            
+            DispatchQueue.main.async {
+                self.homeView.tableView.refreshControl?.endRefreshing()
+            }
+            
             switch result {
             case .success(let feeds):
-                self.feeds = feeds
+                if feeds.count == 0 {
+                    self.currentPage = 0
+                } else {
+                    if self.isPaging {
+                        self.feeds += feeds
+                    } else {
+                        self.feeds = feeds
+                    }
+                }
+                
                 DispatchQueue.main.async {
                     self.homeView.tableView.reloadData()
-                    self.homeView.tableView.refreshControl?.endRefreshing()
                 }
             case .fail(let message):
                 print(message)
             }
+            
+            self.isPaging = false
         }
     }
     
     func paging() {
         isPaging = true
-        
-        API.searchingFeed(pageIndex: 0, size: 100) { result in
-            switch result {
-            case .success(let feeds):
-                self.feeds += feeds
-                self.homeView.tableView.reloadData()
-                self.isPaging = false
-            case .fail(let message):
-                print(message)
-            }
-        }
+        currentPage += 1
+        fetchFeeds()
     }
     
     // MARK: - Action
@@ -127,6 +136,12 @@ class HomeViewController: UIViewController {
     
     @objc func didTapMessageButton(_ sender: Any) {
         
+    }
+    
+    @objc func reloadTableView() {
+        homeView.alpha = 1
+        self.navigationController?.navigationBar.alpha = 1
+        fetchFeeds()
     }
     
 }
@@ -172,11 +187,11 @@ extension HomeViewController: UITableViewDelegate,
                 if feed.loginID == TokenManager.shared.loginID {
                     let vc = PopupViewController()
                     vc.modalPresentationStyle = .overFullScreen
-                    vc.delegate = self
+                    vc.id = feed.id
                     
                     self.present(vc, animated: true)
-                    self.homeView.alpha = 0.2
-                    self.navigationController?.navigationBar.alpha = 0.2
+                    self.homeView.alpha = 0.4
+                    self.navigationController?.navigationBar.alpha = 0.4
                 }
             }
             
@@ -195,7 +210,7 @@ extension HomeViewController: UITableViewDelegate,
             return
         }
         
-        if lastIndex == feeds.count - 2 {
+        if lastIndex == feeds.count - 2 && !isPaging {
             paging()
         }
     }
@@ -208,11 +223,4 @@ extension HomeViewController: UITableViewDelegate,
         return UITableView.automaticDimension
     }
     
-}
-
-extension HomeViewController: removeBlurDelegate {
-    func removeBlur() {
-        homeView.alpha = 1
-        self.navigationController?.navigationBar.alpha = 1
-    }
 }

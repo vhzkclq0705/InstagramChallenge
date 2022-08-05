@@ -113,6 +113,9 @@ class ContentViewController: UIViewController {
 
             API.createFeed(parameter) { isSuccess in
                 if isSuccess {
+                    self.tabBarController?.tabBar.isHidden = false
+                    self.callReloadNotification()
+                    
                     let viewControllers = self.navigationController!
                         .viewControllers as [UIViewController]
                     
@@ -120,7 +123,7 @@ class ContentViewController: UIViewController {
                         viewControllers[viewControllers.count - 3],
                         animated: true)
                     
-                    self.tabBarController?.tabBar.isHidden = false
+                    
                 } else {
                     self.presentBasicAlert("업로드에 실패하였습니다.")
                 }

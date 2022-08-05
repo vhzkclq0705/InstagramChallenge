@@ -33,6 +33,7 @@ fileprivate func networking<T: Decodable>(
     AF.request(request)
         .validate(statusCode: 200..<500)
         .responseDecodable(of: model.self) { response in
+            LoadingIndicator.hideLoading()
             switch response.result {
             case .success(let result):
                 completion(.success(result))
@@ -43,7 +44,6 @@ fileprivate func networking<T: Decodable>(
 }
 
 fileprivate func filtering<T: Decodable>(_ model: Response<T>) -> NetworkingResult<T> {
-    LoadingIndicator.hideLoading()
     if let result = model.result {
         return .success(result)
     } else {
@@ -200,7 +200,7 @@ final class API {
             model: Response<[Feed]>.self) { result in
                 switch result {
                 case .success(let response):
-                    print("searchingFeed: \(response)")
+                    print("searchingFeed: 성공")
                     completion(filtering(response))
                 case .failure(let error):
                     print(error)
@@ -265,21 +265,21 @@ final class API {
 //            }
 //    }
 //
-//    static func deleteFeed(_ feedID: Int, completion: @escaping (String) -> Void) {
-//        networking(
-//            urlStr: Address.updateFeed.url + "\(feedID)/delete-status",
-//            method: .patch,
-//            data: nil,
-//            model: ResponseDefault.self) { result in
-//                switch result {
-//                case .success(let response):
-//                    print("updateFeed: \(response)")
-//                    completion(response.message)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//    }
+    static func deleteFeed(_ feedID: Int, completion: @escaping (Bool) -> Void) {
+        networking(
+            urlStr: Address.updateFeed.url + "\(feedID)/delete-status",
+            method: .patch,
+            data: nil,
+            model: ResponseDefault.self) { result in
+                switch result {
+                case .success(let response):
+                    print("updateFeed: \(response)")
+                    completion(response.isSuccess)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 //
 //    static func searchingComments(
 //        feedID: Int,

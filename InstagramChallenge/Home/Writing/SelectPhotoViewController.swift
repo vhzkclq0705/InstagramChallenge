@@ -191,8 +191,6 @@ extension SelectPhotoViewController: UICollectionViewDelegate,
         let image = images[indexPath.item]
         cell.updateCell(image)
         
-        selectedImage = image
-        
         if indexPath.item == 0 {
             cell.updateMasking(false)
         }
@@ -205,6 +203,7 @@ extension SelectPhotoViewController: UICollectionViewDelegate,
         didSelectItemAt indexPath: IndexPath)
     {
         selectPhotoView.mainImageView.image = images[indexPath.item]
+        selectedImage = images[indexPath.item]
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell else {
             return

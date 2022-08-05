@@ -97,6 +97,10 @@ extension UIViewController {
         self.present(alert, animated: false)
     }
     
+    func callReloadNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("reload"), object: nil)
+    }
+    
     func createSpacing(_ spacing: CGFloat) -> UIBarButtonItem {
         let item = UIBarButtonItem(
             barButtonSystemItem: .fixedSpace,

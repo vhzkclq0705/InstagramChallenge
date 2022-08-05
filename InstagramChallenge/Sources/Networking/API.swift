@@ -229,25 +229,25 @@ final class API {
 //            }
 //    }
 //
-//    static func createFeed(_ parameter: [String: Any], completion: @escaping (String) -> Void) {
-//        guard let data = try? JSONSerialization.data(
-//            withJSONObject: parameter,
-//            options: .prettyPrinted) else { return }
-//
-//        networking(
-//            urlStr: Address.createFeed.url,
-//            method: .post,
-//            data: data,
-//            model: ResponseDefault.self) { result in
-//                switch result {
-//                case .success(let response):
-//                    print("createFeed: \(response)")
-//                    completion(response.message)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//    }
+    static func createFeed(_ parameter: [String: Any], completion: @escaping (Bool) -> Void) {
+        guard let data = try? JSONSerialization.data(
+            withJSONObject: parameter,
+            options: .prettyPrinted) else { return }
+
+        networking(
+            urlStr: Address.createFeed.url,
+            method: .post,
+            data: data,
+            model: ResponseDefault.self) { result in
+                switch result {
+                case .success(let response):
+                    print("createFeed: \(response)")
+                    completion(response.isSuccess)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 //
 //    static func updateFeed(_ feedID: Int, completion: @escaping (String) -> Void) {
 //        networking(

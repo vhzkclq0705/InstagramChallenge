@@ -29,6 +29,10 @@ class HomeViewController: UIViewController {
         fetchFeeds()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        homeView.tableView.reloadData()
+    }
+    
     // MARK: - Setup
     
     func configureNavigationBar() {

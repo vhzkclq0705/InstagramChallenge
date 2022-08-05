@@ -62,6 +62,13 @@ class ContentView: BaseView {
     let border5 = GrayBorderView()
     let border6 = GrayBorderView()
     
+    let maskingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black.withAlphaComponent(0.7)
+        view.isHidden = true
+        
+        return view
+    }()
     
     // MARK: - Init
     
@@ -114,6 +121,7 @@ class ContentView: BaseView {
             border5,
             settingsStackView,
             border6,
+            maskingView,
         ]
             .forEach { self.addSubview($0) }
     }
@@ -197,6 +205,11 @@ class ContentView: BaseView {
             $0.top.equalTo(settingsStackView.snp.bottom).offset(15)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(2)
+        }
+        
+        maskingView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(border2)
+            $0.bottom.equalToSuperview()
         }
     }
     

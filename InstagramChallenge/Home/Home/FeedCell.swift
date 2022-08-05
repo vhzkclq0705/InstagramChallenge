@@ -176,7 +176,7 @@ class FeedCell: UITableViewCell {
     
     // MARK: - Property
     
-    var ellipsisButtonTapHandelr: (() -> Void)?
+    var ellipsisButtonTapHandler: (() -> Void)?
     var contents = [Contents]()
     
     // MARK: - Init
@@ -344,7 +344,7 @@ class FeedCell: UITableViewCell {
     // MARK: - Action
     
     @objc func didTapEllipsisButton(_ sender: Any) {
-        ellipsisButtonTapHandelr?()
+        ellipsisButtonTapHandler?()
     }
     
     @objc func didTapCommentsButton(_ sender: Any) {

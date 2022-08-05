@@ -55,10 +55,6 @@ class HomeViewController: UIViewController {
             self,
             action: #selector(didTapAddButton(_:)),
             for: .touchUpInside)
-        bellButton.addTarget(
-            self,
-            action: #selector(didTapBellButton(_:)),
-            for: .touchUpInside)
         messageButton.addTarget(
             self,
             action: #selector(didTapMessageButton(_:)),
@@ -133,10 +129,6 @@ class HomeViewController: UIViewController {
         
     }
     
-    @objc func didTapBellButton(_ sender: Any) {
-        
-    }
-    
 }
 
 // MARK: - TableView
@@ -175,6 +167,19 @@ extension HomeViewController: UITableViewDelegate,
             
             let feed = feeds[indexPath.row - 1]
             cell.updateCell(feed)
+            
+            cell.ellipsisButtonTapHandler = {
+                if feed.loginID == TokenManager.shared.loginID {
+                    let vc = PopupViewController()
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.delegate = self
+                    
+                    self.present(vc, animated: true)
+                    self.homeView.alpha = 0.2
+                    self.navigationController?.navigationBar.alpha = 0.2
+                }
+            }
+            
             cell.selectionStyle = .none
             
             return cell
@@ -203,5 +208,11 @@ extension HomeViewController: UITableViewDelegate,
         return UITableView.automaticDimension
     }
     
-    
+}
+
+extension HomeViewController: removeBlurDelegate {
+    func removeBlur() {
+        homeView.alpha = 1
+        self.navigationController?.navigationBar.alpha = 1
+    }
 }

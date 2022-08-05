@@ -36,8 +36,11 @@ class ChatCell: UITableViewCell {
     let chatLabel: PaddingLabel = {
         let label = PaddingLabel(
             padding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-        label.layer.cornerRadius = label.bounds.width / 2
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.cornerRadius = 20
         label.numberOfLines = 0
+        label.lineBreakMode = .byCharWrapping
         
         return label
     }()
@@ -60,12 +63,12 @@ class ChatCell: UITableViewCell {
     
     func updateCell(_ chat: Chat) {
         chatLabel.text = chat.content
+        
         if chat.loginID == TokenManager.shared.loginID {
             showMyChat()
         } else {
             showOthersChat()
         }
-        
     }
     
     func showTimeLabel() {
@@ -77,28 +80,35 @@ class ChatCell: UITableViewCell {
     }
     
     func showOthersChat() {
+        profileImageView.isHidden = false
+        chatLabel.backgroundColor = .white
+        
         [profileImageView, chatLabel]
             .forEach { contentView.addSubview($0) }
         
         profileImageView.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-5)
-            $0.leading.equalToSuperview().inset(20)
-            $0.width.height.equalTo(20)
+            $0.leading.equalToSuperview().inset(10)
+            $0.width.height.equalTo(40)
         }
         
         chatLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(5)
-            $0.leading.trailing.equalToSuperview().offset(50)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+            $0.trailing.lessThanOrEqualToSuperview().offset(-50)
         }
+        
     }
     
     func showMyChat() {
+        chatLabel.backgroundColor = .lightGray
         contentView.addSubview(chatLabel)
         
         chatLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(5)
             $0.trailing.equalToSuperview().offset(20)
         }
+        
     }
     
     

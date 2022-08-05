@@ -333,7 +333,7 @@ final class API {
         completion: @escaping (NetworkingResult<[Chat]>) -> Void)
     {
         networking(
-            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
+            urlStr: Address.searchingChats.url + "\(pageIndex)&size=\(size)",
             method: .get,
             data: nil,
             model: Response<[Chat]>.self) { result in

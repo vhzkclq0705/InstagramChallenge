@@ -84,8 +84,18 @@ extension ChatViewController: UITableViewDelegate,
             return UITableViewCell()
         }
         
+        let chat = chats[indexPath.row]
+        cell.updateCell(chat)
         
         return cell
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath)
+    -> CGFloat
+    {
+        return UITableView.automaticDimension
     }
     
 }

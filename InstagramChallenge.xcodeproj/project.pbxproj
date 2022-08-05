@@ -69,6 +69,7 @@
 		768DDA6A289D6FEC00049381 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA69289D6FEC00049381 /* PopupView.swift */; };
 		768DDA6C289D768E00049381 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA6B289D768E00049381 /* ListCell.swift */; };
 		768DDA6E289D7A2300049381 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA6D289D7A2300049381 /* PopupViewController.swift */; };
+		768DDA71289DB03200049381 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 768DDA73289DB03200049381 /* Localizable.strings */; };
 		76B381E4289A7BF300463542 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E3289A7BF300463542 /* HomeView.swift */; };
 		76B381E6289A7C9B00463542 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E5289A7C9B00463542 /* StoryCell.swift */; };
 		76B381E8289A802A00463542 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E7289A802A00463542 /* FeedCell.swift */; };
@@ -151,6 +152,9 @@
 		768DDA69289D6FEC00049381 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		768DDA6B289D768E00049381 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		768DDA6D289D7A2300049381 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		768DDA72289DB03200049381 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		768DDA74289DB06000049381 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		768DDA76289DB07400049381 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		76B381E3289A7BF300463542 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		76B381E5289A7C9B00463542 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		76B381E7289A802A00463542 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -224,10 +228,10 @@
 				767E40D12891575100AFFFBE /* Models */,
 				767E40CA289154C000AFFFBE /* Networking */,
 				7663C9782890546B006C3505 /* Custom */,
-				76E0959E288EF947007E00D6 /* Controllers */,
 				7663C975289050E3006C3505 /* Splash */,
 				7663C97E2890598E006C3505 /* Login */,
 				767E40F128917CA700AFFFBE /* Register */,
+				767E4168289446EA00AFFFBE /* Home */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -237,6 +241,7 @@
 			children = (
 				76E09598288EE95E007E00D6 /* Info.plist */,
 				768DDA65289D5EF500049381 /* GoogleService-Info.plist */,
+				768DDA73289DB03200049381 /* Localizable.strings */,
 			);
 			path = "Suppoting files";
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 			children = (
 				76E262C7289A5B29009D2E16 /* BaseTabBarController.swift */,
 				76B381E2289A7BD800463542 /* Home */,
+				768DDA67289D6E4600049381 /* Comments */,
 				768DDA56289C3E5B00049381 /* Writing */,
 				76E262C9289A5B4D009D2E16 /* SearchViewController.swift */,
 				76E262CB289A5B79009D2E16 /* ReelsViewController.swift */,
@@ -460,7 +466,6 @@
 				76B381E7289A802A00463542 /* FeedCell.swift */,
 				76B381EB289AAA1600463542 /* ImageSlideCell.swift */,
 				768DDA68289D6FDF00049381 /* Popup */,
-				768DDA67289D6E4600049381 /* Comments */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -488,19 +493,11 @@
 			children = (
 				7663C97D28905906006C3505 /* Suppoting files */,
 				7663C97C289058FD006C3505 /* Sources */,
-				767E4168289446EA00AFFFBE /* Home */,
 				7663C97B289058F2006C3505 /* Resources */,
 				76E0958A288EE95B007E00D6 /* AppDelegate.swift */,
 				76E0958C288EE95B007E00D6 /* SceneDelegate.swift */,
 			);
 			path = InstagramChallenge;
-			sourceTree = "<group>";
-		};
-		76E0959E288EF947007E00D6 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C79C614F4240D78B6D04E82B /* Frameworks */ = {
@@ -565,6 +562,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				"zh-HK",
 			);
 			mainGroup = 76E0957E288EE95B007E00D6;
 			productRefGroup = 76E09588288EE95B007E00D6 /* Products */;
@@ -582,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E09594288EE95E007E00D6 /* Assets.xcassets in Resources */,
+				768DDA71289DB03200049381 /* Localizable.strings in Resources */,
 				768DDA66289D5EF500049381 /* GoogleService-Info.plist in Resources */,
 				76E09592288EE95C007E00D6 /* Main.storyboard in Resources */,
 			);
@@ -716,6 +716,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		768DDA73289DB03200049381 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				768DDA72289DB03200049381 /* en */,
+				768DDA74289DB06000049381 /* ja */,
+				768DDA76289DB07400049381 /* zh-HK */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		76E09590288EE95C007E00D6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -731,6 +741,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -791,6 +802,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

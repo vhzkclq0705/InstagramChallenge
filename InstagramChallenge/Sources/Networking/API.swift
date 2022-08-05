@@ -43,8 +43,8 @@ fileprivate func networking<T: Decodable>(
 }
 
 fileprivate func filtering<T: Decodable>(_ model: Response<T>) -> NetworkingResult<T> {
+    LoadingIndicator.hideLoading()
     if let result = model.result {
-        LoadingIndicator.hideLoading()
         return .success(result)
     } else {
         return .fail(model.message)

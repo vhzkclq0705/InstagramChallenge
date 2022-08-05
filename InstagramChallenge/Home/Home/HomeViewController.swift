@@ -120,7 +120,9 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didTapAddButton(_ sender: Any) {
+        let vc = SelectPhotoViewController()
         
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func didTapMessageButton(_ sender: Any) {

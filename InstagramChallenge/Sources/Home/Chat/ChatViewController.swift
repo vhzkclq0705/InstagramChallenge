@@ -8,12 +8,16 @@
 
 import UIKit
 
+import SnapKit
+
 class ChatViewController: UIViewController {
 
     // MARK: - Property
     
     let chatView = ChatView()
     var chats = [Chat]()
+    let placeholder = "메시지 보내기..."
+    var checkText = ""
     
     // MARK: - Life cycle
     
@@ -40,6 +44,15 @@ class ChatViewController: UIViewController {
         chatView.tableView.delegate = self
         chatView.tableView.dataSource = self
         chatView.textView.delegate = self
+        
+        chatView.sendButton.addTarget(
+            self,
+            action: #selector(didTapSendButton(_:)),
+            for: .touchUpInside)
+        
+        chatView.textView.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+        }
     }
 
     // MARK: - Func
@@ -51,13 +64,53 @@ class ChatViewController: UIViewController {
                 self.chats = chats.sorted(by: { $0.chatID < $1.chatID })
                 
                 DispatchQueue.main.async {
-                    self.chatView.tableView.reloadData()
+                    self.scrollToBottom()
                 }
             case .fail(let message):
                 self.presentBasicAlert(message)
             }
         }
     }
+    
+    func sendChats() {
+        let parameter = ["content": checkText]
+        
+        API.sendChats(parameter) {
+            self.fetchChats()
+        }
+    }
+    
+    func initTextViewState() {
+        chatView.textView.text = placeholder
+        chatView.textView.textColor = .lightGray
+        chatView.textView.translatesAutoresizingMaskIntoConstraints = true
+        chatView.textView.sizeToFit()
+        chatView.textView.isScrollEnabled = false
+        changeSendButtonState(false)
+    }
+    
+    func changeSendButtonState(_ bool: Bool) {
+        chatView.chatButtons.isHidden = bool
+        chatView.sendButton.isHidden = !bool
+    }
+    
+    func scrollToBottom()  {
+        chatView.tableView.reloadData()
+        
+        if chats.count > 0 {
+            let indexPath = IndexPath(row: chats.count - 1, section: 0)
+            chatView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
+    }
+    
+    // MARK: - Action
+    
+    @objc func didTapSendButton(_ sender: Any) {
+        sendChats()
+        initTextViewState()
+        scrollToBottom()
+    }
+    
 }
 
 // MARK: - TableView
@@ -103,5 +156,38 @@ extension ChatViewController: UITableViewDelegate,
 // MARK: - TextView
 
 extension ChatViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        checkText = textView.text
+        
+        if textView.text.count > 0 {
+            changeSendButtonState(true)
+        }
+        
+        if textView.text.count > 200 {
+            textView.deleteBackward()
+        }
+        
+        textView.isScrollEnabled = textView.frame.height >= 132 ? true : false
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = textView.text == placeholder ? "" : checkText
+        textView.textColor = .black
+        
+        chatView.textView.snp.updateConstraints {
+            $0.bottom.equalTo(200).offset(-10)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            initTextViewState()
+        }
+        
+        chatView.textView.snp.updateConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+        }
+    }
     
 }

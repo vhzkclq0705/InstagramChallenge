@@ -24,7 +24,7 @@ class ChatView: BaseView {
     
     let textView: UITextView = {
         let textView = UITextView()
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderColor = UIColor.systemGray4.cgColor
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 25
         textView.textContainerInset = UIEdgeInsets(top: 15, left: 50, bottom: 15, right: 100)
@@ -78,8 +78,13 @@ class ChatView: BaseView {
     // MARK: - Setup
     
     func addViews() {
-        
-        [tableView, textView, cameraButton, chatButtons, sendButton,]
+        [
+            tableView,
+            textView,
+            cameraButton,
+            chatButtons,
+            sendButton,
+        ]
             .forEach { self.addSubview($0) }
     }
     
@@ -92,7 +97,7 @@ class ChatView: BaseView {
         textView.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
             $0.leading.trailing.equalToSuperview().inset(10)
-            $0.height.equalTo(50)
+            $0.height.lessThanOrEqualTo(132)
         }
         
         cameraButton.snp.makeConstraints {
@@ -106,6 +111,11 @@ class ChatView: BaseView {
             $0.trailing.equalTo(textView).offset(-10)
             $0.width.equalTo(120)
             $0.height.equalTo(40)
+        }
+        
+        sendButton.snp.makeConstraints {
+            $0.bottom.equalTo(textView).offset(-8)
+            $0.trailing.equalTo(textView).offset(-10)
         }
     }
     

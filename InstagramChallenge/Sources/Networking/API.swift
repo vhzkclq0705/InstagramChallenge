@@ -346,27 +346,27 @@ final class API {
                 }
             }
     }
-//
-//    static func sendChats(
-//        parameter: [String: String],
-//        completion: @escaping (SendChats) -> Void)
-//    {
-//        guard let data = try? JSONSerialization.data(
-//            withJSONObject: parameter,
-//            options: .prettyPrinted) else { return }
-//
-//        networking(
-//            urlStr: Address.createComments.url,
-//            method: .post,
-//            data: data,
-//            model: Response<SendChats>.self) { result in
-//                switch result {
-//                case .success(let response):
-//                    print("sendChats: \(response)")
-//                    completion(response.result)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//    }
+
+    static func sendChats(
+        _ parameter: [String: String],
+        completion: @escaping () -> Void)
+    {
+        guard let data = try? JSONSerialization.data(
+            withJSONObject: parameter,
+            options: .prettyPrinted) else { return }
+
+        networking(
+            urlStr: Address.sendChats.url,
+            method: .post,
+            data: data,
+            model: Response<SendChats>.self) { result in
+                switch result {
+                case .success(let response):
+                    print("sendChats: \(response)")
+                    completion()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 }

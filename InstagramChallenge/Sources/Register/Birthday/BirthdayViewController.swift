@@ -78,10 +78,10 @@ class BirthdayViewController: HideBackButtonViewController {
     }
     
     func updateNextButtonConstraint(_ bool: Bool) {
-        let width = datePicker.frame.height
+        let height = datePicker.frame.height
         
         birthdayView.nextButton.snp.updateConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(bool ? -width : 0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(bool ? -height : 0)
         }
     }
     

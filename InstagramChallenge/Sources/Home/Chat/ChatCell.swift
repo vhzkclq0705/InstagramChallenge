@@ -37,8 +37,9 @@ class ChatCell: UITableViewCell {
         let label = PaddingLabel(
             padding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
         label.layer.borderWidth = 1
-        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.borderColor = UIColor.systemGray4.cgColor
         label.layer.cornerRadius = 20
+        label.clipsToBounds = true
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping
         
@@ -58,6 +59,12 @@ class ChatCell: UITableViewCell {
     
     // MARK: - Setup
 
+    // MARK: - Life cycle
+    
+    override func prepareForReuse() {
+        profileImageView.isHidden = true
+        chatLabel.snp.removeConstraints()
+    }
     
     // MARK: - Func
     
@@ -101,12 +108,14 @@ class ChatCell: UITableViewCell {
     }
     
     func showMyChat() {
-        chatLabel.backgroundColor = .lightGray
+        chatLabel.backgroundColor = .systemGray4
+        chatLabel.textAlignment = .right
         contentView.addSubview(chatLabel)
         
         chatLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(5)
-            $0.trailing.equalToSuperview().offset(20)
+            $0.leading.greaterThanOrEqualToSuperview().offset(60)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         
     }

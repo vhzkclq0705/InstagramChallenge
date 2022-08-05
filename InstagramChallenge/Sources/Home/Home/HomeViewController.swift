@@ -135,7 +135,9 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didTapMessageButton(_ sender: Any) {
+        let vc = ChatViewController()
         
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func reloadTableView() {

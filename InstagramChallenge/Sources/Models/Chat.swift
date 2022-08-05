@@ -1,5 +1,5 @@
 //
-//  SearchingChats.swift
+//  Chat.swift
 //  InstagramChallenge
 //
 //  Created by 권오준 on 2022/07/27.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct SearchingChats: Codable {
+struct Chat: Codable {
     let chatID: Int
-    let userID: Int
+    let loginID: String
     let content: String
     let createdAt: String
     let updatedAt: String
     
     enum CodingKeys: String, CodingKey {
         case chatID = "chatId"
-        case userID = "userId"
+        case loginID = "loginId"
         case content, createdAt, updatedAt
     }
 }

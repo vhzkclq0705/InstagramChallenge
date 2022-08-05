@@ -327,25 +327,25 @@ final class API {
 //            }
 //    }
 //
-//    static func searchingChats(
-//        pageIndex: Int,
-//        size: String,
-//        completion: @escaping ([SearchingChats]) -> Void)
-//    {
-//        networking(
-//            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
-//            method: .get,
-//            data: nil,
-//            model: Response<[SearchingChats]>.self) { result in
-//                switch result {
-//                case .success(let response):
-//                    print("searchingChats: \(response)")
-//                    completion(response.result)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//    }
+    static func searchingChats(
+        pageIndex: Int,
+        size: Int,
+        completion: @escaping (NetworkingResult<[Chat]>) -> Void)
+    {
+        networking(
+            urlStr: Address.searchingFeed.url + "\(pageIndex)&size=\(size)",
+            method: .get,
+            data: nil,
+            model: Response<[Chat]>.self) { result in
+                switch result {
+                case .success(let response):
+                    print("searchingChats: \(response)")
+                    completion(filtering(response))
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 //
 //    static func sendChats(
 //        parameter: [String: String],

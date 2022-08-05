@@ -45,9 +45,9 @@ class BaseTabBarController: UITabBarController {
     // MARK: - Property
     
     let homeVC = HomeViewController()
-    let searchVC = SearchViewController()
-    let reelsVC = ReelsViewController()
-    let shopVC = ShopViewController()
+    let searchVC = UIViewController()
+    let reelsVC = UIViewController()
+    let shopVC = UIViewController()
     let myPageVC = MyPageViewController()
     
     // MARK: - Life cycle

@@ -320,8 +320,20 @@ class FeedCell: UITableViewCell {
         fetchImages()
         nicknameLabel.text = feed.loginID
         contentLabel.text = feed.loginID + " " + (feed.text ?? "")
+        updateSmallNickname(feed.loginID)
         dateLabel.text = feed.createdAt.caculateDiff()
         commentsButton.setTitle("댓글 \(feed.commentsCount)개 모두 보기", for: .normal)
+    }
+    
+    func updateSmallNickname(_ id: String) {
+        guard let text = contentLabel.text else { return }
+        let attributedStr = NSMutableAttributedString(string: text)
+        attributedStr.addAttribute(
+            .font,
+            value: UIFont.boldSystemFont(ofSize: 15),
+            range: (text as NSString).range(of: id))
+        
+        contentLabel.attributedText = attributedStr
     }
     
     func fetchImages() {

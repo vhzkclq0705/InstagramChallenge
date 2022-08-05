@@ -17,6 +17,7 @@ class SelectPhotoViewController: UIViewController {
     var fetchResult: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
     var images = [UIImage]()
+    var selectedImage: UIImage?
     
     // MARK: - Life cycle
     
@@ -38,12 +39,40 @@ class SelectPhotoViewController: UIViewController {
     // MARK: - Setup
     
     func configureNavigationBar() {
+        self.navigationItem.hidesBackButton = true
         self.navigationController?.navigationBar.barTintColor = .black
         self.navigationController?.navigationBar.tintColor = .white
         self.title = "새 게시물"
         self.navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white
         ]
+        
+        lazy var backButton: UIButton = {
+            let button = UIButton()
+            button.setTitle("취소", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.addTarget(
+                self,
+                action: #selector(didTapBackButton(_:)),
+                for: .touchUpInside)
+            
+            return button
+        }()
+        
+        lazy var nextButton: UIButton = {
+            let button = UIButton()
+            button.setTitle("다음", for: .normal)
+            button.setTitleColor(.systemBlue, for: .normal)
+            button.addTarget(
+                self,
+                action: #selector(didTapNextButton(_:)),
+                for: .touchUpInside)
+            
+            return button
+        }()
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: nextButton)
     }
     
     func configureViewController() {
@@ -51,7 +80,34 @@ class SelectPhotoViewController: UIViewController {
         
         selectPhotoView.collectionView.delegate = self
         selectPhotoView.collectionView.dataSource = self
+    }
+    
+    // MARK: - Func
+    
+    func checkPhotoAuth() {
+        let photoAuth = PHPhotoLibrary.authorizationStatus()
         
+        switch photoAuth {
+        case .authorized:
+            loadPhotos()
+            selectPhotoView.collectionView.reloadData()
+        case .denied:
+            presentBasicAlert("권한 설정이 필요합니다.")
+            self.dismiss(animated: true)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({ status in
+                switch status {
+                case .authorized:
+                    self.loadPhotos()
+                    self.selectPhotoView.collectionView.reloadData()
+                case .denied:
+                    self.presentBasicAlert("권한 설정이 필요합니다.")
+                    self.dismiss(animated: true)
+                default: break
+                }
+            })
+        default: break
+        }
     }
     
     func loadPhotos() {
@@ -90,33 +146,22 @@ class SelectPhotoViewController: UIViewController {
         }
         
         selectPhotoView.mainImageView.image = images[0]
+        selectedImage = images[0]
     }
 
-    func checkPhotoAuth() {
-        let photoAuth = PHPhotoLibrary.authorizationStatus()
-        
-        switch photoAuth {
-        case .authorized:
-            loadPhotos()
-            selectPhotoView.collectionView.reloadData()
-        case .denied:
-            presentBasicAlert("권한 설정이 필요합니다.")
-            self.dismiss(animated: true)
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization({ status in
-                switch status {
-                case .authorized:
-                    self.loadPhotos()
-                    self.selectPhotoView.collectionView.reloadData()
-                case .denied:
-                    self.presentBasicAlert("권한 설정이 필요합니다.")
-                    self.dismiss(animated: true)
-                default: break
-                }
-            })
-        default: break
-        }
+    // MARK: - Action
+    
+    @objc func didTapBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
+    
+    @objc func didTapNextButton(_ sender: Any) {
+        let vc = ContentViewController()
+        vc.image = selectedImage ?? UIImage()
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 // MARK: - CollectionView
@@ -145,6 +190,8 @@ extension SelectPhotoViewController: UICollectionViewDelegate,
         
         let image = images[indexPath.item]
         cell.updateCell(image)
+        
+        selectedImage = image
         
         if indexPath.item == 0 {
             cell.updateMasking(false)

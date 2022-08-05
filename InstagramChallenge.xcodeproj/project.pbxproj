@@ -64,6 +64,7 @@
 		768DDA5A289C41DB00049381 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA59289C41DB00049381 /* PhotoCell.swift */; };
 		768DDA5E289D26F200049381 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA5D289D26F200049381 /* SelectPhotoViewController.swift */; };
 		768DDA62289D489A00049381 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA61289D489A00049381 /* ContentViewController.swift */; };
+		768DDA64289D4CA400049381 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768DDA63289D4CA400049381 /* ContentView.swift */; };
 		76B381E4289A7BF300463542 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E3289A7BF300463542 /* HomeView.swift */; };
 		76B381E6289A7C9B00463542 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E5289A7C9B00463542 /* StoryCell.swift */; };
 		76B381E8289A802A00463542 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B381E7289A802A00463542 /* FeedCell.swift */; };
@@ -141,6 +142,7 @@
 		768DDA59289C41DB00049381 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		768DDA5D289D26F200049381 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		768DDA61289D489A00049381 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		768DDA63289D4CA400049381 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		76B381E3289A7BF300463542 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		76B381E5289A7C9B00463542 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		76B381E7289A802A00463542 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				768DDA59289C41DB00049381 /* PhotoCell.swift */,
 				768DDA57289C3E7700049381 /* SelectPhotoView.swift */,
 				768DDA5D289D26F200049381 /* SelectPhotoViewController.swift */,
+				768DDA63289D4CA400049381 /* ContentView.swift */,
 				768DDA61289D489A00049381 /* ContentViewController.swift */,
 			);
 			path = Writing;
@@ -668,6 +671,7 @@
 				767E40D6289158A000AFFFBE /* Comments.swift in Sources */,
 				762891A3289BD685004AC58D /* UILable++Extensions.swift in Sources */,
 				767E41042891953700AFFFBE /* EmailViewController.swift in Sources */,
+				768DDA64289D4CA400049381 /* ContentView.swift in Sources */,
 				767E41062891A08800AFFFBE /* PhoneNumberView.swift in Sources */,
 				767E41392892A19400AFFFBE /* CertificationViewController.swift in Sources */,
 				767E41492893051100AFFFBE /* AgreementViewController.swift in Sources */,
